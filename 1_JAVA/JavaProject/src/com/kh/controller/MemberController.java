@@ -13,7 +13,6 @@ public class MemberController {
 	private int num;
 	private String str;
 	private List<Member> memberList = new ArrayList<>(); // Member를 저장할 수 있는 list생성
-	private Member loginMember;
 	
 	public boolean insertMember(Member m) {
 		return memberList.add(m);
@@ -23,7 +22,6 @@ public class MemberController {
 	public Member loginMember(String id, String pwd) {
 		for(Member m : memberList) {
 			if (m.getUserId().equals(id) && m.getUserPwd().equals(pwd)) {
-				this.loginMember = m;
 				return m;
 			}
 		}

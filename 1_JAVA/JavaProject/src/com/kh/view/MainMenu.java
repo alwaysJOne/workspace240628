@@ -2,6 +2,7 @@ package com.kh.view;
 
 import java.util.Scanner;
 
+import com.kh.controller.BookController;
 import com.kh.controller.MemberController;
 import com.kh.vo.Member;
 
@@ -9,6 +10,7 @@ import com.kh.vo.Member;
 public class MainMenu {
 	private Scanner sc = new Scanner(System.in);
 	private MemberController mc = new MemberController();
+	private BookController bc = new BookController();
 	
 	/**
 	 * 메인화면 : 가장 처음나타나는 화면으로 다양한 메뉴로 진입할 수 있다.
@@ -94,6 +96,9 @@ public class MainMenu {
 			System.out.println("로그인에 실패하였습니다. id, pwd를 다시 확인하세요.");
 		} else {
 			System.out.println("로그인에 성공하였습니다.");
+			System.out.println(loginMember.getUserName() + "님 반갑습니다.");
+			
+			new LibraryMenu(loginMember, bc, sc).menu();
 		}
 	}
 
