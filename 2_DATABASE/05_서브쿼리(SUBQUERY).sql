@@ -282,6 +282,81 @@ WHERE EXTRACT(YEAR FROM SYSDATE) -
                 FROM EMPLOYEE);
 
 
+--===============================================================================================
+/*
+    5.인라인 뷰
+    FROM절에 서브쿼리를 작성하는 것
+    서브쿼리를 수행한 결과를 마치 테이블처럼 사용
+*/
+
+--사원들의 사번, 이름, 보너스포함 연봉, 부서코드 조회
+--단, 보너스 포함 연봉은 NULL이되면 안된다.
+--단, 보너스 포함 연봉이 3000만원 이상인 사원들만 조회
+
+-- ROWNUM : 오라클에서 제공하는 컬럼, 조회된 순서대로 1부터 순번을 부여한다.
+SELECT ROWNUM, EMP_ID, EMP_NAME, (SALARY + (SALARY * NVL(BONUS, 0))) * 12 AS "연봉", DEPT_CODE
+FROM EMPLOYEE
+WHERE (SALARY + (SALARY * NVL(BONUS, 0))) * 12 >= 30000000
+ORDER BY 연봉 DESC;
+
+--> 전 직원중 급여가 가장 높은 5명만 조회
+SELECT ROWNUM, EMP_NAME, SALARY
+FROM EMPLOYEE
+WHERE ROWNUM <= 5
+ORDER BY SALARY DESC;
+
+-->인라인뷰를 주로 사용하는 예 >> TOP-N분석 : 상위 몇개만 조회
+--> ORDER BY절이 수핸된 결과를 가지고 ROWNUM부여 -> 상위 5명 조회
+SELECT ROWNUM, EMP_NAME, SALARY
+FROM (SELECT EMP_NAME, SALARY
+        FROM EMPLOYEE
+        ORDER BY SALARY DESC)
+WHERE ROWNUM <= 5;
+
+--가장 최근에 입사한 사원 5명 조회(사원명, 급여, 입사일)
+SELECT ROWNUM,EMP_NAME, SALARY, HIRE_DATE
+FROM(SELECT *
+     FROM EMPLOYEE
+     ORDER BY HIRE_DATE DESC)
+WHERE ROWNUM <= 5; 
+
+--부서별 평균급여가 높은 3개의 부서 조회
+SELECT DEPT_CODE, 평균급여
+FROM(SELECT DEPT_CODE, AVG(SALARY) AS "평균급여"
+     FROM EMPLOYEE
+     GROUP BY DEPT_CODE
+     ORDER BY AVG(SALARY) DESC)
+WHERE ROWNUM <= 3;
+
+-------------------------------------------------------------------------------
+/*
+    *순위를 매기는 함수(WINDOW FUNCTION)
+    RANK() OVER(정렬기준) | DANSE_RANK() OVER(정렬기준)
+    RANK() OVER(정렬기준) : 동일한 순위 이후의 등수를 동일한 인원 수 만큼 건너뛰고 순위계산
+    DANSE_RANK() OVER(정렬기준) : 동일한 순위가 있다고해도 그다음 등수를 무조건 1씩 증가
+    
+    무조건 SELECT절에서만 사용
+*/
+
+--급여가 높은 순서대로 순위를 매겨서 조회
+SELECT EMP_NAME, SALARY, RANK() OVER(ORDER BY SALARY DESC) AS "순위"
+FROM EMPLOYEE;
+
+SELECT EMP_NAME, SALARY, DENSE_RANK() OVER(ORDER BY SALARY DESC) AS "순위"
+FROM EMPLOYEE;
+
+--급여가 높은 순서대로 5명
+SELECT *
+FROM (SELECT EMP_NAME, SALARY, RANK() OVER(ORDER BY SALARY DESC) AS "순위"
+        FROM EMPLOYEE)
+WHERE 순위 <= 5;
+
+
+
+
+
+
+
 
 
 
