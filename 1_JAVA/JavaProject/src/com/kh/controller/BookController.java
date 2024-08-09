@@ -8,6 +8,20 @@ import com.kh.vo.Book;
 public class BookController {
 	private List<Book> bookList = new ArrayList<>();
 	
+	
+	public BookController() {
+		super();
+		bookList.add(new Book("자바의 정석", "IT", "남궁성"));
+		bookList.add(new Book("자바를 자바", "IT", "최지원"));
+		bookList.add(new Book("열혈자바", "IT", "윤성우"));
+		bookList.add(new Book("아프리카 청춘이다.", "여행", "김수민"));
+		bookList.add(new Book("아프니까 청춘이다.", "에세이", "박민수"));
+	}
+
+	public List<Book> getBookList(){
+		return bookList;
+	}
+	
 	public boolean insertBook(Book b) {
 		return bookList.add(b);
 	}

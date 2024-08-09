@@ -61,6 +61,10 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", genre=" + genre + "]";
+		return genre + " " + title +  " " + author;
+	}
+	
+	public void printInfo() {
+		System.out.printf("%7s %12s %5s\n", this.genre, this.title, this.author);
 	}
 }

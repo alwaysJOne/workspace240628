@@ -14,6 +14,11 @@ public class MemberController {
 	private String str;
 	private List<Member> memberList = new ArrayList<>(); // Member를 저장할 수 있는 list생성
 	
+	public MemberController() {
+		super();
+		memberList.add(new Member("user01", "pass01", "최지원", 20));
+	}
+
 	public boolean insertMember(Member m) {
 		return memberList.add(m);
 	}
