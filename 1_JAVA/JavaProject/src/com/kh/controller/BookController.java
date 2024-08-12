@@ -46,4 +46,25 @@ public class BookController {
 		Book b = bookList.set(i, newBook); // 찾은 인덱스위치 책을 새로운 책으로 수정한다.
 		return b != null;
 	}
+	
+	public boolean deleteBook(Book b) {
+		return bookList.remove(b);
+	}
+	
+	public List<Book> searchBook(String keyword){
+		List<Book> searchBookList = new ArrayList<>();
+		for(Book b : bookList) {
+			if (b.containKeyword(keyword)) {
+				searchBookList.add(b);
+			}
+		}
+		
+		return searchBookList;
+	}
 }
+
+
+
+
+
+

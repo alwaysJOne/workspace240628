@@ -131,18 +131,39 @@ public class LibraryMenu {
 	}
 	
 	public void deleteBook() {
-		//모든 책 목록을 보여준다.
-		//삭제할 책 제목을 입력받는다.
-		//mc.deleteBook에 책 제목을 전달하여 책을 삭제한다.
-		//해당 제목에 대한 책이 없다면 입력한 책을 찾을 수 없습니다.
-		//정상적으로 삭제했다면 책을 정상적으로 삭제하였습니다.
+		this.allPrintBook();
+		
+		System.out.print("삭제할 책제목 입력 : ");
+		String title = sc.nextLine();
+		
+		Book b = bc.searchBookByTitle(title);
+		
+		if(b == null) {
+			System.out.println("입력한 책을 찾을 수 없습니다.");
+			return;
+		}
+		
+		if(bc.deleteBook(b)) {
+			System.out.println("정상적으로 삭제하였습니다.");
+		} else {
+			System.out.println("삭제에 실패하였습니다.");
+		}
 	}
 	
 	public void searchBook() {
-		//검색할 키워드를 입력해주세요.
-		//키워드를 mc.searchBook에 전달합니다.
-		// 제목or장르or글쓴이에 해당 키워드가 포함되어있는 모든 책을 담은 리스트를 반환
-		// 검색결과 리스트를 출력
-		//단 한개도 없을 시 검색결과가 없습니다 출력
+		System.out.println("==================도서검색==================");
+		System.out.print("검색할 키워드를 입력해주세요 : ");
+		String keyword = sc.nextLine();
+		
+		List<Book> bookList = bc.searchBook(keyword);
+		if (bookList.isEmpty()) {
+			System.out.println("검색결과가 없습니다.");
+		} else {
+			System.out.println("============검색도서목록==============");
+			System.out.printf("%7s %12s %5s\n", "장 르", "제 목", "글쓴이");
+			for(Book b : bookList) {
+				b.printInfo();
+			}
+		}
 	}
 }

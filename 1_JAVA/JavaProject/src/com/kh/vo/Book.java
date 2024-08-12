@@ -67,4 +67,8 @@ public class Book {
 	public void printInfo() {
 		System.out.printf("%7s %12s %5s\n", this.genre, this.title, this.author);
 	}
+	
+	public boolean containKeyword(String keyword) {
+		return this.title.contains(keyword) || this.author.contains(keyword) || this.genre.contains(keyword);
+	}
 }
