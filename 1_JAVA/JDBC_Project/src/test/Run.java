@@ -1,10 +1,11 @@
 package test;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 public class Run {
 
@@ -30,6 +31,9 @@ public class Run {
 	 * 
 	 * */
 	public static void main(String[] args) {
+		/*
+		// 1. 내 pc에 jdbc계정 연결 후 TEST테이블에 insert해보기
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("번호 : ");
 		int num = sc.nextInt();
@@ -81,10 +85,54 @@ public class Run {
 				e.printStackTrace();
 			}
 		}
+		*/
 		
 		
+		// 2. 내 pc에 있는 db에서 jdbc계정에 연결해 TEST테이블의 모든 데이터 조회해오기
+		//필요한 변수들 세팅
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rset = null;
 		
+		//실행할 sql문
+		String sql = "SELECT * FROM TEST";
 		
+		try {
+			//1) JDBC Driver등록
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//ojdbc11.jar파일을 추가하지 않거나 오타가 있으면 -> 에러
+			System.out.println("OracleDriver 등록 성공");
+			
+			//2) Connection생성(url, 계정명, 비밀번호)
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "JDBC", "JDBC");
+			
+			//3) Statement생성
+			stmt = conn.createStatement();
+			
+			//4, 5) SQL문 전달해서 실행 후 결과값 받기(RsultSet)
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				int num = rset.getInt("NUM");
+				String name = rset.getString("NAME");
+				Date birth = rset.getDate("BIRTH");
+				
+				System.out.println(num + " " + name + " " + birth);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		
