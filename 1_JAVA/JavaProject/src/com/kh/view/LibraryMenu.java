@@ -34,7 +34,6 @@ public class LibraryMenu {
 			System.out.println("3. 도서목록");
 			System.out.println("4. 도서삭제");
 			System.out.println("5. 도서검색");
-			System.out.println("6. 도서대여");
 			System.out.println("9. 프로그램종료");
 			System.out.print("메뉴 입력 : ");
 			
@@ -56,9 +55,6 @@ public class LibraryMenu {
 				break;
 			case 5:
 				searchBook();
-				break;
-			case 6:
-				rentBook();
 				break;
 			case 9:
 				System.out.println("프로그램을 종료합니다.");
@@ -171,30 +167,5 @@ public class LibraryMenu {
 				b.printInfo();
 			}
 		}
-	}
-	
-	public void rentBook() {
-		System.out.println("=================대여가능 책 목록======================");
-		List<Book> bList = bc.getBookList();
-		List<Book> ableList = rc.getRentAble(bList);
-		
-		System.out.printf("%7s %12s %5s\n", "장 르", "제 목", "글쓴이");
-		for(Book b : ableList) {
-			b.printInfo();
-		}
-		
-		System.out.println("어떤 책을 대여하시겠습니까?(제목) : ");
-		String title = sc.nextLine();
-		
-		for (Book b : ableList) {
-			if (b.getTitle().equals(title)) {
-				if(rc.insertRentBook(b, loginUser)) {
-					System.out.println("대여를 완료하였습니다.");
-					return;
-				}
-			}
-		}
-		
-		System.out.println("대여가능한 책을 확인후 다시 이용바랍니다.");
 	}
 }

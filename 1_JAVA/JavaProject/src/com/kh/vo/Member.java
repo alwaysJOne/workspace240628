@@ -8,6 +8,7 @@ public class Member {
 	private String userPwd;
 	private String userName;
 	private int age;
+	//private String grade;
 	
 	//생성자
 	public Member() {

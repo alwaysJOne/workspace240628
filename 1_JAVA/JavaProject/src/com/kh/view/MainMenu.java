@@ -91,7 +91,7 @@ public class MainMenu {
 		
 		System.out.print("비밀번호 입력 : ");
 		String pwd = sc.nextLine();
-		
+	
 		//로그인체크
 		Member loginMember = mc.loginMember(id, pwd);
 		if(loginMember == null) {
@@ -100,7 +100,41 @@ public class MainMenu {
 			System.out.println("로그인에 성공하였습니다.");
 			System.out.println(loginMember.getUserName() + "님 반갑습니다.");
 			
-			new LibraryMenu(loginMember, bc, sc, rc).menu();
+			this.loginMenu(loginMember);
+		}
+	}
+	
+	
+	public void loginMenu(Member loginMember) {
+		//loginMember 만약 관리자면 도서관리
+		//loginMember 일반회원이면 도서대여/반납
+		
+		while(true) {
+			System.out.println("===============메뉴선택=================");
+			System.out.println("1. 관리자모드");
+			System.out.println("2. 회원모드");
+			System.out.println("9. 로그아웃");
+	
+			System.out.print("메뉴 입력 : ");
+			
+			int choice = sc.nextInt();
+			sc.nextLine();
+			
+			switch(choice) {
+			case 1:
+				//관리자모드
+				new LibraryMenu(loginMember, bc, sc, rc).menu();
+				break;
+			case 2:
+				//회원모드
+				new CustomerMenu(loginMember, bc, sc, rc).menu();
+				break;
+			case 9:
+				System.out.println("로그아웃 되었습니다.");
+				return;
+			default:
+				System.out.println("잘못입력하였습니다. 다시입력해주세요");
+			}
 		}
 	}
 
