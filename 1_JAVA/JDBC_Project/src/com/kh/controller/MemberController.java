@@ -46,4 +46,31 @@ public class MemberController {
 			new MemberMenu().displayMemberList(list);
 		}
 	}
+	
+	public void updateMember(String userId, String userPwd,
+			String email, String phone, String address) {
+		
+		Member m = new Member();
+		m.setUserId(userId);
+		m.setUserPwd(userPwd);
+		m.setEmail(email);
+		m.setPhone(phone);
+		m.setAddress(address);
+		
+		int result = new MemberDao().updateMember(m);
+		
+		if(result > 0) {
+			new MemberMenu().displaySuccess("성공적으로 회원 정보 수정되었습니다.");
+		} else {
+			new MemberMenu().displayFail("회원정보 변경에 실패하였습니다.");
+		}
+	}
+	
+	public void deleteMember(String userId) {
+		
+	}
 }
+
+
+
+

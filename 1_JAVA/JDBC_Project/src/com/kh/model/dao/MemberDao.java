@@ -155,6 +155,66 @@ public class MemberDao {
 		
 		return list;
 	}
+	
+	public int updateMember(Member m) {
+		//update문 -> 처리된 행 수(int)
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		/*
+		 * update member
+		 * set user_pwd = 'xxxx', email = 'xxxx', phone = 'xxxxxx', address = 'xxxxx'
+		 * where user_id = 'xxx'
+		 */
+		
+		String sql = "UPDATE MEMBER "
+					+ "SET USER_PWD = ?,"
+						+ "EMAIL = ?,"
+						+ "PHONE = ?,"
+						+ "ADDRESS = ?"
+					+ "WHERE USER_ID = ?";
+		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//2)Connection객체 생성
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "JDBC", "JDBC");
+			conn.setAutoCommit(false);//수동커밋 설정
+			
+			//sql -> 미완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUserPwd());
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getAddress());
+			pstmt.setString(5, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 }
 
 

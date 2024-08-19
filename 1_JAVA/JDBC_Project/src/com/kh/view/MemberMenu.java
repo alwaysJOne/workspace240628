@@ -39,7 +39,11 @@ public class MemberMenu {
 				mc.selectMemberList();
 				break;
 			case 3:
+				this.updateMember();
+				break;
 			case 4:
+				mc.deleteMember(this.inputMemberId());
+				break;
 			case 0:
 				System.out.println("이용해주셔서 감사합니다. 프로그램을 종료합니다.");
 				return;
@@ -55,8 +59,7 @@ public class MemberMenu {
 	public void inputMember() {
 		System.out.println("============== 회원 추가 ================");
 		
-		System.out.print("아이디 : ");
-		String userId = sc.nextLine();
+		String userId = this.inputMemberId();
 		
 		System.out.print("비밀번호 : ");
 		String userPwd = sc.nextLine();
@@ -83,6 +86,33 @@ public class MemberMenu {
 		String hobby = sc.nextLine();
 		
 		mc.insertMember(userId, userPwd, userName, gender, age, email, phone, address, hobby);
+	}
+	
+	public void updateMember() {
+		System.out.println("============= 회원 정보 변경 =============");
+		//(어떤 회원의 정보를 변경할지) id -> 비밀번호, 이메일, 전화번호, 주소 변경
+		
+		String userId = this.inputMemberId();
+		
+		System.out.print("변경할 비밀번호 : ");
+		String userPwd = sc.nextLine();
+		
+		System.out.print("이메일 : ");
+		String email = sc.nextLine();
+		
+		System.out.print("변경할 전화번호 : ");
+		String phone = sc.nextLine();
+		
+		System.out.print("변경할 주소 : ");
+		String address = sc.nextLine();
+		
+		mc.updateMember(userId, userPwd,email, phone, address);
+	}
+	
+	public String inputMemberId() {
+		System.out.print("아이디 : ");
+		String userId = sc.nextLine();
+		return userId;
 	}
 
 	//-------------------------------------응답화면------------------------------------
