@@ -67,7 +67,13 @@ public class MemberController {
 	}
 	
 	public void deleteMember(String userId) {
+		int result = new MemberDao().deleteMember(userId);
 		
+		if (result > 0) {
+			new MemberMenu().displaySuccess("성공적으로 회원 정보 삭제되었습니다.");
+		} else {
+			new MemberMenu().displayFail("회원정보 삭제에 실패하였습니다.");
+		}
 	}
 }
 
