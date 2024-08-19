@@ -1,8 +1,10 @@
 package com.kh.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.kh.controller.MemberController;
+import com.kh.model.vo.Member;
 
 // View : 사용자가 보게될 시각적인 요소(출력및 입력)
 public class MemberMenu {
@@ -34,6 +36,8 @@ public class MemberMenu {
 				this.inputMember();
 				break;
 			case 2:
+				mc.selectMemberList();
+				break;
 			case 3:
 			case 4:
 			case 0:
@@ -97,6 +101,24 @@ public class MemberMenu {
 	 */
 	public void displayFail(String message) {
 		System.out.println("\n서비스 요청 실패 : " + message);
+	}
+	
+	/**
+	 * 조회서비스 요청시 결과가 없을 경우 보게될 응답화면
+	 * @param message : 조회결과에 대한 응답메세지
+	 */
+	public void displayNoData(String message) {
+		System.out.println("\n" + message);
+	}
+	
+	/**
+	 * 조회서비스 요청시 결과가 여러행일 경우 보게될 응답화면
+	 * @param list : 조회결과
+	 */
+	public void displayMemberList(List<Member> list) {
+		for(Member m : list) {
+			System.out.println(m);
+		}
 	}
 }
 

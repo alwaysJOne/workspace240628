@@ -3,7 +3,11 @@ package com.kh.model.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.model.vo.Member;
 
@@ -84,6 +88,72 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+	
+	
+	public List<Member> selectMemberList() {
+		//select문(여러행 조회) -> ResultSet객체 -> ArrayList<Member>에 담기
+		
+		//필요한 변수들 세팅
+		List<Member> list = new ArrayList<>(); // 비어있는상태
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rset =null; //select문 실행시 조회된 결과값들이 최초로 담기는 공간
+		
+		//실행할 sql
+		String sql = "SELECT * FROM MEMBER";
+		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//2)Connection객체 생성
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "JDBC", "JDBC");
+			conn.setAutoCommit(false);//수동커밋 설정
+			
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				Member m = new Member();
+				m.setUserNo(rset.getInt("USER_NO"));
+				m.setUserId(rset.getString("USER_ID"));
+				m.setUserPwd(rset.getString("USER_PWD"));
+				m.setuserName(rset.getString("USER_NAME"));
+				m.setGender(rset.getString("GENDER"));
+				m.setAge(rset.getInt("AGE"));
+				m.setEmail(rset.getString("EMAIL"));
+				m.setPhone(rset.getString("PHONE"));
+				m.setAddress(rset.getString("ADDRESS"));
+				m.setHobby(rset.getString("HOBBY"));
+				m.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				//현재 참조하고있는 행에 대한 모든 컬럼에 데이터들을 한 Member객체에 담기
+				
+				list.add(m);
+			}
+			
+			//반복문이 끝난 시점
+			//조회된 데이터가 없다면 list -> 비어있을 것이다.
+			//조회된 데이터가 있다면 전부 list에 담겨있을 것이다.
+			
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
 	}
 }
 

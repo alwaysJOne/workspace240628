@@ -1,5 +1,7 @@
 package com.kh.controller;
 
+import java.util.List;
+
 import com.kh.model.dao.MemberDao;
 import com.kh.model.vo.Member;
 import com.kh.view.MemberMenu;
@@ -29,5 +31,19 @@ public class MemberController {
 			new MemberMenu().displayFail("회원추가에 실패하였습니다.");
 		}
 		
+	}
+	
+	/**
+	 * 회원을 전부 조회하는 메소드
+	 */
+	public void selectMemberList() {
+		List<Member> list = new MemberDao().selectMemberList();
+		
+		//조회된 결과에 따라서 사용자가 보게될 응답화면 지정
+		if(list.isEmpty()) { //list가 비어있을 경우
+			new MemberMenu().displayNoData("전제 조회 결과가 없습니다.");
+		} else { // 조회된 결과가 있을 때
+			new MemberMenu().displayMemberList(list);
+		}
 	}
 }
