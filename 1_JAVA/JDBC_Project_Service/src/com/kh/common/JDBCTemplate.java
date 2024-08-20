@@ -78,7 +78,7 @@ public class JDBCTemplate {
 		}
 	}
 	
-	//5) ResultSet 객체를 전달받아서 반납시켜주는 메소드
+	//6) ResultSet 객체를 전달받아서 반납시켜주는 메소드
 	public static void close(ResultSet rset) {
 		try {
 			if(rset != null && !rset.isClosed()) {

@@ -24,6 +24,8 @@ public class MemberMenu {
 			System.out.println("2. 회원전체조회"); //데이터 조회 read
 			System.out.println("3. 회원정보수정"); //데이터 변경 update
 			System.out.println("4. 회원탈퇴"); //데이터 삭제 delete
+			System.out.println("5. 회원 아이디 검색");
+			System.out.println("6. 회원 이름으로 키워드 검색");
 			System.out.println("0. 프로그램 종료"); 
 			
 			System.out.print("메뉴 입력 : ");
@@ -43,6 +45,15 @@ public class MemberMenu {
 				break;
 			case 4:
 				mc.deleteMember(this.inputMemberId());
+				break;
+			case 5:
+				mc.searchMemberByID(this.inputMemberId());
+				break;
+			case 6:
+				System.out.print("검색할 키워드를 입력해주세요 : ");
+				String keyword = sc.nextLine();
+				
+				mc.searchMemberByName(keyword);
 				break;
 			case 0:
 				System.out.println("이용해주셔서 감사합니다. 프로그램을 종료합니다.");
@@ -150,6 +161,11 @@ public class MemberMenu {
 		for(Member m : list) {
 			System.out.println(m);
 		}
+	}
+	
+	public void displayMember(Member m) {
+		System.out.println("\n조회된 데이터는 다음과 같습니다.");
+		System.out.println(m);
 	}
 }
 

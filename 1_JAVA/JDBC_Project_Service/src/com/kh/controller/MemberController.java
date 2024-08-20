@@ -1,9 +1,10 @@
 package com.kh.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.kh.model.dao.MemberDao;
 import com.kh.model.vo.Member;
+import com.kh.service.MemberService;
 import com.kh.view.MemberMenu;
 
 //Controller : view를 통해서 사용자가 요청한 기능에 대해 처리를 담당
@@ -23,7 +24,7 @@ public class MemberController {
 		Member m = new Member(userId, userPwd, userName, gender, 
 				Integer.parseInt(age), email, phone, address, hobby);
 		
-		int result = new MemberDao().insertMember(m);
+		int result = new MemberService().insertMember(m);
 		
 		if (result > 0) {//추가성공 -> 성공화면출력
 			new MemberMenu().displaySuccess("성공적으로 회원 정보 추가되었습니다.");
@@ -37,7 +38,7 @@ public class MemberController {
 	 * 회원을 전부 조회하는 메소드
 	 */
 	public void selectMemberList() {
-		List<Member> list = new MemberDao().selectMemberList();
+		List<Member> list = new MemberService().selectMemberList();
 		
 		//조회된 결과에 따라서 사용자가 보게될 응답화면 지정
 		if(list.isEmpty()) { //list가 비어있을 경우
@@ -57,7 +58,7 @@ public class MemberController {
 		m.setPhone(phone);
 		m.setAddress(address);
 		
-		int result = new MemberDao().updateMember(m);
+		int result = new MemberService().updateMember(m);
 		
 		if(result > 0) {
 			new MemberMenu().displaySuccess("성공적으로 회원 정보 수정되었습니다.");
@@ -67,13 +68,33 @@ public class MemberController {
 	}
 	
 	public void deleteMember(String userId) {
-		int result = new MemberDao().deleteMember(userId);
+		int result = new MemberService().deleteMember(userId);
 		
 		if (result > 0) {
 			new MemberMenu().displaySuccess("성공적으로 회원 정보 삭제되었습니다.");
 		} else {
 			new MemberMenu().displayFail("회원정보 삭제에 실패하였습니다.");
 		}
+	}
+	
+	public void searchMemberByID(String userId) {
+		Member m = new MemberService().searchMemberByID(userId);
+		
+		if (m == null) {
+			new MemberMenu().displayNoData(userId + "에 해당하는 조회결과가 없습니다.");
+		} else {
+			new MemberMenu().displayMember(m);
+		}
+	}
+	
+	public void searchMemberByName(String keyword) {
+		ArrayList<Member> list = new MemberService().searchMemberByName(keyword);
+		if(list.isEmpty()) {
+			new MemberMenu().displayNoData(keyword + "에 해당하는 검색 결과가 없습니다.");
+		} else {
+			new MemberMenu().displayMemberList(list);
+		}
+	
 	}
 }
 
