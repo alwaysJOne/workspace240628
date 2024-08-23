@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련태그</title>
+
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        span {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            /*인라인 요소에는 대부분 가로, 세로길이 지정 불가*/
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        블럭요소 : 한 줄 단위로 영역을 차지함
+                  줄바꿈이 적용되어 이미 존재하는 태그의 다음줄에 다음영역이 잡힘
+                (p, pre, "div", h...)
+        인라인요소 : content(내용) 영역에 해당하는 부분만 영역을 차지하는 요소
+                줄바꿈이 적용되지 않아 다음영역에 바로 옆으로 다음영역이 잡힘
+                (b, mark, s, img, "span", ...)
+    -->
+
+    <h1>영역관련태그</h1>
+    <h2>div태그와 span태그의 차이점 1 : 줄바꿈적용</h2>
+
+    <h3>div태그</h3>
+    <p>div태그는 블럭요소로 한줄 단위로 영역을 차지(이미 존재하는 태그 다음줄에 영역이 잡힘)</p>
+
+    <div style="background: red;">첫번째 영역</div>
+    <div style="background: orange;">두번째 영역</div>
+    <div style="background: yellow;">세번째 영역</div>
+
+    <h3>sapn태그</h3>
+    <p>span태그는 인라인 요소로 content 영역만 차지(줄바꿈이 발생되지않고 옆으로 영역이 잡힘)</p>
+    <span style="background: red;">첫번째 영역</span>
+    <span style="background: orange;">두번째 영역</span>
+    <span style="background: yellow;">세번째 영역</span>
+
+    <h2>div태그와 span의 차이점2 : 영역지정방식</h2>
+
+    <h3>div태그 : 사각형 박스로 영역을 지정함</h3>
+    <div style="height: auto;">[스포탈코리아] 오상진 기자= '기록 제조기' 김도영(21·KIA 타이거즈)이 또 하나의 진기한 기록을 달성했다. 바로 국내 타자 최초의 32홈런-32도루 동시
+        달성이다.
+
+        김도영은 22일 광주-기아 챔피언스필드에서 열린 2024 신한 SOL뱅크 KBO리그 롯데 자이언츠와의 홈경기에 3번 타자-3루수로 선발 출전해 2타수 1안타 1홈런 1타점 3득점 2볼넷 1도루로
+        맹활약했다.
+
+        1회 첫 타석에서 삼진으로 물러난 김도영은 4회 말 선두타자로 나서 볼넷으로 출루한 김도영은 도루를 먼저 추가했다. 1사 1루에서 나성범의 타석 때 김도영은 반즈의 견제에 걸렸으나 1루수의 2루
+        송구보다 먼저 베이스에 도착해 시즌 35호 도루에 성공했다.
+
+        6회 말 세 번째 타석에 들어선 김도영은 찰리 반즈와 풀카운트 승부 끝에 6구째 130km/h 체인지업을 강하게 밀어 쳐 오른쪽 담장을 넘기는 솔로 홈런을 터뜨렸다. 시즌 32호 홈런.
+    </div>
+
+    <h3>span태그 : 문장단위로 영역을 지정함</h3>
+    <span>[스포탈코리아] 오상진 기자= '기록 제조기' 김도영(21·KIA 타이거즈)이 또 하나의 진기한 기록을 달성했다. 바로 국내 타자 최초의 32홈런-32도루 동시 달성이다.
+
+        김도영은 22일 광주-기아 챔피언스필드에서 열린 2024 신한 SOL뱅크 KBO리그 롯데 자이언츠와의 홈경기에 3번 타자-3루수로 선발 출전해 2타수 1안타 1홈런 1타점 3득점 2볼넷 1도루로
+        맹활약했다.
+
+        1회 첫 타석에서 삼진으로 물러난 김도영은 4회 말 선두타자로 나서 볼넷으로 출루한 김도영은 도루를 먼저 추가했다. 1사 1루에서 나성범의 타석 때 김도영은 반즈의 견제에 걸렸으나 1루수의 2루
+        송구보다 먼저 베이스에 도착해 시즌 35호 도루에 성공했다.
+
+        6회 말 세 번째 타석에 들어선 김도영은 찰리 반즈와 풀카운트 승부 끝에 6구째 130km/h 체인지업을 강하게 밀어 쳐 오른쪽 담장을 넘기는 솔로 홈런을 터뜨렸다. 시즌 32호 홈런.
+    </span>
+
+     <hr>
+
+     <h1>iframe</h1>
+     <p>웹 문서 안에 다른 웹페이지를 추가하는 태그(인라인요소)</p>
+
+     <iframe src="./04_이미지및 멀티미디어태그.html" width="300" height="300"></iframe>
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/ExFxS4POIkY?si=zxY6B5rLJYgR6tII" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</body>
+
+</html>
+
+
+
+
+
+

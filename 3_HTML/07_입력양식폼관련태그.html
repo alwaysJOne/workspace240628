@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력양식 및 폼 관련태그</title>
+</head>
+<body>
+    <h1>입력양식 관련태그</h1>
+
+    <h2>input태그</h2>
+    <p>사용자에게 값을 입력받을 수 있는 텍스트상자 또는 체크박스등을 만들 수 있다.</p>
+
+    아이디 : <input type="text"> <br>
+    비밀번호 : <input type="password"> <br>
+    성별 : <input type="radio" name="gender"> 남
+            <input type="radio" name="gender"> 여
+    <input type="submit" value="회원가입">
+
+    <br>
+
+    <h1>폼 관련태그</h1>
+
+    <p>
+        form태그내에 submit버튼 클릭시 해당 form안에 작성된 <br>
+        사용자가 입력한 값들을 서버로 넘기면서 요청하는 역할을 수행 <br><br>
+
+        form action="" method="" <br><br>
+
+        *action : 해당 form에 사용자가 입력한 값들을 전달하면서 요청을 보낼 서버의 경로를 제시 <br>
+        *method : 요청 전송방식을 지정하는 속성 (get(기본값)/post)
+        > get : 요청시 사용자가 입력한 값들이 url에 그대로 노출이된다.
+        > post : 요청시 사용자가 입력한 값들이 url에 노출되지 않는 방식
+
+        form내에 submit버튼 클릭시 action에 지정한 서버로 사용자가 입력한 값들이<br>
+        넘어가면서 요청됨(key=vlaue세트로 전달)
+    </p>
+
+    <form action="https://search.naver.com/search.naver" method="get">
+        <fieldset>
+            검색어 : <input type="text" name="query"> <br><!-- name -> 요청시 전달할 key값-->
+            <!-- 국가 : <input type="text" name="national"> -->
+            <input type="submit" value="검색">
+        </fieldset>
+    </form>
+
+    <fieldset>
+        안녕하세요
+    </fieldset>
+
+    <hr>
+
+    <h3>fieldset : 그룹을 묶는 태그(기본적인 테두리가 존재)</h3>
+    <h3>legend : 해당 그룹에 제목을 붙여주는 태그</h3>
+
+    <form action="">
+        <fieldset>
+            <legend>제목1</legend>
+            입력 : <input type="text"> <br>
+            입력 : <input type="text"> <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>제목2</legend>
+            입력 : <input type="text"> <br>
+            입력 : <input type="text"> <br>
+        </fieldset>
+
+        <input type="submit">
+        <input type="reset">
+    </form>
+
+    <hr>
+
+    <form>
+        <h2>text와 관련된 input 태그의 타입</h2>
+        <h3>type = "text"</h3>
+        <p>
+            - 한줄짜리 텍스트를 입력할 수 있는 텍스트 상자(기본값) <br>
+            - 생략하거나 잘못쓰면 자동으로 type="text"가 된다.
+        </p>
+        아이디 : 
+        <input type="text" name="userId" placeholder="아이디를 입력해주세요." maxlength="12" required>
+
+        <h3>type = "password"</h3>
+        <p>
+            - 비밀번호를 입력할 수 있는 텍스트 상자
+        </p>
+        비밀번호 : 
+        <input type="password" name="userPwd" placeholder="영문, 숫자 포함 8~12자리" maxlength="12" required>
+
+        <h3>type = "search | url | email | phone"</h3>
+        <p>겉모습은 텍스트상자와 동일하지만 각각의 정보에 맞게 세분화된 기능을 제공한다.</p>
+
+        검색 : 
+        <input type="search" name="keyword"> <br>
+        
+        홈페이지 : 
+        <input type="url" name="url"> <br>
+
+        이메일 : 
+        <input type="email" name="email"> <br>
+
+        전화번호 : 
+        <input type="phone" name="phone"> <br>
+
+        <br><br>
+        <input type="submit">
+    </form>
+    
+    <h2>textarea</h2>
+    <p>- 텍스트 상자이나 여러줄을 입력할 수 있음</p>
+    설명 : 
+    <textarea name="description" cols="30" rows="10" style="resize: none;"></textarea>
+
+    <hr>
+
+    <h2>숫자와 관련된 input태그의 타입</h2>
+    <form action="test.co">
+        <h3>type="number"</h3>
+        <p>
+            - 숫자값만 작성 가능한 텍스트 상자
+            - 스핀박스가 표시된다(스핀박스 : 위/아래 화살표)
+        </p>
+
+        수량 :
+        <input type="number" name="amount" min="0" max="20" step="5" value="10">
+
+        <h3>type="range"</h3>
+        <p>슬라이드바를 통해 숫자 지정 가능</p>
+
+        점수 : 
+        <input type="range" name="score" min="0" max="100" step="20">
+
+        <input type="submit">
+    </form>
+
+    <h2>날짜 및 시간과 관련된 input태그의 타입</h2>
+    <form action="">
+        <h3>type="date | month | week | time | datetime-local"</h3>
+
+        date : <input type="date"> <br>
+        <!-- 연도, 월, 일을 입력받을 수 있는 상자-->
+
+        month : <input type="month"> <br>
+        <!-- 연도, 월을 입력받을 수 있는 상자-->
+
+        week : <input type="week"> <br>
+        <!-- 연도, 월, 주을 입력받을 수 있는 상자-->
+
+        time : <input type="time"> <br>
+        <!--시, 분을 입력받을 수 있는 상자-->
+
+        datetime-local : <input type="datetime-local"> <br>
+        <!-- 연도, 월, 일, 시, 분을 입력받을 수 있는 상자-->
+    </form>
+
+    <hr>
+    <h3>selectbox</h3>
+    <select name="color">
+        <option value="red">빨간색</option>
+        <option value="blue">파란색</option>
+    </select>
+
+    <br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

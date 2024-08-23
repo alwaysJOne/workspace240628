@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 및 멀티미디어 관련 태그</title>
+</head>
+<body>
+    <h1>이미지 관련 태그</h1>
+    <!--
+        <img src="삽입하려는 이미지의 경로" [alt="이미지 설명 문구"] width="가로길이(px/%)" height="세로길이">
+    -->
+    <h3>src속성</h3>
+    <img src="./img/smaple01.jpg" alt="옥지와빵빵이투샷">
+
+    <h3>alt속성</h3>
+    <p>
+        - 이미지의 경로가 잘못됬거나 이미지를 제대로 표현해줄 수 없을 때 대체 텍스트로 사용<br>
+        - 시각장애인들을 위한 스크린리더에서 이미지를 읽어주는 설명문구
+    </p>
+
+    <h3>width속성과 height속성</h3>
+
+    <h4>고정길이단위(px) : 화면사이즈가 변경되도 이미지크기는 변경되지 않는다.</h4>
+    <img src="./img/smaple01.jpg" width="200px" height="150px">
+    <img src="./img/smaple01.jpg" width="200px" height="100px">
+    <img src="./img/smaple01.jpg" width="100px" height="150px">
+    <img src="./img/smaple01.jpg" width="100px" height="100px">
+
+    <h4>가변길이단위(%) : 화면 사이즈 또는 부모요소 사이즈에 따라 이미지 크기도 변경</h4>
+    <img src="./img/smaple01.jpg" width="10%" height="150px">
+    <img src="./img/smaple01.jpg" width="15%" height="100px">
+    <img src="./img/smaple01.jpg" width="15%" height="150px">
+    <img src="./img/smaple01.jpg" width="20%" height="100px">
+
+    <hr>
+
+    <h1>미디어 관련 태그</h1>
+    <h3>오디오 관련 태그</h3>
+    <!--
+        <audio src="" controls autoplay loop></audio>
+        src: 오디오파일경로
+        controls : 재생도구 출력여부
+        autoplay : 자동재생 여부(크롬 x)
+        loop : 반복재생
+    -->
+
+    <audio src="" controls loop autoplay></audio>
+
+    <br>
+
+    <h3>비디오 관련 태그</h3>
+    <!--
+        <video src="" controls autoplay loop width="" height="" poster="썸네일경로">
+        </video>
+    -->
+
+    <video src="" 
+            controls 
+            autoplay 
+            loop 
+            width="300" 
+            height="200" 
+            poster="./img/smaple01.jpg"></video>
+</body>
+</html>
+
+
+
+

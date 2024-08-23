@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표관련 태그</title>
+</head>
+<body>
+    <!--
+        표 : 웹 문서에서 자료를 정리할 때 주로 사용
+             행과 열로 이루어져있고, 행과 열이 만나는 지점을 셀이라고한다.
+        
+        표를 만들기위한 태그 : <table>, <tr>, <td>, <th>
+         <table></table> : 기본적인 표를 생성해주는 태그
+         <tr></tr> : 표의 한 행을 나타내는 태그
+         <th></th> : 표의 제목 셀을 나타내는 태그 -> 글자 굴게, 가운데정렬
+         <td></td> : 표의 일반 셀을 나타내는 태그
+        <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        </table>
+    -->
+    <h1>기본적인 표 만들기</h1>
+    <table border="1"> <!-- border속성 : 표에 테두리 두께-->
+        <caption><b>휴대폰의 종류</b></caption>
+        <tr>
+            <th>모델명</th>
+            <th>제조사</th>
+            <th>홈페이지</th>
+        </tr>
+        <tr>
+            <td>갤럭시</td>
+            <td>삼성</td>
+            <td>https://www.samsung.com/sec/</td>
+        </tr>
+        <tr>
+            <td>아이폰</td>
+            <td>애플</td>
+            <td>https://www.apple.com/kr/</td>
+        </tr>
+        <tr>
+            <td>픽셀</td>
+            <td>구글</td>
+            <td>https://support.google.com/pixelphone/answer/7158570?hl=ko</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <h1>표의 행과 열을 합치는 속성</h1>
+    <!--
+        셀(th, td)태그의 속성을 이용해서 행 또는 열을 합칠 수 있음.
+
+        colspan = "2" : 2개의 열을 합치기
+        rowspan = "2" : 2개의 행을 합치기
+    -->
+
+    <h3>이력서</h3>
+    <table border="1">
+        <tr>
+            <td width="130" height="130" rowspan="2" colspan="2">사진</td>
+            <td width="80">이름</td>
+            <td width="200">최지원</td>
+        </tr>
+        <tr>
+            <td>연락처</td>
+            <td>010-0000-0000</td>
+        </tr>
+        <tr>
+            <td width="70" height="50">주소</td>
+            <td colspan="3">경기도 군포시 xxx xxxx xxx xxx</td>
+        </tr>
+        <tr>
+            <td width="130">자기소개</td>
+            <td colspan="3">안녕하세요 저는 !@ㅉㄸㄲㄹㅎㄸㄲㅇ호ㅠㅇㄹㅎㅇㄹㄴㅎㄸㄴㄹㄸ뀨ㄸㄲㅎㄸㄲㄹㅎㄸㄲㄹㅉㄸㅍㄸㄲ퓨ㄸㄲ
+                ㄸ규ㄸ뀨ㄸ뀨ㄸ뀨
+                ㄷ규ㄸ뀨ㄸ뀨ㄸ뀨ㄸ뀨ㄸ뀨ㄸ뀨
+            </td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>최지원</td>
+                <td>51</td>
+                <td>경기도 군포시 xxxx</td>
+            </tr>
+            <tr>
+                <td>박지수</td>
+                <td>37</td>
+                <td>경기도 하남시 xxxx</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>총인원</th>
+                <td colspan="2">2명</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
