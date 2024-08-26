@@ -157,11 +157,49 @@
 
     <hr>
     <h3>selectbox</h3>
+    <h4>무조건 하나를 선택해야할 때</h4>
     <select name="color">
-        <option value="red">빨간색</option>
-        <option value="blue">파란색</option>
+        <option value="104">최지원</option>
+        <option value="105">서재용</option>
     </select>
 
+    <hr>
+    <form action="test.co">
+
+        <h3>radio button</h3>
+        <p>selectbox처럼 여러개 중에 하나를 선택할 때 주로 사용함<br>
+           name속성을 통해서 여러개의 라디오버튼을 하나의 선택지로 묶을 수 있음<br>
+           checked속성을 넣은 라디오버튼이 기본값으로 설정됨<br>
+           id - for 속성을 통해서 input과 label태그를 묶어줄 수 있음<br>
+           서버에 실제로 전달될 때 key -> name속성값, vlaue -> value속성값으로 전달</p>
+        <input type="radio" name="gender" id="man" value="man" >
+        <label for="man">남자</label>
+        <input type="radio" name="gender" id="woman" value="woman" checked>
+        <label for="woman">여자</label>
+
+
+        <hr>
+        
+        <h3>checkbox</h3>
+        <h4>여러개를 선택할 때 사용</h4>
+        <p>다중 선택할 시 주로 사용함<br>
+            name속성을 통해서 여러개의 체크박스를 하나의 선택지로 묶을 수 있음<br>
+            checked속성을 넣은 체크박스는 체크가 된상태가 기본이 됨<br>
+            id - for 속성을 통해서 input과 label태그를 묶어줄 수 있음<br>
+            서버에 실제로 전달될 때 key -> name속성값, vlaue -> value속성값으로 전달</p>
+        
+        <input type="checkbox" id="red" value="red" name="color" checked>
+        <label for="red">빨간색</label>
+
+        <input type="checkbox" id="blue" value="blue" name="color" checked>
+        <label for="blue">파란색</label>
+
+        <input type="checkbox" id="yellow" value="yellow" name="color">
+        <label for="yellow">노란색</label>
+
+        <br><br>
+        <input type="submit">
+    </form>
     <br><br><br>
 </body>
 </html>

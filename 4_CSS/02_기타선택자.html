@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기타선택자</title>
+    <link rel="stylesheet" href="css/default.css">
+    <!--
+        외부 스타일 방식 : 스타일 정보만을 따로 기술하는 .css외부문서를 만들고
+                          link태그를 통해서 연결시켜주는 방식
+    -->
+</head>
+<body>
+    <h2>1. 속성선택자</h2>
+    <p>
+        선택하고자 하는 요소에서 작성되어있는 속성을 이용해서 선택하는 방법<br>
+        선택자뒤에 []를 이용해서 속성과 속성값을 제시하여 선택
+    </p>
+
+    <pre>
+        선택자[속성=속성값]
+        선택자[속성~=속성값]
+        선택자[속성|=속성값]
+        선택자[속성^=속성값]
+        선택자[속성$=속성값]
+        선택자[속성*=속성값] {
+            스타일속성: 값
+            ...
+        }
+    </pre>
+
+    <div class="div-class" name="name1">div1</div>
+    <div class="div-class" name="name2">div1</div>
+    <div class="div-class" name="name3 name1">div1</div>
+    <div class="class-div" name="name3">div1</div>
+
+    <hr>
+
+    <h2>2. 자손(자식)선택자와 후손선택자</h2>
+    <p>
+        요소들이 중첩되어 작성 가능 <br>
+        자손 : 바로 하위에 요소들 / 후손 : 하위요소 전부
+    </p>
+
+    <pre>
+        * 자손선택자 : >
+        a>b{
+            스타일속성: 값
+            ...
+        }
+        *후손선택자
+        a b{
+           스타일속성: 값
+           ... 
+        }
+    </pre>
+
+    <div id="test1">
+        <h4>div의 자손이면서 후손입니다.</h4>
+        <h4>div의 자손이면서 후손입니다.</h4>
+        <ul>div의 자손이면서 후손입니다.
+            <li>ul태그의 자손이면서 div의 후손</li>
+            <li>ul태그의 자손이면서 div의 후손</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>3. 동위(같은레벨) 선택자</h2>
+    <p>동위관계(같은레벨)에 위치한 특정 요소를 선택할 때 사용</p>
+    <pre>
+        * a요소 바로뒤에있는 b요소 "하나만"선택
+        a+b{
+            스타일속성 : 값
+            ...
+        }
+
+        *a요소 뒤에 "모든"b요소 전부 선택
+        a~b{
+            스타일속성 : 값
+            ...
+        }
+    </pre>
+
+    <div id="test2">div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <ul>ul</ul>
+    <div>div5</div>
+
+    <hr>
+
+    <h2>4. 반응선택자</h2>
+    <p>사용자의 움직에 따라 선택되는 선택자</p>
+    <pre>
+        *해당 요소에 클릭이 되었을 경우 스타일 부여
+        선택자:active{
+            스타일속성: 값
+            ...
+        }
+
+        *해당 요소에 마우스가 올라가는 순간 스타일 부여
+        선택자:hover{
+            스타일속성: 값
+            ...
+        }
+    </pre>
+    <div id="active-test" class="area">activeTest</div>
+    <br><br>
+    <div id="hover-test" class="area">hoverTest</div>
+    <br><br>
+
+    <hr>
+
+    <h2>5.상태선택자</h2>
+    <p>요소에 상태에 따라서 선택되는 선택자</p>
+    <pre>
+        1)체크된 상태(checked)의 요소
+        선택자:checked{
+            스타일속성: 값
+            ...
+        }
+    </pre>
+
+    <input type="checkbox" id="apple">
+    <label for="apple">사과</label>
+
+    <input type="checkbox" id="banana">
+    <label for="banana">바나나</label>
+
+    <pre>
+        2) 초점(focus)이 맞춰진 input요소 선택
+        선택자:focus{
+            스타일속성:값
+            ...
+        }
+    </pre>
+
+    아이디 : <input type="text" name="userID"> <br>
+    비밀번호 : <input type="password" name="userPwd">
+    
+    <pre>
+        3)활성(enabled), 비활성(disabled)이 되어있는 요소 선택
+
+        선택자:enabled{
+            스타일속성 : 값
+            ...
+        }
+
+        선택작:disabled{
+            스타일속성: 값
+            ...
+        }
+    </pre>
+
+    <input type="button" value="클릭불가" disabled>
+    <button>클릭기능</button>
+    <button disabled>클릭기능사용불가</button>
+    
+    <br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

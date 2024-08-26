@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제3</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+
+    <form action="">
+        <fieldset>
+            <fieldset>
+                <legend>필수 입력 사항</legend>
+                <b>ID : </b>
+                <input type="text" placeholder="아이디 10글자이내" value="userId" maxlength="10" required>
+                <input type="button" value="중복확인"> <br>
+                <b>비밀번호 : </b> <input type="password" value="userPwd" placeholder="영문, 숫자, 문자, 특수문자포함" required> <br>
+                <b>비밀번호 확인 : </b> <input type="text"> <br>
+                <b>Email : </b> <input type="text"> @
+                <section>
+                    <option value="naver.com">naver.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="none">직접입력</option>
+                </section>
+            </fieldset>
+
+            <fieldset>
+                <legend>추가 정보</legend>
+                프로필 사진 : <input type="file"><br><br><br>
+                성별 : 
+                <input type="radio" name="gender" id="man" value="man">
+                <label for="man">남자</label>
+                <input type="radio" name="gender" id="woman" value="woman">
+                <label for="woman">여자</label><br><br>
+                생년월일 : <input type="date" name="birth"><br><br><br>
+                
+                취미<br>
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">야구</label>
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">농구</label>
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">축구</label><br>
+
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">공부</label>
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">음악감상</label><br>
+
+                <input type="checkbox" name="hobby" id="hobby-baseball" value="baseball">
+                <label for="hobby-baseball">기타</label> : <input type="text" name="hobby_etc">
+                <br>
+                자기소개 : <textarea name="intro" style="resize: none;" cols="30" rows="5"></textarea>
+
+            </fieldset>
+            <br>
+
+            <input type="submit" value="회원가입">
+            <input type="reset" value="다시입력">
+            <input type="button" value="이전으로">
+        </fieldset>
+    </form>
+</body>
+</html>
