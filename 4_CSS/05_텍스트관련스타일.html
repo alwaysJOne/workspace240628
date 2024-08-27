@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트관련 스타일</title>
+
+    <style>
+        #c{
+            color: red;
+            color: #f57230;
+            color: rgb(15, 94, 48);
+            color: rgba(15, 94, 48, 0.452);
+        }
+
+        #td1{text-decoration: underline;}
+        #td2{text-decoration: line-through;}
+        #td3{text-decoration: overline;}
+    </style>
+</head>
+<body>
+    
+    <h1>텍스트 관련 스타일(text~)</h1>
+
+    <h2>color : 텍스트 색상 지정</h2>
+    <pre id="c">
+        선택자{
+            color: 색상명 | #16진수(코드값) | rgb(x,x,x) | rgba(x,x,x,x) 
+        }
+    </pre>
+
+    <h2>text-decoration : 텍스트에 줄을 긋거나 줄을 없앨 때 사용</h2>
+    <pre>
+        선택자{
+            text-decoration : none | underline | overline | line-through;
+        }
+    </pre>
+
+    <ul>
+        <li id="td1">텍스트 영역 아래 줄 긋기</li>
+        <li id="td2">텍스트 영역 중간에 줄 긋기</li>
+        <li id="td3">텍스트 영역 위에 줄 긋기</li>
+    </ul>
+
+    <a href="https://www.naver.com" target="_blank" style="text-decoration: none;">네이버로</a>
+
+    <hr>
+
+    <h3>text-align : 텍스트 정렬할 때 사용</h3>
+    <pre>
+        선택자{
+            text-align: left(기본값) | right | center | justify
+        }
+    </pre>
+
+    <h4>왼쪽정렬(기본값)</h4>
+    <p style="text-align: left;">[스포티비뉴스=신원철 기자] LG가 역전패 충격을 안고 후반기 상승세로 5위까지 올라온 kt를 만난다. kt와는 4연전을 치르는데 첫 경기부터 어려운 상대를 만났다. 통산 9차례 LG전에서 5승 1패 평균자책점 1.48을 기록하고 있는 웨스 벤자민이 27일 잠실 경기에 선발로 나선다.</p>
+
+    <h4>양쪽정렬</h4>
+    <p style="text-align: justify;">[스포티비뉴스=신원철 기자] LG가 역전패 충격을 안고 후반기 상승세로 5위까지 올라온 kt를 만난다. kt와는 4연전을 치르는데 첫 경기부터 어려운 상대를 만났다. 통산 9차례 LG전에서 5승 1패 평균자책점 1.48을 기록하고 있는 웨스 벤자민이 27일 잠실 경기에 선발로 나선다.</p>
+
+    <h4>중앙정렬</h4>
+    <p style="text-align: center;">[스포티비뉴스=신원철 기자] LG가 역전패 충격을 안고 후반기 상승세로 5위까지 올라온 kt를 만난다. kt와는 4연전을 치르는데 첫 경기부터 어려운 상대를 만났다. 통산 9차례 LG전에서 5승 1패 평균자책점 1.48을 기록하고 있는 웨스 벤자민이 27일 잠실 경기에 선발로 나선다.</p>
+
+    <h4>오른쪽정렬</h4>
+    <p style="text-align: right;">[스포티비뉴스=신원철 기자] LG가 역전패 충격을 안고 후반기 상승세로 5위까지 올라온 kt를 만난다. kt와는 4연전을 치르는데 첫 경기부터 어려운 상대를 만났다. 통산 9차례 LG전에서 5승 1패 평균자책점 1.48을 기록하고 있는 웨스 벤자민이 27일 잠실 경기에 선발로 나선다.</p>
+
+    <hr>
+
+    <h3>line-height : 줄 간격 조절할 때 사용</h3>
+
+    <pre>
+        선택자{
+            line-height: normal | px | em | %
+        }
+    </pre>
+
+    <h4>px고정단위 간격</h4>
+    <p style="line-height: 30px;">[스포티비뉴스=신원철 기자] LG가 역전패 충격을 안고 후반기 상승세로 5위까지 올라온 kt를 만난다. kt와는 4연전을 치르는데 첫 경기부터 어려운 상대를 만났다. 통산 9차례 LG전에서 5승 1패 평균자책점 1.48을 기록하고 있는 웨스 벤자민이 27일 잠실 경기에 선발로 나선다.</p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+
+    <style>
+        .container{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: row;
+            /* flex-direction :column(수직) | column-reverse | row(수평) | row-reverse */
+            /* 자식요소들을 정렬할 때 어떤 축을 기준으로 할 것인가? */
+        }
+
+        .flex-item{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid red;
+            width: 100px;    
+            flex: 1;
+        }
+
+        .item1{background: yellow;}
+        .item2{background: red;}
+        .item3{background: green;}
+        .item4{background: rgb(44, 168, 121);}
+        .item5{background: rgb(124, 23, 119);}
+        .item6{background: rgb(89, 49, 182);}
+
+        .container2{
+            border: 3px solid black;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            /* 주축의 정렬을 어떻게 할것인가 */
+            justify-content: flex-start;
+            /* 교차축의 정렬을 어떻게 할것인가 */
+            align-items: center;
+        }
+
+        .flex-item2{
+            color: black;
+            font-size: 50px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid black;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex레이아웃</h1>
+    <p>웹페이지 레이아웃을 효율적으로 구성하기위한 기술, flexbox를 사용하면
+        요소들을 부모컨테이너에서 유연하게 정렬하고 배치할 수 있다.
+    </p>
+
+    <div class="container">
+        <div class="flex-item item1">1번</div>
+        <div class="flex-item item2">2번</div>
+        <div class="flex-item item3">3반</div>
+    </div>
+
+    <br><br><br>
+
+    <div class="container2">
+        <div class="flex-item2 item1">1번</div>
+        <div class="flex-item2 item2">2번</div>
+        <div class="flex-item2 item3">3반</div>
+        <div class="flex-item2 item4">4번</div>
+        <div class="flex-item2 item5">5번</div>
+        <div class="flex-item2 item6">6반</div>
+    </div>
+</body>
+</html>

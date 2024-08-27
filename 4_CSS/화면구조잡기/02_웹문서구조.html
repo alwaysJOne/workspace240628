@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹문서구조</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+        /* 화면 전체를 감싼는 div */
+        .wrap{
+            width: 100%;
+            min-height: 500px;
+            height: 800px;
+        }
+
+        /* hread, content, footer */
+        .wrap > div{
+            width: 100%;
+        }
+
+        #header, #footer{height: 150px;}
+
+        #content{
+            min-height: 200px;
+            height: calc(100% - 300px);
+        }
+
+        #content > div{
+            height: 100%;
+            float: left;
+        }
+
+        #content1{
+            width: 150px;
+        }
+
+        #content2{
+            width: calc(100% - 150px);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header"></div>
+        <div id="content">
+            <div id="content1"></div>
+            <div id="content2"></div>
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글꼴관련스타일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        #ff1{
+            font-family: 궁서체;
+            font-size: 24px;
+        }
+
+        #ff2{
+            font-family: 고딕체;
+        }
+
+        #ff3{
+            font-family:'Courier New', Courier, monospace
+        }
+
+        #ff4{
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 24px;
+        }
+        #fw1{font-weight: bold;}
+        #fw2{font-weight: 900;}
+        #fw3{font-weight: 100;}
+    </style>
+</head>
+<body>
+    <h1>글꼴 관련 스타일 속성</h1>
+
+    <h3>font-family : 글꼴을 지정할 때 사용</h3>
+    <pre>선택자{font-family : 글꼴명;}</pre>
+
+    <p id="ff1">글꼴 테스트1</p>
+    <p id="ff2">글꼴 테스트2</p>
+    <p id="ff3">글꼴 테스트3</p>
+
+    <p>
+        웹폰트 제공 사이트 : 
+        <a href="https://fonts.google.com" target="_blank">구글 웹 폰트 사이트</a>
+    </p>
+
+    <p id="ff4">글꼴테스트 Font Style Test</p>
+
+    <br>
+
+    <h3>font-size : 글꼴의 크기를 변경할 때 사용</h3>
+    <pre>선택자{font-size : 크기(px, em, rm, pt)}</pre>
+    
+    <h3>font-weight : 글꼴의 굵기를 표현할 때 사용</h3>
+    <pre>선택자{font-weight: normal | bold | lighter | 100 ~ 900}</pre>
+
+    <ul>
+        <li>원래굴기</li>
+        <li id="fw1">굵은 글꼴로 변경</li>
+        <li id="fw2">원래 굵기보다 더 굵게</li>
+        <li id="fw3">원래 굵기보다 더 얇게</li>
+    </ul>
+</body>
+</html>
