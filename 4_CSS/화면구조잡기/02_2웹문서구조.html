@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹문서구조</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+        /* 화면 전체를 감싼는 div */
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+        }
+
+        /* hread, content, footer */
+        .wrap > div{
+            width: 100%;
+        }
+
+        #header, #footer, #aside{height: 20%;}
+        #navigator{height: 5%;}
+        #content{height: 55%;}
+
+        #header>div, #content>div, #aside>div{height: 100%; float: left;}
+
+        /*20 65 15*/
+        #header_1{width: 20%;}
+        #header_2{width: 65%;}
+        #header_3{width: 15%;}
+
+        /*15 60 20*/
+        #content_1{width: 20%;}
+        #content_2{width: 65%;}
+        #content_3{width: 15%;}
+
+        #aside_1{width: 40%;}
+        #aside_2{width: 60%;}
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1"></div>
+            <div id="header_2"></div>
+            <div id="header_3"></div>
+        </div>
+        <div id="navigator"></div>
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </div>
+
+        <div id="aside">
+            <div id="aside_1"></div>
+            <div id="aside_2"></div>
+        </div>
+        
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

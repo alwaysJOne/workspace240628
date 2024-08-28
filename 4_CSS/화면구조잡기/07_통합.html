@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합화면</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div,form,input{
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        ul, li, ol{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        
+        /* 화면 전체를 감싼는 div */
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+        }
+
+        /* hread, content, footer */
+        .wrap > div{
+            width: 100%;
+        }
+
+        #header, #footer{height: 20%;}
+        #navigator{height: 5%;}
+        #content{height: 55%;}
+
+        #header>div, #content>div{height: 100%; float: left;}
+
+        /*20 65 15*/
+        #header_1{width: 20%;}
+        #header_2{width: 65%;}
+        #header_3{width: 15%;}
+
+        /*15 60 20*/
+        #content_1{width: 20%;}
+        #content_2{width: 65%;}
+        #content_3{width: 15%;}
+
+        /*검색창 스타일*/
+        #header_2{position: relative;}
+
+        #search-form{
+            margin: auto;
+            width: 80%;
+            height: 20%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*사방 전부 가려고해서 결국 중앙정렬*/
+        }
+
+        #search-form>input{
+            height: 100%;
+            float: left;
+        }
+
+        #search-form>input:nth-child(1){
+            width: 80%;
+        }
+
+        #search-form>input:nth-child(2){
+            width: 20%;
+        }
+
+        /*메뉴바 스타일*/
+        #navigator{width: 1000px; height: 40px;}
+
+        #navi{
+            height: 100%;
+        }
+
+        #navi>li{
+            float: left;
+            border: 1px solid white;
+            width: 100px;
+            text-align: center;
+            height: 100%;
+        }
+
+        #navi a{
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+            display: block;
+            line-height: 36px;
+        }
+
+        #navi a:hover{
+            color: #868686;
+            scale: 1.08;
+        }
+
+        #navi>li>ul{
+            display: none;
+        }
+
+        #navi>li>ul a{
+            font-size: 15px;
+        }
+
+        #navi>li>a:hover+ul{
+            display: block;
+        }
+        #navi>li>ul:hover{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1"></div>
+            <div id="header_2">
+                <form action="" id="search-form">
+                    <input type="text" name="keyword">
+                    <input type="submit" value="검색">
+                </form>
+            </div>
+            <div id="header_3"></div>
+        </div>
+        <div id="navigator">
+            <ul id="navi">
+                <li><a href="">JAVA</a></li>
+                <li><a href="">Oracle</a></li>
+                <li>
+                    <a href="">Front-end</a>
+                    <ul>
+                        <li><a href="">HTML</a></li>
+                        <li><a href="">CSS</a></li>
+                        <li><a href="">JavaScript</a></li>
+                        <li><a href="">jQuery</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Server</a>
+                    <ul>
+                        <li><a href="">JDBC</a></li>
+                        <li><a href="">Servlet</a></li>
+                        <li><a href="">JSP</a></li>
+                        <li><a href="">AJAX</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Framwork</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2"></div>
+            <div id="content_3"></div>
+        </div>
+        
+        <div id="footer"></div>
+    </div>
+</body>
+</html>
