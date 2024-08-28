@@ -1,65 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>통합화면</title>
 
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
         }
 
-        div,form,input{
+        div,
+        form,
+        input {
             box-sizing: border-box;
-            border: 1px solid black;
         }
 
-        ul, li, ol{
+        ul,
+        li,
+        ol {
             list-style: none;
             padding: 0px;
             margin: 0px;
         }
 
-        a{
+        a {
             text-decoration: none;
             color: black;
         }
 
-        
+
         /* 화면 전체를 감싼는 div */
-        .wrap{
+        .wrap {
             width: 1000px;
             height: 800px;
             margin: auto;
         }
 
         /* hread, content, footer */
-        .wrap > div{
+        .wrap>div {
             width: 100%;
         }
 
-        #header, #footer{height: 20%;}
-        #navigator{height: 5%;}
-        #content{height: 55%;}
+        #header{height: 158px;}
+        #footer {height: 241px;}
 
-        #header>div, #content>div{height: 100%; float: left;}
+        #navigator {
+            height: 5%;
+        }
+
+        #content {
+            width: 100%;
+            height: max-content;
+            min-height: calc(100% - 399px);
+            display: flex;
+        }
+
+        #header>div,
+        #content>div {
+            height: 100%;
+            float: left;
+        }
 
         /*20 65 15*/
-        #header_1{width: 20%;}
-        #header_2{width: 65%;}
-        #header_3{width: 15%;}
+        #header_1 {
+            width: 20%;
+        }
+
+        #header_2 {
+            width: 65%;
+        }
+
+        #header_3 {
+            width: 15%;
+        }
 
         /*15 60 20*/
-        #content_1{width: 20%;}
-        #content_2{width: 65%;}
-        #content_3{width: 15%;}
+        #content_1 {
+            width: 15%;
+        }
+
+        #content_2 {
+            width: 60%;
+        }
+
+        #content_3 {
+            width: 25%;
+        }
 
         /*검색창 스타일*/
-        #header_2{position: relative;}
+        #header_2 {
+            position: relative;
+        }
 
-        #search-form{
+        #search-form {
             margin: auto;
             width: 80%;
             height: 20%;
@@ -71,35 +107,37 @@
             /*사방 전부 가려고해서 결국 중앙정렬*/
         }
 
-        #search-form>input{
+        #search-form>input {
             height: 100%;
             float: left;
         }
 
-        #search-form>input:nth-child(1){
+        #search-form>input:nth-child(1) {
             width: 80%;
         }
 
-        #search-form>input:nth-child(2){
+        #search-form>input:nth-child(2) {
             width: 20%;
         }
 
         /*메뉴바 스타일*/
-        #navigator{width: 1000px; height: 40px;}
+        #navigator {
+            width: 1000px;
+            height: 40px;
+        }
 
-        #navi{
+        #navi {
             height: 100%;
         }
 
-        #navi>li{
+        #navi>li {
             float: left;
-            border: 1px solid white;
-            width: 100px;
+            width: 15%;
             text-align: center;
             height: 100%;
         }
 
-        #navi a{
+        #navi a {
             font-size: 18px;
             font-weight: 900;
             width: 100%;
@@ -108,28 +146,126 @@
             line-height: 36px;
         }
 
-        #navi a:hover{
+        #navi a:hover {
             color: #868686;
             scale: 1.08;
         }
 
-        #navi>li>ul{
+        #navi>li>ul {
             display: none;
         }
 
-        #navi>li>ul a{
+        #navi>li>ul a {
             font-size: 15px;
         }
 
-        #navi>li>a:hover+ul{
+        #navi>li>a:hover+ul {
             display: block;
         }
-        #navi>li>ul:hover{
+
+        #navi>li>ul:hover {
             display: block;
+        }
+        
+        /*로그인 폼 스타일*/
+        #login-form{
+            width: 100%;
+            height: 30%;
+        }
+
+        #login-form>*{
+            width: 100%;
+        }
+        #login-form-input{
+            height: 80%;
+        }
+        #login-form-input>*{
+            height: 100%;
+            float: left;
+        }
+
+        #login-input-id-pwd{
+            width: 65%;
+        }
+
+        #login-input-id-pwd>input{
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box;
+        }
+
+        #login-input-button{
+            width: 35%;
+        }
+
+        #login-input-button>input[type="submit"]{
+            width: 100%;
+            height: 100%;
+        }
+
+        #login-form-etc{
+            height: 20%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #login-form-etc>a{
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            margin: 10px;
+        }
+
+        /*푸터스타일*/
+        /* #footer{
+            width: 100%;
+            height: 260px;
+        } */
+
+        #footer>div{
+            width: 100%;
+        }
+
+        #footer_1{
+            height: 55px;
+            background: #f2f5f9;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #footer_1>a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        #footer_2{
+            height: calc(100% - 55px);
+        }
+
+        #footer_2>p{
+            width: 100%;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        #footer_2>p:nth-child(1){
+            font-size: 14px;
+        }
+
+        #footer_2>p:nth-child(3){
+            font-size: 11px;
         }
 
     </style>
 </head>
+
 <body>
     <div class="wrap">
         <div id="header">
@@ -170,10 +306,52 @@
         <div id="content">
             <div id="content_1"></div>
             <div id="content_2"></div>
-            <div id="content_3"></div>
+            <div id="content_3">
+                <!--로그인폼 전체를 감싸는 div-->
+                <div id="login-form">
+                    <!--입력받아 요청할 수 있는 form태그-->
+                    <form action="" id="login-form-input">
+                        <!--id, pwd텍스트 상자가 들어갈 div -->
+                        <div id="login-input-id-pwd">
+                            <input type="text" name="userId" placeholder="아이디를 입력해주세요.">
+                            <input type="text" name="userPwd" placeholder="비밀번호를 입력해주세요.">
+                        </div>
+
+                        <!--로그인 버튼이 들어갈 div-->
+                        <div id="login-input-button">
+                            <input type="submit" value="로그인">
+                        </div>
+                    </form>
+
+                    <div id="login-form-etc">
+                        <a href="">회원가입</a>
+                        <a href="">ID/PWD 찾기</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div id="footer"></div>
+
+        <div id="footer">
+            <div id="footer_1">
+                <a href="">이용약관</a> |
+                <a href="">개인정보처리방침</a> |
+                <a href="">인재 채용 문의</a> |
+                <a href="">훈련비 게시</a> |
+                <a href="">강사구인</a>
+            </div>
+            <div id="footer_2">
+                <p>KH정보교육원 ｜ 사업자등록번호 : 487-86-00763 ｜ 사업자등록번호 : 851-87-00622 ｜ 서울 강남 제2014-01호 ｜ 대표자 : 양진선 ｜ 책임자 : 최홍석 ｜  개인정보관리책임자 : 양진선</p>
+                <p>
+                    강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br>
+                    강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br>
+                    강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F <br>
+                    종로지원 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br>
+                    당산지원 : 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F <br>
+                </p>
+                <p>Copyright © 1998-2024 KH Information Educational Institute All Right Reserved</p>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
