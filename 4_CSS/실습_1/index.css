@@ -1,0 +1,246 @@
+/*공통적으로 적용*/
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.bo {
+    border: 1px solid lightgray;
+    margin-bottom: 10px;
+}
+
+#wrapper {
+    width: 1000px;
+    margin: auto;
+    padding: 10px 100px;
+}
+
+/* header */
+
+#header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+}
+
+.search {
+    width: 350px;
+    height: 30px;
+    display: flex;
+    border: 1px solid black;
+}
+
+.search input[type="text"]{
+    width: 70%;
+    height: 100%;
+    border: none;
+    border-right: 1px solid black;
+    padding: 6px;
+}
+
+.search-img{
+    outline: none;
+    border: none;
+    width: 30%;
+    height: 100%;
+    background: url(images/search.png) no-repeat center/contain;
+    background-size: 20px 20px;
+}
+
+
+/* nav */
+#nav{
+    width: 100%;
+    padding: 30px 0;
+}
+
+#nav>ul{
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+#nav li a{
+    color: gray;
+    font-weight: bold;
+}
+
+#nav > ul > li{
+    flex: 1;
+    position: relative;
+}
+
+#nav > ul ul:hover{
+    display: block;
+}
+
+#nav > ul > li ul{
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 0;
+}
+
+#nav > ul li a:hover+ul{
+    display: block;
+}
+
+/* section*/
+
+#section{
+    width: calc(70% - 10px);
+    float: left;
+}
+
+#section1, #aside1{
+    height: 100px;
+}
+
+#section1 > img{
+    width: 100%;
+    height: 100%;
+}
+
+#section2{
+    display: flex;
+    height: 50px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#section2 ul{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+#section2 p{
+    font-size: 15px;
+}
+
+#section3{
+    height: 250px;
+    background: url(images/car.PNG) no-repeat center/contain;
+}
+
+/* aside */
+#aside{
+    width: 30%;
+    float: right;
+}
+
+#aside1 .login{
+    display: flex;
+    height: 75%;
+    width: 100%;
+}
+
+#aside1 .login .input{
+    height: 100%;
+    width: 70%;
+}
+
+#aside1 .login .input > input{
+    height: 50%;
+    width: 100%;
+}
+
+#aside1 .login .btn{
+    width: 30%;
+    height: 100%;
+} 
+
+#aside1 .login .btn > button{
+    width: 100%;
+    height: 100%;
+}
+
+#aside1 .aside1-menu ul{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 4px;
+}
+
+#aside1 .aside1-menu ul li{
+    font-size: 12px;
+    font-weight: 900;
+}
+
+#aside1 .aside1-menu ul li span:after{
+    content: "|";
+    color: black;
+    margin: 0px 5px;
+}
+
+#aside2{
+    height: 310px;
+    background: url(images/shopping.PNG) no-repeat center/contain;
+}
+
+
+
+#footer{
+    clear: both;
+    width: 100%;
+    padding: 24px;
+}
+
+#footer>div{
+    width: 100%;
+}
+
+#footer_1{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+#footer_1>a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+#footer_2{
+    height: calc(100% - 55px);
+}
+
+#footer_2>p{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#footer_2>p:nth-child(1){
+    font-size: 14px;
+}
+
+#footer_2>p:nth-child(3){
+    font-size: 11px;
+    text-align: center;
+    margin-top: 20px;
+}
