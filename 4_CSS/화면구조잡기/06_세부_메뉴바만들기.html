@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{box-sizing: border-box;}
+        #navigator{width: 1000px; height: 40px;}
+
+        ul, li, ol{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        #navi{
+            height: 100%;
+        }
+
+        #navi>li{
+            float: left;
+            border: 1px solid white;
+            width: 100px;
+            text-align: center;
+            height: 100%;
+        }
+
+        #navi a{
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+            display: block;
+            line-height: 36px;
+        }
+
+        #navi a:hover{
+            color: #868686;
+            scale: 1.08;
+        }
+
+        #navi>li>ul{
+            display: none;
+        }
+
+        #navi>li>ul a{
+            font-size: 15px;
+        }
+
+        #navi>li>a:hover+ul{
+            display: block;
+        }
+        #navi>li>ul:hover{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="navigator">
+        <ul id="navi">
+            <li><a href="">JAVA</a></li>
+            <li><a href="">Oracle</a></li>
+            <li>
+                <a href="">Front-end</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">AJAX</a></li>
+                </ul>
+            </li>
+            <li><a href="">Framwork</a></li>
+        </ul>
+    </div>
+</body>
+</html>

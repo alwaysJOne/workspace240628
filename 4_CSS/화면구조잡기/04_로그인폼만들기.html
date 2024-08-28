@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인폼 만들기</title>
+    <style>
+        div,form{
+            box-sizing: border-box;
+        }
+        #content{
+            width: 300px;
+            height: 600px;
+        }
+
+        #login-form{
+            width: 100%;
+            height: 30%;
+        }
+
+        #login-form>*{
+            width: 100%;
+        }
+        #login-form-input{
+            height: 80%;
+        }
+        #login-form-input>*{
+            height: 100%;
+            float: left;
+        }
+
+        #login-input-id-pwd{
+            width: 65%;
+        }
+
+        #login-input-id-pwd>input{
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box;
+        }
+
+        #login-input-button{
+            width: 35%;
+        }
+
+        #login-input-button>input[type="submit"]{
+            width: 100%;
+            height: 100%;
+        }
+
+        #login-form-etc{
+            height: 20%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #login-form-etc>a{
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="content">
+        <!--로그인폼 전체를 감싸는 div-->
+        <div id="login-form">
+            <!--입력받아 요청할 수 있는 form태그-->
+            <form action="" id="login-form-input">
+                <!--id, pwd텍스트 상자가 들어갈 div -->
+                <div id="login-input-id-pwd">
+                    <input type="text" name="userId" placeholder="아이디를 입력해주세요.">
+                    <input type="text" name="userPwd" placeholder="비밀번호를 입력해주세요.">
+                </div>
+
+                <!--로그인 버튼이 들어갈 div-->
+                <div id="login-input-button">
+                    <input type="submit" value="로그인">
+                </div>
+            </form>
+
+            <div id="login-form-etc">
+                <a href="">회원가입</a>
+                <a href="">ID/PWD 찾기</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
