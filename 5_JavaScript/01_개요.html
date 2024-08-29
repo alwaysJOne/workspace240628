@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개요</title>
+
+    <script src="resources/js/sample.js"></script>
+</head>
+<body>
+    <!--
+        웹은 크게 3요소
+        - html : 웹문서의 큰 틀을 잡을 때 사용
+        - css  : html로 구성된 DOM(Document Object Model)에 다양한 스타일 속성을 부여할 때 사용
+        - js   : 웹 문서에서 이벤트가 발생했을 때 실행해야되는 동작(기능)을 처리한다.
+    -->
+
+    <h1>자바스크립트 개요</h1>
+
+    <h3>1. 스크립트 언어란?</h3>
+    <p>
+        프로그램의 동작을 사용자의 요구에 맞게 수행되도록 해주는 용도 <br>
+        빠르게 배울 수 있고 짧은 소스코드로 상호작용이 되도록 고안됨
+    </p>
+
+    <h3>2. 자바스크립트</h3>
+    <p>
+        웹 브라우저에서 많이 사용되는 "인터프리터방식"의 스크립트 언어<br>
+        -인터프리터방식 : 코드를 한줄한줄씩 읽어가며 바로 실행하는 방식 <br>
+        (실시간으로 텍스트 분석해서 실행됨) -> 코드에 문법 오류가 있으면 실행시점에서야 알려줌
+    </p>
+
+    <hr>
+
+    <h3>3. 장단점</h3>
+    <h4>* 장점</h4>
+    <ul>
+        <li>컴파일 과정 없이 인터프리터로 코드를 한줄씩 읽어가며 바로 실행하기 때문에 수행속도가 빠름</li>
+        <li>
+            코드 작성이 간단해서 초보자가 접하기 쉽다.(단순한 구조, 원칙)
+            ex) 접근제한 개념 없음, 변수의 선언시 자료형 정해둘 필요 없음
+        </li>
+    </ul>
+
+    <h4>단점</h4>
+    <ul>
+        <li>웹에 특화된 기술 -> 내부에서 제공하는 기능이 제한적</li>
+        <li>html 소스코드에서 같이 작성하면 외부에 공개됨 -> 보안취약점 발생</li>
+    </ul>
+
+    <h3>4. 자바스크립트 사용법</h3>
+    <ol>
+        <li>inline(인라인) : 태그내에서 간단한 소스코드를 작성해서 실행되게 하는 방법</li>
+        <li>internal(내부) : html문서 내에 소스코드를 작성해서 실행되게 하는 방법</li>
+        <li>external(외부) : 별도의 .js파일로 소스코드를 작성해서 가져다가 실행되게 하는 방법</li>
+    </ol>
+
+    <h4>1) inline</h4>
+
+    <p>[표현법] &lt;태그 on이벤트명="해당 요소의 이벤트 발생시 실행할 코드" &gt;</p>
+    <!-- 소스코드가 소량일 경우 inline방식을 많이 사용 -->
+     <button onclick="window.alert('알림창 출력 버튼 클릭!!')">알림창 출력</button>
+     <button onclick="console.log('콘솔창 출력 버튼 클릭!!')">콘솔창 출력</button>
+
+     <br><br>
+
+     <h4>2) internal방식</h4>
+     
+     <p>
+        script태그 영역안에 소스코드를 작성 <br>
+        script태그는 head태그, body태그 다 작성 가능
+     </p>
+
+     <button id="btn">알림창 출력</button>
+     <button onclick="btnClick();">콘솔창 출력</button>
+
+     <script>
+        //자바스크립트 영역
+        //이벤트를 부여하고자 하는 요소를 선택해서 변수에 담아보자
+        let btn = document.getElementById("btn");
+        btn.onclick = function(){
+            window.alert("알림창 출력 버튼 클릭!!");
+        }
+
+        //함수에 이름을 넣어서 정의
+        function btnClick(){
+            console.log("콘솔 버튼 클릭!!")
+        }
+     </script>
+
+     <h4>3) external방식</h4>
+     <p>외부의 .js파일을 생성해서 따로 js코드를 작성한다.</p>
+
+     <button onclick="test()">알림창 출력</button>
+</body>
+</html>

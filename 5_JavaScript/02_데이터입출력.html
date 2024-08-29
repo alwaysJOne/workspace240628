@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>자바스크립트에서 데이터 입/출력</h1>
+
+    <!--
+        *window : 자바스크립트의 내장 객체로 브라우저 창이 열릴 때마다 하나씩 만들어지는 객체
+                  브라우저 창 안에 모든요소들의 최상의 객체
+
+        *document : 웹 문서마다 하나씩 만들어지는 객체(html 문서에 대한 정보를 가지고 있음 -> DOM관리)
+    -->
+
+    <h2>1. 데이터를 출력하는 구문</h2>
+    <p>
+        1) [window.]alert("출력하고자하는 문구"); <br>
+        2) [window.]console.log("콘솔창에 출력하고자하는 문구"); <br>
+        3) document.write("화면상에 출력하고자하는 문구"); <br>
+        4) 선택한요소.innerHTML | 선택한요소.innerText = "요소에 출력할 문구"
+    </p>
+
+    <script>
+        // alert("안녕하세요.")
+        console.log("콘솔에 입력")
+    </script>
+
+    <button onclick="documentWrite()">화면에 출력</button>
+
+    <script>
+        function documentWrite(){
+            //출력할 문구에 html 태그가 있는 경우 해석해서 시각적인 요소로 보여줌
+            let str = "<table border = '1'>"
+                + "<tr>"
+                + "<td>1</td>"
+                + "<td>2</td>"
+                + "</tr>"
+                + "</table>";
+            document.write(str);
+        }
+    </script>
+
+    <br><br>
+
+    <h3>4) 선택한요소.innerHTML | 선택한요소.innerText = "요소에 출력할 문구"</h3>
+    <div class="area" id="area1">
+        자바스크립트에서 어떤 요소(element)안의 값(content)을 가지고 온다거나<br>
+        변경하고자 할 때 <br>innerHTML, innerText라는 속성에 접근
+    </div>
+
+    <button onclick="tagValue()">확인</button>
+    <script>
+        function tagValue(){
+            //위의 div요소를 가져와서 안에 값을 확인 / 변경
+            
+            //div요소객체를 가져와서 변수에 담기
+            let divEl = document.getElementById("area1");
+            console.log(divEl);
+
+            //선택된 요소의 속성에 접근 가능(.을 통해서)
+            console.log(divEl.id)
+            console.log(divEl.className) // className : 해당요소에 class속성
+
+            console.log(divEl.innerText) // innerText : 요소의 content영역 안의 텍스트만 포함해서 가져온다.
+            console.log(divEl.innerHTML) // innerHTML : 요소의 content영역 안의 html을 포함해서 전부 가져온다.
+
+            //속성값 변경
+
+            divEl.innerText = "<h3>속성이 변경됨</h3>";
+            //divEl.innerHTML = "<h3>속성이 변경됨</h3>";
+            divEl.style.background = "yellow";
+        }
+    </script>
+
+    <hr>
+
+    <h2>2. 데이터를 입력받는 구문(변수에 기록)</h2>
+    <p>
+        1) 변수 = [window.]confirm("질문내용") <br>
+        2) 변수 = [window.]prompt("질문내용") <br>
+        3) 변수 = 선택한요소.속성(id, className, innerText...) <br>
+        4) 선택한 input요소.value
+    </p>
+
+    <h3>1) [window.]confirm("질문내용")</h3>
+    <p>
+        confirm 호출시 "질문내용"과 확인/취소 버튼이 존재하는 알림창 발생 <br>
+        확인버튼 클릭시 true, 취소버튼 클릭시 false를 반환
+    </p>
+
+    <button onclick="testConfirm()">클릭</button>
+    <div id="area2"></div>
+
+    <script>
+        function testConfirm(){
+            let result = confirm("졸리면 확인, 아니면 취소를 누르세요.");
+            console.log(result)
+
+            let divE2 = document.getElementById("area2");
+            if(result) {
+                divE2.innerHTML = "<h3>정신차리세요.</h3>";
+            } else {
+                divE2.innerHTML = "<h3>굳.</h3>"
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>2) [window.]propt("질문내용");</h3>
+    <p>
+        prompt 호출시 "질문내용"과 입력할 수 있는 "텍스트 상자"와
+        "확인/취소"버튼이 보여지는 알림창 발생 <br>
+        확인버튼 클릭시 텍스트상자에 입력되어있는 값이 문자열로 반환
+        취소버튼 클릭시 null을 반환(값을 입력했더라도 취소 클릭시 null반환)
+    </p>
+
+    <button onclick="testPrompt()">클릭</button>
+    <div id="area3"></div>
+
+    <script>
+        function testPrompt(){
+            let name = prompt("당신의 이름은 무엇입니까? ");
+            let age = prompt("단싱의 나이는 몇살입니까?");
+
+            let divE3 = document.getElementById("area3");
+            divE3.innerHTML = "단신은 " + age + "살 <b>" + name + "</b>이시군요.";
+        }
+    </script>
+
+    <br><br>
+
+    <h3>4) 선택한 input요소.value</h3>
+    
+    아이디 : <input type="text" id="userId"> <br>
+    비밀번호 : <input type="password" id="userPwd"> <br>
+
+    <button onclick="testInput()">클릭</button>
+    <br>
+    <input type="text" id="area4">
+
+    <script>
+        function testInput(){
+            let input1 = document.getElementById("userId");
+            let input2 = document.getElementById("userPwd");
+
+            console.log(input1.value)
+            console.log(input2.value)
+
+            let area4 = document.getElementById("area4");
+            area4.value = input1.value + " " + input2.value;
+
+            input1.value = "";
+            input2.value = "";
+        }
+    </script>
+</body>
+</html>
