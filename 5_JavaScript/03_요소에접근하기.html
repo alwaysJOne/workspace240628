@@ -85,5 +85,147 @@
             }
         }
     </script>
+
+    <br>
+    <h3>3)name속성값을 이용해서 요소 가져오기</h3>
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="hobby" id="all" value="전체선택" onchange="allCheck()">
+            <label for="all">전체선택</label>
+
+            <input type="checkbox" name="hobby" id="game" value="게임" onchange="checkBoxTrigger()">
+            <label for="game">게임</label>
+
+            <input type="checkbox" name="hobby" id="movie" value="영화" onchange="checkBoxTrigger()">
+            <label for="movie">영화</label>
+
+            <input type="checkbox" name="hobby" id="sports" value="운동" onchange="checkBoxTrigger()">
+            <label for="sports">운동</label>
+        </fieldset>
+    </form>
+
+
+    <div id="area3" class="area"></div>
+
+    <script>
+        function allCheck(){
+            //전체선택버튼의 checked속성값이 변경되었을 때 다른 checkbox도 동일하게 변경
+            let allCheckBox = document.getElementById("all");
+
+            //name으로 속성요소 가져올 때
+            //document.getElementsByName("네임값");
+            let hobbyList = document.getElementsByName("hobby");
+
+            // for(let i = 0; i < hobbyList.length; i++) {
+            //  let checkBox = hobbyList[i];
+            //}
+            for(let checkBox of hobbyList) {
+                checkBox.checked = allCheckBox.checked;
+            }
+
+            checkHobby();
+        }
+
+        function checkBoxTrigger(){
+            //전체체크박스 이외에 체크박스들의 상태에 따라서 전체체크박스를 true, false로 변경하고싶다.
+            //true => 나머지 모든 체크박스가 true
+            //false => 하나라도 false이면 false
+            let allCheck = true;
+
+            let hobbyList = document.getElementsByName("hobby");
+            for(let checkBox of hobbyList){
+                if(checkBox.id === "all"){
+                    continue;
+                }   
+
+                //checkBox중 하나라도 checked가 false라면 전체선택 체크박스의 checked는 false여야한다.
+                if(!checkBox.checked){
+                    allCheck = false;  
+                }
+            }
+
+            let allCheckBox = document.getElementById("all");
+            allCheckBox.checked = allCheck;
+
+            checkHobby();
+        }
+
+        function checkHobby(){
+            let hobbyList = document.getElementsByName("hobby");
+            let value = "";
+
+            for(let checkBox of hobbyList){
+                if(checkBox.id === "all"){
+                    continue;
+                }   
+
+                if(checkBox.checked){ // check가 되어있는 요소의 값은 가져와서 기록
+                    value += checkBox.value + " "
+                }
+            }
+
+            document.getElementById("area3").innerText = value;
+        }
+    </script>
+
+    <h3>4) class로 접근</h3>
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test1 test2"></pre>
+    <button onclick="accessClass()">class로 접근</button>
+
+    <script>
+        function accessClass(){
+            //class속성으로 요소 가져올 때
+            //document.getElementsByClassName("클래스속성값") -> 배열로 반환
+            let arr = document.getElementsByClassName("test");
+            console.log(arr)
+
+            for(let unit of arr){
+                unit.innerHTML = "text를 클래스로 가지고 있는 요소";
+            }
+        }
+    </script>
+
+    <h5>5) 내가 원하는 요소 자유자재로 가져오기(선택자 활용)</h5>
+
+    <div id="tmp1">테스트입니다.</div>
+    <div id="tmp2">
+        <h2>안녕하세요.</h2>
+        <h2>최지원입니다.</h2>
+    </div>
+    <span>오잉? span</span>
+    <h2>이게될까요?</h2>
+
+    <br>
+
+    <button onclick="accessSelector()">클릭</button>
+    <script>
+        function accessSelector(){
+            //선택자를 이용해서 요소를 가져오고자 할 때
+            //document.querySelector("선택자") -> 선택한 요소 한개만 반환
+            //document.querySelectorAll("선택자"); -> 선택한 요소 전부 배열로 반환
+
+            const divT1 = document.querySelector("#tmp1"); //div
+            const h2El = document.querySelectorAll("#tmp2 > h2")// [h2, h2]
+            const spanEl = document.querySelector("#tmp2+span") // span
+
+            console.log(divT1)
+            console.log(h2El)
+            console.log(spanEl)
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
