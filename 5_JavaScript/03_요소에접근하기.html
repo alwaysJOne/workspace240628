@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .area{
+           border: 1px solid black;
+           width: 300px;
+           height: 100px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 요소에 접근하기(해당 요소객체 가져오기)</h1>
+
+    <h3>1) 아이디를 이용해서 요소 가져오기</h3>
+    <div class="area" id="area1">area1영역</div>
+    <button onclick="accessId()">아이디로 접근</button>
+
+    <script>
+        //아이디로 요소를 가져올 때
+        //document.getElementById("아이디명")
+
+        //이벤트 핸들러 함수
+        function accessId(){
+            let area1 = document.getElementById("area1");
+
+            area1.className = "test"
+
+            area1.style.background = "yellow";
+            area1.style.color = "red";
+            area1.style.width = "200px";
+            area1.style.height = "200px";
+
+            area1.innerText = "클릭된 area1영역";
+        }
+    </script>
+
+    <br>
+
+    <div class="area" id="area2">area2영역</div>
+    <button onclick="changeColor()">색상변경</button>
+
+    <script>
+        function changeColor(){
+            let area2 = document.getElementById("area2");
+            
+            if(area2.style.background !== "yellow"){
+                area2.style.background = "yellow"
+            } else {
+                area2.style.background = "red"
+            }
+
+        }
+    </script>
+
+    <h3>2) 태그명으로 요소 가져오기</h3>
+    <ul>
+        <li><h2>안녕하세요.</h2></li>
+        <li>안녕하세요.</li>
+        <li>안녕하세요.</li>
+        <li>안녕하세요.</li>
+        <li>안녕하세요.</li>
+    </ul>
+
+    <button onclick="accessTagName()">태그명으로 검색</button>
+
+    <script>
+        function accessTagName(){
+            //태그명으로 요소 가져올 때
+            //document.getElementsByTagName("태그명") -> 선택된 요소객체들을 배열로 반환
+
+            let list = document.getElementsByTagName("li"); // [li,li,li,li,li]
+            console.log(list)
+            console.log("배열의 길이 : " + list.length)
+            console.log("첫번째 요소가 가진 html : " + list[0].innerHTML)
+            console.log("첫번째 요소가 가진 text : " + list[0].innerText)
+
+            for(let i = 0; i < list.length; i++){
+                list[i].innerHTML = (i + 1) + "번째 li요소입니다";
+                list[i].style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
