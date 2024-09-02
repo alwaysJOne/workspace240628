@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            background: lightblue;
+            border: 1px solid black;
+        }
+        .small{height: 250px;}
+        .big{
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>객체</h1>
+
+    <h3>*객체 선언및 사용</h3>
+    <p>
+        객체는 중괄호 {}를 사용해서 생성하고 <br>
+        중괄호안에 이 객체에서 필요한 속성들을 정의함<br>
+        속성명 : 속성값 (key : value)형태로 정의한다. <br>
+        속성값으로는 모든 자료형의 값을 담을 수 있음
+    </p>
+
+    <pre>
+        변수 = {
+            속성명 : 속성값,
+            속성명 : 속성값,
+            속성명 : 속성값,
+            ...
+        }
+    </pre>
+
+    <button onclick="test1()">실행</button>
+    <div id="area1" class="area big"></div>
+
+    <script>
+        function test1(){
+            const arr = ["Dry Mango", 4000, "pickle", ["mango", "sugar"]]
+            //자바스크립트 배열 == 자바의 컬렉션(ArrayList)과 유사
+
+            const product = {
+                pName : "Dry Mango",
+                price : 4000, 
+                kind : "pickle",
+                ingredient : ["mango", "sugar"],
+            }
+
+            //자바스크립트에서의 객체 == 자바의 컬렉션(HashMap)과 유사
+            console.log(typeof product)
+            const area1 = document.getElementById("area1");
+            console.log(area1)
+            area1.innerHTML += ("product : " + product + "<br>") 
+
+            //객체의 속성에 접근하는 방법
+            //방법1. 대괄호를 이용하는 방법 : 객체명["속성명"]
+
+            area1.innerHTML += "<b>객체명['속성명(key)']으로 접근하기</b><br>"
+            area1.innerHTML += "pName : " + product['pName'] + "<br>";
+            area1.innerHTML += `price : ${product['price']}<br>`;
+            area1.innerHTML += `ingredient : ${product['ingredient'][0]}, ${product['ingredient'][1]}<br><br>`
+
+            //방법2. .을 이용해서 접근하는 방법 : 객체명["속성명"]
+            area1.innerHTML += `<b>객체명.속성명(key)으로 접근하기</b><br>`;
+            area1.innerHTML += "pName : " + product.pName + "<br>";
+            area1.innerHTML += `price : ${product.price}<br>`;
+            area1.innerHTML += `ingredient : ${product.ingredient[0]}, ${product['ingredient'][1]}<br><br>`
+
+        }
+    </script>
+
+    <h3>*객체의 메소드 속성</h3>
+    <p>객체의 속성중 함수자료형인 속성을 메소드라고 부름</p>
+
+    <button onclick="test2()">실행확인</button>
+    <div id="area2" class="area small"></div>
+
+    <script>
+        function test2(){
+            const area2 = document.getElementById("area2");
+
+            const name = "차은우";
+            const eat = function(){
+
+            }
+            const dog = {
+                name : "복실이",
+                kind : "비글",
+                eat : function(food){
+                    area2.innerHTML += `${this.kind}종류인 ${this.name}가 ${food}를 먹고있습니다.<br>`
+                }
+            }
+
+            dog.eat("사과")
+        }
+    </script>
+
+    <br>
+    <br>
+    <br>
+
+    <h3>* 객체 배열을 사용한 다량의 데이터관리</h3>
+
+    <button onclick="test3()">실행</button>
+    <div id="area3" class="area small"></div>
+
+    <script>
+        function test3(){
+            //학생리스트
+            const studentList = [
+                {name : "최지원", java: 85, db: 70, front: 50},
+                {name : "최지투", java: 70, db: 65, front: 75},
+                {name : "최지삼", java: 65, db: 50, front: 65},
+                {name : "최지사", java: 50, db: 70, front: 100},
+                {name : "최지오", java: 100, db: 75, front: 65},
+            ]
+
+            //학생의 총점
+
+            for(let i in studentList) {
+                studentList[i].getSum = function(){
+                    return this.java + this.db + this.front;
+                }
+
+                studentList[i].getAvg = function(){
+                    return this.getSum() / 3;
+                }
+            }
+
+            const area3 = document.querySelector("#area3")
+            for(let student of studentList){
+                area3.innerHTML += ("이름 : " + student.name + " "
+                                //  + "총점 : " + student.getSum() + " "
+                                + "총점 : " + (student.java + student.db + student.front) + " "
+                                 + "평균 : " + student.getAvg() + " <br>")
+            }
+        }
+    </script>
+</body>
+</html>
