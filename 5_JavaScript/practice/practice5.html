@@ -20,19 +20,68 @@
     <form action="">
         <fieldset>
             <legend>회원가입</legend>
-            아이디 : <input type="text" onkeyup="checkId(this)"><span id="id-review"></span> <br><br>
-            비밀번호 : <input type="password"> <br><br>
-            비밀번호 확인 : <input type="password" onblur="checkPass()"> <br><br>
-            이름 : <input type="text"> <br><br>
+            아이디 : <input type="text" onkeyup="checkId(this)" id="user-id" data-name="아이디"><span id="id-review"></span> <br><br>
+            비밀번호 : <input type="password" id="user-pwd" data-name="비밀번호"> <br><br>
+            비밀번호 확인 : <input type="password" id="check-pwd" onblur="checkPass()" data-name="비밀번호 확인"><span id="pwd-review"></span> <br><br>
+            이름 : <input type="text" data-name="이름"> <br><br>
 
-            <input type="submit" onclick="" value="회원가입">
+            <input type="submit" onclick="return validate();" value="회원가입">
 
-        </fieldset>
+        </fieldset> 
     </form>
 
     <script>
+        function validate(){
+            //전체 input을 입력했는지 확인
+            const inputList = document.getElementsByTagName('input')
+            for(let input of inputList){
+                if(input.dataset.name && input.value.trim() === ""){
+                    alert(input.dataset.name + "입력해주세요.");
+                    input.focus();
+                    return false; 
+                }
+            }   //모든칸은 정상
+
+
+            const userId = document.getElementById('user-id');
+            if(userId.value === "user01") {
+                alert("사용할 수 없는 아이디입니다.");
+                userId.value = "";
+                userId.focus();
+                return false;
+            }  //아이디도 정상
+
+            const checkPwd = document.getElementById('check-pwd');
+           if(!equalPwd()) {
+                alert("비밀번호가 일치하지 않습니다.");
+                checkPwd.value = "";
+                checkPwd.focus();
+                return false;
+           }
+
+        }
+
+        function equalPwd() {
+            const userPwd = document.getElementById('user-pwd');
+            const checkPwd = document.getElementById('check-pwd');
+            return userPwd.value === checkPwd.value;
+        }
         function checkPass(){
+            /*
+                비밀번호와 비밀번호 확인의 값을 비교함
+                비교 결과 같으면 초록 글자로 “비밀번호가 일치합니다.”, 
+                같지 않으면 빨간 글자로 “비밀번호가 일치하지 않습니다“가 비밀번호 확인 필드 옆에 뜸
             
+            */
+         
+            const reviewSpan = document.getElementById('pwd-review');
+            if(equalPwd()) {
+                reviewSpan.className = 'pass';
+                reviewSpan.innerText = "비밀번호가 일치합니다.";
+            } else {
+                reviewSpan.className = 'none-pass';
+                reviewSpan.innerText = "비밀번호가 일치하지 않습니다.";
+            }
         }
         function checkId(_this){
             /*
