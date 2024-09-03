@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            background: beige;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <h2>1. 이벤트 모델 종류</h2>
+
+    <h3>* 고전 이벤트 모델(기본 이벤트 모델)</h3>
+    <p>
+        특정 요소객체를 가지고와서 해당 요소의 이벤트 속성에 접근한 후 <br>
+        이벤트 핸들러를 연결하는 방식 <br>
+        이벤트를 제거할 수도 있음
+    </p>
+
+    <button id="btn1">실행확인</button>
+    <button id="btn2">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        const area1 = document.getElementById('area1')
+        const btn1 = document.getElementById('btn1')
+
+        btn1.onclick = function(){
+            area1.innerHTML += "btn1이 클릭되었습니다 <br>"
+        }
+
+        document.getElementById('btn2').onclick = function(){
+            area1.innerHTML += "btn2가 클릭되면서 btn1의 이벤트가 제거됨 <br>";
+            btn1.onclick = null;
+        }
+    </script>
+
+    <br>
+
+    <h3>*인라인 이벤트 모델</h3> <!--우리가 지금까지 많이 썼던 것-->
+    <p>
+        요소 내부에 직접적으로 이벤트 속성 제시해서 실행할 내용을 정의하는 방식 <br>
+        따로 script코드에 작성된 함수를 호출하는 방식이다.
+    </p>
+
+    <button id="btn3" onclick="document.getElementById('area2').innerHTML += '첫번째 버튼 클릭';">실행확인</button>
+    <button id="btn4" onclick="test1();">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function test1(){
+             document.getElementById('area2').innerHTML += "btn2이 클릭되었습니다 <br>"
+        }
+    </script>
+
+    <br>
+
+    <h3>*표준 이벤트 모델</h3>
+    <p>
+        w3c에서 공식적으로 지정한 이벤트 모델
+    </p>
+
+    <button id="btn5">실행확인</button>
+    <script>
+        const btn5 = document.querySelector("#btn5");
+        //이벤트를 걸고자하는 요소객체.addEventListener("이벤트명", 이벤트핸들러)
+
+        btn5.addEventListener("click", function(){
+            alert("표준 이벤트 모델 테스트")
+        })
+        btn5.addEventListener("mouseenter", function(){
+            btn5.innerHTML = "클릭!!!";
+        })
+        btn5.addEventListener("mouseout", function(){
+            btn5.innerHTML = "실행확인";
+        })
+    </script>
+
+    <h2>2. 현재 이벤트가 발생한 요소객체에 접근하는 방법</h2>
+    <button id="btn6"><span>기본이벤트방식</span></button>
+    <button id="btn7">표준이벤트방식</button>
+    <button onclick="test5(event, this);">인라인이벤트방식</button>
+
+    <script>
+        document.getElementById("btn6").onclick = function(event){ //이벤트핸들러
+            console.log(event)//이벤트에 관련된 정보가 들어있는 객체를 첫번째 인자로 넘겨준다.
+            console.log(window.event)
+
+            //현재 이벤트가 발생한 요소
+            console.log(event.target)
+
+            //해당 함수를 호출한 요소
+            console.log(this)
+
+            event.target.parentNode.style.background = "red"
+            this.innerHTML = "버튼이 클릭됨"
+        }
+
+        document.getElementById('btn7').addEventListener("click", function(ev){
+            console.log(ev.target)
+            console.log(this)
+        })
+
+        function test5(ev, _this){
+            console.log(ev)
+            console.log(_this)
+        }
+    </script>
+
+    <h2>3. 태그별로 기본적으로 가지고있는 이벤트 제거</h2>
+    <p>
+        기본적으로 이벤트 있는 요소 <br>
+        - a태그 : 클릭시 href에 제시되어있는 url로 요청하는 기본이벤트 보유 <br>
+        - form 내의 submit 버튼 : 클릭시 사용자가 입력한 값들을 action에 제시되어있는 url로 제출
+        <br><br>
+
+        태그내에 기본적으로 설정되어있는 이벤트가 실행안되게끔 막고싶다. <br>
+        => 이벤트 핸들러의 return 값을 false로 하면 기본이벤트 실행 안됨
+    </p>
+
+    <a href="http://www.naver.com" onclick="alert('ㅋㅋㅋ'); return false;">네이버로</a>
+    
+    <form action="test.do">
+        아이디 : <input type="text" name="userId" id="user-id">
+        <input type="submit" onclick="return validate()">
+    </form>
+
+    <script>
+        function validate(){
+            //영문자 또는 숫자로만 5~12글자이하가 맞는가?
+            //조건에 부합하면 return x
+            //조건에 부합하지 않으면 return false;
+
+            const userId = document.getElementById('user-id').value
+            console.log(userId)
+
+            const regRxp = /^[a-zA-Z0-9]{5,12}$/ //정규식표현
+            console.log(regRxp.test(userId))
+            if(!regRxp.test(userId)){
+                alert("유효한아이디가 아닙니다.")
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>
