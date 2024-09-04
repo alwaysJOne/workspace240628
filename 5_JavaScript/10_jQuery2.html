@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+        integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+        crossorigin="anonymous"></script>
+
+    <style>
+        .area{
+            border: 1px solid black;
+            height: 300px;
+        }
+
+        .qa-box > div{
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: rgb(223, 239, 245);
+            border: 1px solid aliceblue;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        .qa-box > p{
+            border: 1px solid whitesmoke;
+            width: 300px;
+            height: 100px;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery</h1>
+
+    <h3>jquery 이벤트</h3>
+    <div class="area" id="wrap">
+        <h6>클릭시 h6요소 추가</h6>
+    </div>
+
+    <script> 
+        //방법1. 이벤트 메소드 -> 동적으로 만들어진 요소에 이벤트 적용 안됨
+        //=> 이벤트를 부여하는 시점에 요소가 DOM에 존재하지 않았기 때문에
+        // $("#wrap > h6").click(function(){
+        //     $("#wrap").append("<h6>클릭시 h6요소 추가</h6>");
+        // })
+
+        //방법2 on메소드
+        // $("#wrap > h6").on("click", function(){
+        //     $("#wrap").append("<h6>클릭시 h6요소 추가</h6>");
+        // })
+
+        //방법3 $(부모요소).on(이벤트명, 자식요소, 실행할 함수)
+        $("#wrap").on("click", "h6", function(){
+            $("#wrap").append("<h6>클릭시 h6요소 추가</h6>");
+        })
+
+
+        // $("#wrap > h6").click(function(){
+        //     const wrap = document.getElementById('wrap');
+        //     const h6El = document.createElement('h6');
+        //     h6El.innerText = "클릭시 h6요소 추가";
+        //     addClickEvent(h6El);
+
+        //     wrap.appendChild(h6El);
+        // })
+
+        // function addClickEvent(h6El){
+        //     h6El.onclick = function(){
+        //         const wrap = document.getElementById('wrap');
+        //         const h6El = document.createElement('h6');
+        //         h6El.innerText = "클릭시 h6요소 추가";
+        //         addClickEvent(h6El);
+
+        //         wrap.appendChild(h6El);
+        //     }
+        // }
+    </script>
+
+    <hr>
+
+    <h2>시각적인 효과(Effect메소드)</h2>
+    <p>페이지 내에 애니메이션 효과를 주기위해 사용되는 메소드</p>
+
+    <h3>* show, hide, toggle</h3>
+    <p>선택된 요소가 점점 커지면서 보여지고, 점점작아지면서 사라지게 만드는 메소드</p>
+
+    <button id="show-btn">보여주기</button>
+    <button id="hide-btn">숨기기</button>
+    <button id="toggle-btn">토글</button>
+
+    <br><br>
+    <img id="hide-show-img" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MTFfNjgg%2FMDAxNzIzMzU0MTUwMDQy.RCviofc8KvNCKLY4vLxX5zQHL7r8KeUoMjkUWZCjzGEg.TN1DOp2iBpdqCx9rryobEmQhVMNAJPTT4jVe969qI24g.JPEG%2FKakaoTalk_20240810_185536154_02.jpg&type=a340" alt="">
+    <script>
+        $("#show-btn").click(function(){
+            $("#hide-show-img").show(500);
+        })
+        $("#hide-btn").click(function(){
+            $("#hide-show-img").hide(500);
+        })
+        $("#toggle-btn").click(function(){
+            $("#hide-show-img").toggle(500);
+        })
+    </script>
+
+    <h3>fadeIn, fadeOut, fadeToggle</h3>
+    <p>선택된 요소가 점점 투명해지면서 사라지거나 보여지게하는 메소드</p>
+
+    <button id="fadein-btn">보여주기</button>
+    <button id="fadeout-btn">숨기기</button>
+    <button id="fadetoggle-btn">토글</button>
+    <br><br>
+    <img id="fade-img" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MTFfNjgg%2FMDAxNzIzMzU0MTUwMDQy.RCviofc8KvNCKLY4vLxX5zQHL7r8KeUoMjkUWZCjzGEg.TN1DOp2iBpdqCx9rryobEmQhVMNAJPTT4jVe969qI24g.JPEG%2FKakaoTalk_20240810_185536154_02.jpg&type=a340" alt="">
+   
+    <script>
+        $("#fadein-btn").click(function(){
+            $("#fade-img").fadeIn(2000);
+        })
+        $("#fadeout-btn").click(function(){
+            $("#fade-img").fadeOut(2000);
+        })
+        $("#fadetoggle-btn").click(function(){
+            $("#fade-img").fadeToggle(500);
+        })
+    </script>
+
+    <h3>* slideDown()과 slideUp()</h3>
+    <div class="qa-box">
+        <div>Q. 반품은 언제되나요? </div>
+        <p>A. 택배사 사정에따라 1~47일정도 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요? </div>
+        <p>A. 택배사 사정에따라 1~47일정도 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요? </div>
+        <p>A. 택배사 사정에따라 1~47일정도 소요됩니다.</p>
+
+        <div>Q. 반품은 언제되나요? </div>
+        <p>A. 택배사 사정에따라 1~47일정도 소요됩니다.</p>
+
+        <div>Q. 환불기간은 어느정도 가능한가요? </div>
+        <p>A. 어림없습니다.</p>
+
+        <div>Q. 반품은 언제되나요? </div>
+        <p>A. 택배사 사정에따라 1~47일정도 소요됩니다.</p>
+    </div>
+
+    <script>
+        $(".qa-box > div").click(function(){
+            //this -> 클릭이벤트가 발생한 요소(div)
+            //$(this).next(); -> 선택된 요소의 뒤에있는 요소
+            
+            const $p = $(this).next();
+            if($p.css("display") === "none"){
+                $(".qa-box > p").slideUp();
+                $p.slideDown();
+            } else {
+                $p.slideUp();
+            }
+        })
+    </script>
+</body>
+</html>

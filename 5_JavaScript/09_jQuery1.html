@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+        integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>jQuery</h1>
+
+    <h3>*jQuery란</h3>
+    <p>
+        기존에 자바스크립트 언어만으로 구현하기에는 복잡했던 구문을 간소화하기 위해 만들어진 <br>
+        JavaScript기반의 라이브러리 <br>
+        즉, JavaScript로 유용한 함수나 내용들을 다른 누군가가 이미 정의해 놓은 것
+        <br>
+        복잡한 JavaScript구문보다 짧고 쉽게 개발이 가능하다 <br>
+        <br>
+        ==> 장점 <br>
+        1) DOM요소와 관련된 스크립트를 보다 쉽게 구현할 수 있음<br>
+        2) AJAX(비동기통신) 이벤트 처리등을 폭넓게 지원함 <br>
+        3) jQuery와 관련된 확장형 플러그인, 오픈API등을 지원(차트, 슬라이드, 캘린더...)
+    </p>
+
+    <br>
+
+    <h3>jQuery라이브러리 연결방법</h3>
+    <p>
+        head태그내에 script태그로 외부 jQuery관련 .js파일 연결하기 <br>
+        단 오프라인/온라인방식이 있음
+        <br>
+        1. jQuery라이브러리 직접 다운로드 받은 후 경로지정(오프라인)
+        2. CDN방식(온라인) <br>
+        파일을 다운로드 받아서 저장할 필요 없이 라이브버리를 제공하는 사이트 url제시해서 사용
+    </p>
+
+    <h3>*jQuery구문 작성하기</h3>
+    <p>
+        jquery구문으로 dom요소를 다루는 구문을 기본적으로 작성할 것이기 때문에 <br>
+        문서상에 요소들이 다 만들어지고나서 실행되어야한다.
+    </p>
+
+    <pre>
+        >순수 자바스크립트에서는 
+        window.onload = function(){
+            실행내용;
+        }
+
+        js에서 window -> onload구문은
+        해당 문서의 요소들이 전부 로드되고 외부 문서들도
+        다 가지고 온 후 뒤 실행됨
+    </pre>
+
+    <script>
+        //$(요소).ready(함수) -> 요소가 로딩되면 함수를 실행해줘
+        $(document).ready(function(){
+            console.log("document 로딩 완료")
+        })
+        window.onload = function(){
+            console.log("js window 로딩 완료")
+        }
+
+        $(function(){
+            console.log("document 로딩 완료")
+
+            //h3요소들 전부 선택해서 배경색 red로 변경
+            // const h3Arr = document.getElementsByTagName('h3');
+            // const h3Arr = document.querySelectorAll('h3');// [h3,h3,h3]
+
+            // for(let el of h3Arr){
+            //     el.style.background = "red";
+            // }
+
+            //jquery방식
+            // $("h3").css("background", "red");
+            
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 태그 선택자</h3>
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>HTML</p>
+
+    <h5 id="css-box">css</h5>
+    <h5>JavaScript</h5>
+    <h5>jQuery</h5>
+
+    <button class="btn1">1</button>
+    <button class="btn1">2</button>
+    <button class="btn1">3</button>
+    <button class="btn1">4</button>
+    <button class="btn1">5</button>
+
+    <ul id="ul-area1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <script>
+        $(function(){
+            //순수자바스크립트방식
+            //document.getElementsByTagName('태그명') : 배열
+
+            // const pArr = document.getElementsByTagName('p');
+            // for(let pEl of pArr){
+            //     pEl.style.color = 'red';
+            // } 
+
+            //jQuery방식 -> $('선택자(식별자)')
+            //$('p, h3').css("color", "red")
+
+            $('.btn1').click(function(ev){
+                console.log(ev.target)
+                alert('클릭됨')
+            })
+
+            setTimeout(() => {
+                //특정요소를 지우고 싶을 때
+                //$('.btn1').remove(); 
+                //특정요소들을 비우고싶을 때
+                $('#ul-area1').empty(); 
+            }, 2000);
+        })
+
+        document.getElementById('아이디') // $('#아이디')
+        document.getElementsByClassName('클래스명') // $('.클래스명')
+        document.querySelector('선택자') // $('선택자')
+        document.querySelectorAll('선택자') // $('선택자')
+
+        let el = document.getElementById('css-box');
+        //el.스타일속성 = "변경할 값"
+        // $(el).css("스타일속성", "변경할 값")
+
+        // el.innerHTML = "<span>변경할 값</span>";
+        // $(el).html("<span>변경할 값</span>");
+        // el.innerText = "<span>변경할 값</span>";
+        // $(el).text("<span>변경할 값</span>");
+
+        // el.on이벤트명 = function(){
+        //     alert("실행")
+        // }
+        // $(el).이벤트명(function(){
+        //     alert("실행")
+        // })
+    </script>
+
+    <hr>
+
+    <h3>*jQuery에서 input</h3>
+    텍스트상자 : <input type="text"> <br>
+    일반버튼 : <input type="button"> <br>
+    체크박스 : <input type="checkbox"> <br>
+    첨부파일 : <input type="file"> <br>
+    비밀번호 : <input type="password"> <br>
+    라디오버튼 : <input type="radio"> <br>
+    초기화버튼 : <input type="reset"> <br>
+    제출버튼 : <input type="submit"> <br>
+
+    <script>
+        $(function(){
+            $(":text").css("background", "red").val("빨간색상자")
+            // alert($(":text").val())
+
+            $(":button").css({
+                width : "100px",
+                height : "100px"
+            }).val("왕버튼")
+
+            //속성을 변경
+            $(":checkbox").attr('checked', true);
+
+            //첨부파일 input의 배경색을 green으로
+            $(":file").css("background", "green");
+
+            //비밀번호 input의 배경색을 yellow로
+            $(":password").css("background", "yellow");
+
+            //라디오버튼 check상태로, 가로50px 세로50px로
+            $(":radio").attr("checked", true).css({width: "50px", height: "50px"})
+
+            //제출버튼 클릭시 alert("ㅋㅋㅋㅋㅋ") 실행되도록
+            $(":submit").click(function(){
+                alert("ㅋㅋㅋㅋㅋ")
+            })
+
+            // $(":submit").mouseenter(function(){
+            //     $(this).val("선택")
+            // })
+
+            // $(":submit").mouseout(function(){
+            //     $(this).val("제출")
+            // })
+
+            //hover(요소에 들어올 때 발생할 함수, 요소에서 나갈때 발생할 함수)
+            $(":submit").hover(function(){
+                $(this).val("선택")
+            }, function(){
+                $(this).val("제출")
+            })
+
+            //const inputList = document.getElementsByTagName("input");
+            $("input").each(function(index, value){
+                console.log(index)
+                console.log(value)
+            })
+        })
+    </script>
+
+    <br><br><br>
+</body>
+</html>
+
+
+
+
+
