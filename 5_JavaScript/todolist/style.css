@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    bottom: 0;
+    font-size: 15px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+ul, li, ol{
+    list-style: none;
+}
+
+h1{
+    font-size: 52px;
+    font-weight: 900;
+    text-align: center;
+    margin: 0px;
+}
+
+.main{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .container{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.main #search-bar{
+    width: calc(100% - 24px);
+    padding: 24px 0;
+}
+
+.main #search-bar > input{
+    min-width: 250px;
+    border-radius: 50px 0 0 50px;
+    background: #f4f4f4;
+    border: none;
+    outline: none;
+    height: 40px;
+    padding: 6px 12px;
+}
+
+.main #search-bar > button{
+    width: 40px;
+    border-radius: 0 50px 50px 0;
+    border: none;
+    cursor: pointer;
+    background: #e4e4e4;
+}
+
+.main #search-bar > button:hover{
+    background: #d1d1d1;
+}
+
+.todo-list{
+    width: 100%;
+    padding: 0px 24px;
+}
+
+.todo-list > li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    background: #f4f4f4;
+    position: relative;
+}
+
+.todo-list > li > .todo-remove-btn{
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #c0e2ff;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
