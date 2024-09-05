@@ -1,0 +1,136 @@
+.header{
+    height: 56px;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+
+    background: #0f0f0f;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-section{
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-menu{
+    height: 24px;
+    margin: 0 20px 0 24px;
+}
+
+.youtube-logo{
+    height: 70px;
+}
+
+.middle-section{
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    flex: 1;
+    margin-left: 70px;
+    margin-right: 40px;
+}
+
+.search-bar{
+    height: 36px;
+    flex: 1;
+    font-size: 16px;
+    border: 1px solid #404040;
+    background: #121212;
+    padding-left: 10px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.search-button{
+    height: 40px;
+    width: 64px;
+    border: 1px solid #404040;
+    border-left: none;
+    background: #222222;
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 10px;
+}
+
+.search-button>img{
+    height: 25px;
+}
+
+.voice-search-button{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: #222222;
+    border: none;
+}
+
+.voice-search-button>img{
+    height: 25px;
+}
+
+.search-button,
+.voice-search-button,
+.upload-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.tooltip{
+    position: absolute;
+    color: white;
+    background: rgb(88, 88, 88);
+    bottom: -40px;
+    font-size: 12px;
+    white-space: nowrap;
+    padding: 8px;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.search-button:hover .tooltip,
+.voice-search-button:hover .tooltip,
+.upload-icon-container:hover .tooltip,
+.notifications-icon-container:hover .tooltip{
+    opacity: 0.9;
+}
+
+.right-section{
+    width: 150px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload-icon-container>img,
+.notifications-icon-container>img{
+    height: 28px;
+}
+
+.current-user-picture{
+    height: 32px;
+    border-radius: 16px;
+}
+
+.notifications-icon-container{
+    position: relative;
+}
+
+.notifications-count{
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background: red;
+    border-radius: 10px;
+    padding: 1px 5px;
+    font-size: 11px;
+}

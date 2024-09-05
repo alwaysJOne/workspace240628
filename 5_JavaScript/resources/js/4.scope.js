@@ -37,10 +37,10 @@ console.log(number1);
 
 /*
     JS -> Lexical Scope
-    성너된 위치가 상위 스코프를 정한다.
+    선언된 위치가 상위 스코프를 정한다.
 
     Dynamic Scope
-    실핸하 위치가 상위 스코프를 정한다.
+    실행한 위치가 상위 스코프를 정한다.
 */
 
 // var i = 1000;

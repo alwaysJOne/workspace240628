@@ -73,3 +73,104 @@ numbers.sort((a, b) => {
     return a < b ? 1 : -1; //내림차순정렬
 });
 console.log(numbers);
+
+console.log("-----------------------------------------------------------")
+
+//map
+//기존배열의 요소를 전부 반복하면서
+//return된 값으로 새로운 배열을 만들어주는 함수
+//기존의 배열을 이용해 새로운 배열을 만들어준다.
+// let tmpMember = member2.map(function(m, i){return m;}) // [0,1,2,3,4]
+
+let userList = [
+    {
+        userKey : 1,
+        userName : "최지원",
+        age : 22,
+    }, {
+        userKey : 2,
+        userName : "김수민",
+        age : 47,
+    }, {
+        userKey : 3,
+        userName : "박지수",
+        age : 35,
+    }
+]
+
+let buyHistory = [
+    {
+        userKey: 2,
+        productName : "TV",
+        price : 50000
+    },{
+        userKey: 2,
+        productName : "모니터",
+        price : 20000
+    },{
+        userKey: 1,
+        productName : "컴퓨터",
+        price : 150000
+    },{
+        userKey: 3,
+        productName : "냉장고",
+        price : 10000
+    },{
+        userKey: 1,
+        productName : "가습기",
+        price : 7500
+    },
+]
+
+buyHistory = buyHistory.map((history) => {
+    for(let user of userList) {
+        if (user.userKey === history.userKey) {
+            return {
+                ...user,
+                ...history,
+            }
+        }
+    }
+})
+
+buyHistory = buyHistory.map((h, i) => {
+    return {
+        ...h,
+        index : i + 1,
+    }
+})
+
+console.log(buyHistory)
+
+console.log("-------------------------------------------------------")
+
+//filter
+//return값이 false요소를 제외하고 true인 요소만 가져올 때
+let numbers2 = [1,6,7,9,10,21];
+let tmp2 = [];
+// for(let n of numbers2){
+//     if(n % 2 === 0) {
+//         tmp2.push(n);
+//     }
+// }
+
+tmp2 = numbers2.filter(n => n % 2 === 0);
+console.log(tmp2)
+//내가 삭제하고자하는게 userKey === 2인 것
+
+buyHistory = buyHistory.filter(h => h.userKey !== 2)
+console.log(buyHistory)
+
+//find()
+// return되는 조건에 값이 true인 첫 요소를 반환
+// 모든요소가 조건에 부합하지 않는다면(false를 리턴한다면) undefind를 반환
+console.log(tmp2.find(function(n){
+    return n % 2 === 0;
+}));
+
+//findIndex();
+// return되는 조건에 값이 true인 첫 요소의 인덱스를 반환
+// 모든요소가 조건에 부합하지 않는다면(false를 리턴한다면) -1을 반환
+console.log(tmp2.findIndex(function(n){
+    return n % 2 === 1;
+}));

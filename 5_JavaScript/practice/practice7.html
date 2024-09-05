@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+        integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+        crossorigin="anonymous"></script>
+    <style>
+        fieldset{
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+        .box{
+            background: lightgray;
+            padding: 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice7</h1>
+    <fieldset align="center">
+        <legend>검색할 항목을 선택하세요.</legend>
+        <label>
+            <input type="radio" name="category" value="title" onclick="showSearchBox('title-search-box')">제목
+        </label>
+        <label>
+            <input type="radio" name="category" value="date" onclick="showSearchBox('date-search-box')">날짜
+        </label>
+        <label>
+            <input type="radio" name="category" value="writer" onclick="showSearchBox('writer-search-box')">작성자
+        </label>
+    </fieldset>
+
+    <br>
+    <div id="title-search-box" class="box">
+        <form action="">
+            <label>검색할 제목을 입력하세요 : </label>
+            <br>
+            <input type="text" name="title" size="50"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+
+    <div id="date-search-box" class="box">
+        <form action="">
+            <label>검색할 날짜를 선택하세요 : </label>
+            <br>
+            <input type="date" name="start"> - <input type="date" name="end"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+
+    <div id="writer-search-box" class="box">
+        <form action="">
+            <label>검색할 작성자 아이디를 입력하세요 : </label>
+            <br>
+            <input type="text" name="writer" size="25"> &nbsp;
+            <input type="submit" value="검색" onclick="return false;">
+        </form>
+    </div>
+
+    <script>
+        function showSearchBox(id){
+            // let boxList = document.getElementsByClassName('box')
+            // for(let box of boxList){
+            //     box.style.display = "none"
+            // }
+
+            // document.getElementById(id).style.display = "block";
+            $(".box").hide();
+            $("#" + id).show();
+        }
+
+        $(function(){
+           document.querySelector("input[value='title']").click();
+        })
+    </script>
+
+</body>
+</html>

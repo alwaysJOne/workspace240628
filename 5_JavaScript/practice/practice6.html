@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area{
+            border: 1px solid black;
+            height: 300px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice6</h1>
+    <fieldset>
+        <legend>구매 정보</legend>
+        <ul id="buy-info">
+            <li>구매자 : <input data-info="님" type="text" placeholder="구매자의 이름을 입력하세요."></li>
+            <li>상품명 : <input type="text" placeholder="구매 상품 명을 입력하세요."></li>
+            <li>가격 : <input data-info="만원" type="number" placeholder="구매 가격을 입력하세요."></li>
+            <li>구매 수량 : <input data-info="개" type="number" placeholder="최소 10." min="10" max="100" step="10"></li>
+            <li>남품 등급 : <input data-info="등급" type="range" min="1" max="9" step="2" value="1"></li>
+            <li>기타 사항 : <textarea></textarea></li>
+        </ul>
+    </fieldset>
+    <br>
+
+    <button onclick="textPrint()">입력값 출력하기</button>
+
+    <br><br>
+
+    <div id="area"></div>
+    <script>
+        function textPrint(){
+            const area = document.getElementById('area');
+            area.innerHTML = "";
+
+            let liArr = document.querySelectorAll('#buy-info > li')
+            for(let li of liArr) {
+                let valueObj = li.children[0];
+
+                area.innerHTML += (li.innerText + valueObj.value + 
+                                    (valueObj.dataset.info ? (valueObj.dataset.info + "<br>") : "<br>"));
+            }
+        }
+    </script>
+</body>
+</html>
