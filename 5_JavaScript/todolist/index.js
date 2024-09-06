@@ -1,4 +1,15 @@
-let todoList = [];
+let todoList = localStorage.getItem("todoList") ? 
+                JSON.parse(localStorage.getItem("todoList")) : [];
+
+//JSON.stringify(객체 | 배열) -> 객체, 배열을 string으로 변환
+//JSON.parse(변환된문자열) -> 원래의 객체, 배열로 변경
+
+//localStorage.setItem("키", "벨류") -> localStorage영역에 key, value형태로 데이터 저장
+//localStorage.getItem("키") -> localStorage영역에 데이터를 key로 불러오는 것
+
+window.onload = function(){
+    drawTodoList();
+}
 
 //할일을 todoList에 넣기
 function addTodo(){
@@ -9,6 +20,7 @@ function addTodo(){
         date : new Date().getTime(),
         isDone : false
     });
+    localStorage.setItem('todoList', JSON.stringify(todoList));
 
     searchInput.value = "";
     drawTodoList();
@@ -19,7 +31,7 @@ function drawTodoList(){
     //숙제하기, 1725582055367
     const removeTodo = function(removeTodo){
         todoList = todoList.filter(t => !(t.date === removeTodo.date && removeTodo.title === t.title))
-
+        localStorage.setItem('todoList', JSON.stringify(todoList));
         drawTodoList();
     }
 
@@ -30,7 +42,7 @@ function drawTodoList(){
             }
             return t;
         })
-
+        localStorage.setItem('todoList', JSON.stringify(todoList));
         drawTodoList();
     }
 
