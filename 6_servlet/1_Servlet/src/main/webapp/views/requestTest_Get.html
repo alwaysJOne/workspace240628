@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    ul{
+        list-style: none;
+        line-height: 250%;
+    }
+</style>
+</head>
+<body>
+	<h1>Get방식으로 요청 후 응답페이지 보기</h1>
+
+    <p>
+        특징1. GET요청방식으로 요청시 URL의 Header영역에 데이터들을 포함시켜 요청 <br>
+        => 사용자가 입력한 값(데이터)들이 url에 노출됨 <br>
+        => 보안유지가 불가능 함 <br>
+        => 즉, 로그인이나 회원가입 같은 경우 GET방식에 부적합 함 <br><br>
+
+        특징2. Header여역은 전송하는 길이에 제한이 있음 <br>
+        => 방대한 데이터들을 담았을 경우 초과하는 데이터는 절단되서 넘어감 <br><br>
+        => 즉, 게시판 작성같은 경우 GET방식에 부적합 함 <br><br>
+
+        특징3.  url에 데이터가 노출되어있기 때문에 즐겨찾기(북마크)가 가능 <br>
+                url을 저장해놨다가 재요청하는 방식 <br>
+                => 즉, 검색기능에 적합 
+    </p>
+
+    <!--
+        form내의 제출버튼(submit타입) 클릭시
+        form태그 속성중 action에 작성된 url로 요청됨(요청시 사용자가 입력한 값들도 넘어간다.)
+        즉, Controller(Servlet)을 호출한다고 생각하면 된다.
+
+        절대경로방식(/로시작하는경우) : http://localhost:5000 뒤에 action값이 더해지면서 요청
+        상대경로방식(문자로시작하는경우) : 현재페이지가 보여질 때 url의 마지막/로부터 그뒤에 action값이 더해지면 
+    -->
+    <form action="/st/test1.do" method="GET">
+        <ul>
+            <li>
+                이름 : <input type="text" name="name">
+            </li>
+            <li>
+                성별 : 
+                    <input type="radio" name="gender" value="M"> 남자
+                    <input type="radio" name="gender" value="W"> 여자
+            </li>
+            <li>
+                나이 : <input type="number" name="age">
+            </li>
+            <li>
+                주소 : 
+                <select name="city">
+                    <option>서울</option>
+                    <option>경기</option>
+                    <option>강원</option>
+                    <option>충청</option>
+                    <option>경상</option>
+                    <option>전라</option>
+                    <option>제주</option>
+                </select>
+            </li>
+            <li>
+                키 : <input type="range" name="height" min="140" max="250">
+            </li>
+            <li>
+                좋아하는 음식(모두 고르시오) :
+                <input type="checkbox" name="food" value="한식"> 한식
+                <input type="checkbox" name="food" value="일식"> 일식
+                <input type="checkbox" name="food" value="중식"> 중식
+                <input type="checkbox" name="food" value="양식"> 양식
+                <input type="checkbox" name="food" value="분식"> 분식
+            </li>
+            <li>
+                <input type="submit">
+                <input type="reset">
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>
