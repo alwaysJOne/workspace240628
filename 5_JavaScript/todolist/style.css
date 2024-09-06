@@ -76,6 +76,10 @@ h1{
     position: relative;
 }
 
+.todo-list > li.done{
+    text-decoration: line-through;
+}
+
 .todo-list > li > .todo-remove-btn{
     cursor: pointer;
     width: 34px;
