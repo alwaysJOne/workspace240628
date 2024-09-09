@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>평가2</title>
+    <style>
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: #deebf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #div1 {
+            width: 700px;
+            height: max-content;
+            border: 3px solid #e0e1e0;
+            background: #ededed;
+            position: relative;
+            padding-bottom: 36px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        table{
+            width: 100%;
+            height: calc(100% - 150px);
+        }
+
+        tbody{
+            display: flex;
+            flex-direction: column;
+            padding: 36px;
+            gap: 36px;
+        }
+
+        tr{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        td {
+            font-size: 28px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        input[type="text"], input[type="password"]{
+            background: none;
+            border: none;
+            font-size: 30px;
+            border-bottom-width: 3px;
+            border-bottom-style: dashed;
+            width: 400px;
+            box-sizing: border-box;
+        }
+
+        .email{
+            width: 182px !important;
+        }
+
+      
+
+        #div1>button {
+            margin: 0 5%;
+            height: 120px;
+            width: 90%;
+            background: #c5e0b4;
+            font-size: 30px;
+            font-weight: 600;
+            color: #456431;
+            border: none;
+            bottom: 40px;
+            cursor: pointer;
+        }
+
+        .msg {
+            color: gray;
+            font-weight: 900;
+        }
+
+        .hidden{
+            display: none;
+        }
+
+        .check_pwd_text{
+            color: gray;
+            font-size: 12px;
+            position: absolute;
+            left: 0px;
+            bottom: -35px;
+        }
+
+        .check_text{
+            color: red;
+            font-size: 12px;
+            position: absolute;
+            left: 0px;
+            bottom: -17px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td>
+                    <input id="user_id" type="text" required onblur="checkIput(this.id);">
+                    <span id="user_id_required" class="check_text hidden">필수 입력 항목 입니다</span>
+                </td>
+            </tr>
+                <td>패스워드</td>
+                <td>
+                    <input id="user_password" type="password" onblur="checkIput(this.id);" onclick="passwordCheck(this.value)" required>
+                    <span id="user_password_validate" class="check_pwd_text hidden">영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자</span>
+                    <span id="user_password_required" class="check_text hidden">필수 입력 항목 입니다</span>
+                </td>
+            </tr>
+            <tr>
+                <td>패스워드 확인</td>
+                <td>
+                    <input id="pwd_check" type="password" required onblur="checkIput(this.id);">
+                    <span id="pwd_check_required" class="check_text hidden">필수 입력 항목 입니다</span>
+                </td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>
+                    <input type="text" class="email">@
+                    <input type="text" class="email">
+                </td>
+            </tr>
+                    <td>주소</td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text"></td>
+                </tr>
+            </table>
+            <button>가 입</button>
+    </div>
+</body>
+
+<script>
+    function passwordCheck(pwd) {
+        const regRxp = /^(?=.*[a-zA-Z])(?=.*[\d])(?=.*[!@#$%^&*()_+|~\-={}[\]:;<>?,./])[A-Za-z\d!@#$%^&*()_+|~\-={}[\]:;<>?,./]{8,32}$/;
+        const hiddenArea = document.getElementById("user_password_validate");
+    
+        if(!regRxp.test(pwd)) {
+            hiddenArea.classList.remove("hidden");
+            return;
+        } else {
+            hiddenArea.classList.add("hidden");
+        }
+    }
+
+    function checkIput(id) {
+        const checkValue = document.getElementById(id).value;
+        const hiddenId = document.getElementById(id + "_required");
+        
+        if(checkValue === "") {
+            hiddenId.classList.remove("hidden");
+        } else {
+            hiddenId.classList.add("hidden");
+        }
+    }
+</script>
+
+</html>
