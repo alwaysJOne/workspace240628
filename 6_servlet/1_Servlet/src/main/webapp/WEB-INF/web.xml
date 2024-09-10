@@ -15,4 +15,14 @@
     <servlet-name>RequestGetServlet</servlet-name>
     <url-pattern>/test1.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>test2.do</display-name>
+    <servlet-name>test2.do</servlet-name>
+    <servlet-class>com.kh.controller.RequestPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test2.do</servlet-name>
+    <url-pattern>/test2.do</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>POST방식으로 요청해보기</h1>
+    <p>
+        특징1. POST방식으로 요청시 URL의 BODY영역에 데이터를 포함시켜 넘김 <br>
+        => 사용자가 입력한 값들이 url에 노출되지 않음 <br>
+        => 보안유지가 가능함 <br>
+        => 즉, 로그인이나 회원가입 같은 경우 POST방식에 적합함 <br><br>
+
+        특징2. Body영역은 전송하는 길이에 제한이 없다 <br>
+        => 즉, 게시판 작성같은 경우 POST방식이 적합함 <br><br>
+
+        특징3. 즐겨찾기는 가능하나 데이터가 url에 노출되지 않음 <br>
+        => 즉, 기존에 봤던 응답화면을 볼 수 없다. <br>
+        => 즉, 검색 기능 같은 경우 POST방식에 부적합 함 <br>
+
+        특징4. Time out이 존재하기 때문에 페이지요청, 기다리는 시간이 있다.
+    </p>
+
+    <form action="/st/test2.do" method="POST">
+        <ul>
+            <li>
+                이름 : <input type="text" name="name">
+            </li>
+            <li>
+                성별 : 
+                    <input type="radio" name="gender" value="M"> 남자
+                    <input type="radio" name="gender" value="W"> 여자
+            </li>
+            <li>
+                나이 : <input type="number" name="age">
+            </li>
+            <li>
+                주소 : 
+                <select name="city">
+                    <option>서울</option>
+                    <option>경기</option>
+                    <option>강원</option>
+                    <option>충청</option>
+                    <option>경상</option>
+                    <option>전라</option>
+                    <option>제주</option>
+                </select>
+            </li>
+            <li>
+                키 : <input type="range" name="height" min="140" max="250">
+            </li>
+            <li>
+                좋아하는 음식(모두 고르시오) :
+                <input type="checkbox" name="food" value="한식"> 한식
+                <input type="checkbox" name="food" value="일식"> 일식
+                <input type="checkbox" name="food" value="중식"> 중식
+                <input type="checkbox" name="food" value="양식"> 양식
+                <input type="checkbox" name="food" value="분식"> 분식
+            </li>
+            <li>
+                <input type="submit">
+                <input type="reset">
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>
