@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.model.vo.Person" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -111,6 +111,119 @@
 			모든 조건은 맞지않다.
 		</c:otherwise>
 	</c:choose>
+	
+	<h4>4.반복문 - forEach</h4>
+	<pre>
+	for loop문 - (c:forEach var="변수명" begin="초기값" end="끝값" [step="반복시증가값"])
+	향상된 for문 - (c:forEach var="변수명" items="순차적으로 접근하고자하는 객체(배열/컬렉션)" [varStatus="현재접근된 요소의 상태값"])
+	</pre>
+	
+	<%-- 
+	<% for(int i=1; i<=10; i+=2){ %>
+		1 3 5 7 9
+	<%} %>
+	--%>
+	
+	<c:forEach var="i" begin="1" end="10" step="2">
+		반복확인 : ${i} <br>
+	</c:forEach>
+	
+	<c:forEach var="i" begin="1" end="6">
+		<h${i}>태그안에서 사용</h${i}>
+	</c:forEach>
+	
+	<c:set var="colors">
+		red,yellow,green,pink
+	</c:set>
+	
+	colors :  ${colors }<br>
+	
+	<ul>
+		<c:forEach var="c" items="${colors}">
+			<li style="color : ${c}">${c}</li>
+		</c:forEach>
+	</ul>
+	
+	<%
+		ArrayList<Person> list = new ArrayList<>();
+		list.add(new Person("홍길동", 18, "남자"));
+		list.add(new Person("김개똥", 25, "여자"));
+		list.add(new Person("최지원", 40, "여자"));
+	%>
+	
+	<c:set var="pList" value="<%=list %>" scope="request" />
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>성별</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%-- 
+			<%for(Person p : list) {%>
+				<tr>
+					<td>-</td>
+					<td><%=p.getName() %></td>
+					<td><%=p.getAge() %></td>
+					<td><%=p.getGender() %></td>
+				</tr>
+			<% }%>
+		--%>
+		<c:choose>
+			<c:when test="${empty pList}">
+				<tr><td colspan="4">조회된 사람이 없습니다.</td></tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="p" items="${pList}" varStatus="status">
+					<tr>
+						<td>${status.count}</td>
+						<td>${p.name }</td>
+						<td>${p.age }</td>
+						<td>${p.gender }</td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		</tbody>
+	</table>
+	
+	<h5>5. 반복문 - forTokens</h5>
+	<pre>
+	(c:forTokens var="변수명" items="분리하고싶은 문자열" delims="구분자")
+	
+	-구분자를 통해서 분리된 가각의 문자열에 순차적으로 접근하면서 반복수행
+	-JAVA의 문자열.split("구분자")과 비슷("최,지,원".split(",") -> ["최","지","원"])
+	</pre>
+	
+	<c:set var="device" value="컴퓨터,노트북/핸드폰.모니터/냉장고" />
+	
+	<ol>
+		<c:forTokens var="d" items="${device}" delims=",./">
+			<li>${d}</li>
+		</c:forTokens>
+	</ol>
+	
+	<h3>6. url쿼리스트링</h3>
+	<pre>
+	-url경로를 생성하고, 쿼리스트링을 정의해둘 수 있는 태그
+	
+	c:url var="변수명" value="요청url"
+		c:param name="키" value="값" /
+		c:param name="키" value="값" /
+		c:param name="키" value="값" /
+	/c:url
+	</pre>
+	
+	<a href="list.do?cpage=1&num=2">기존방식</a>
+	
+	<c:url var="listUrl" value="list.do">
+		<c:param name="cpage" value="1" />
+		<c:param name="num" value="2" />
+	</c:url>
+	<a href="${listUrl}">c:url이용방식</a>
 </body>
 </html>
 
