@@ -21,7 +21,7 @@ public class JDBCTemplate {
 		Properties prop = new Properties();
 		
 		//읽어들이고자하는 classes폴더내의 driver.properties파일의 물리적인 경로 가져오기
-		String filePath = JDBCTemplate.class.getResource("/db/driver.properties").getPath();
+		String filePath = JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath();
 		//System.out.println(filePath);
 		
 		
