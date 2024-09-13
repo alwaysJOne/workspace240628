@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String contextPath = request.getContextPath();
+
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	//로그인 시도 전 : null
+	//로그인 성공 후 : 로그인성공한 user정보
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -63,34 +68,41 @@
     <h1 align="center">Welcome KH World</h1>
     <div class="login-area">
         <!--로그인 전-->
-        <form action="<%=contextPath %>/login.me" method="post">
-            <table>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type="text" name="userId" required></td>
-                </tr>
-                <tr>
-                    <th>비밀번호</th>
-                    <td><input type="password" name="userPwd" required></td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                        <input type="submit" value="로그인">
-                        <input type="button" value="회원가입">
-                    </th>
-                </tr>
-            </table>
-        </form>  
+        <%--if (loginUser == null) {--%>
+        <c:choose>
+        	<c:when test="${empty loginUser }">
+		        <form action="<%=contextPath %>/login.me" method="post">
+		            <table>
+		                <tr>
+		                    <th>아이디</th>
+		                    <td><input type="text" name="userId" required></td>
+		                </tr>
+		                <tr>
+		                    <th>비밀번호</th>
+		                    <td><input type="password" name="userPwd" required></td>
+		                </tr>
+		                <tr>
+		                    <th colspan="2">
+		                        <input type="submit" value="로그인">
+		                        <input type="button" value="회원가입">
+		                    </th>
+		                </tr>
+		            </table>
+		        </form> 
+	        </c:when>
+	        <c:otherwise>
+        <%-- } else { --%> 
         <!--로그인 후-->
-        <!--
-        <div>
-            <b>최지원님</b>의 방문을 환영합니다<br><br>
-            <div>
-                <a href="">마이페이지</a>
-                <a href="">로그아웃</a>
-            </div>
-        </div>
-        -->
+		        <div>
+		            <b><%=loginUser.getUserName() %>님</b>의 방문을 환영합니다<br><br>
+		            <div>
+		                <a href="">마이페이지</a>
+		                <a href="">로그아웃</a>
+		            </div>
+		        </div>
+        <%-- } --%>
+       	 	</c:otherwise>
+        </c:choose>
     </div>
 
     <br clear="both">
