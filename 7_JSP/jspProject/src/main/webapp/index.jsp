@@ -29,11 +29,13 @@
 		게시글 작성(C) / 게시글 수정(U) / 게시글 삭제(U)
 		[댓글리스트 조회(R) / 댓글작성(C)]
 		
-		*사진게시판
+		*사진게시판 
 		게시판 리스트 조회(R) - 썸네일형식 / 상세조회(R)
 		게시글 작성(C) - 첨부파일업로드
  	-->
  	
- 	<% JDBCTemplate.getConnection(); %>
+ 	<%-- JDBCTemplate.getConnection(); --%>
+ 	
+ 	<%@ include file="views/common/menubar.jsp" %>
 </body>
 </html>
