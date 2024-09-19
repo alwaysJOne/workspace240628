@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MemberInsertController
@@ -49,6 +50,19 @@ public class MemberInsertController extends HttpServlet {
 		
 		//sql요청 -> service -> dao -> sql실행
 		int result = new MemberService().insertMember(m);
+		
+		if(result > 0) {//회원가입 성공
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "성공적으로 회원가입이 되었습니다.");
+			
+			//jsp url 재요청 -> index페이지로
+			response.sendRedirect(request.getContextPath());
+		} else { //회원가입 실패
+			//에러문구가 보여지는 에러페이지
+			request.setAttribute("errorMsg", "회원가입에 실패하였습니다.");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

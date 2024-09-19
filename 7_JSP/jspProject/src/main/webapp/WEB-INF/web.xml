@@ -49,4 +49,14 @@
     <servlet-name>insert.me</servlet-name>
     <url-pattern>/insert.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>myPage.me</display-name>
+    <servlet-name>myPage.me</servlet-name>
+    <servlet-class>com.kh.member.controller.MyPageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myPage.me</servlet-name>
+    <url-pattern>/myPage.me</url-pattern>
+  </servlet-mapping>
 </web-app>

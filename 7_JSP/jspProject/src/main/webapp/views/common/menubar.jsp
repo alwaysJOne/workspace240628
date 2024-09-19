@@ -7,6 +7,10 @@
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	//로그인 시도 전 : null
 	//로그인 성공 후 : 로그인성공한 user정보
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	//서비스 요청 전 : null
+	//서비스 요청 후 : alert띄워줄 메세지 문구
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -65,6 +69,13 @@
     </style>
 </head>
 <body>
+
+	<% if(alertMsg != null) {%>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
     <h1 align="center">Welcome KH World</h1>
     <div class="login-area">
         <!--로그인 전-->
@@ -105,7 +116,7 @@
 		        <div>
 		            <b><%=loginUser.getUserName() %>님</b>의 방문을 환영합니다<br><br>
 		            <div>
-		                <a href="">마이페이지</a>
+		                <a href="<%=contextPath %>/myPage.me">마이페이지</a>
 		                <a href="<%=contextPath %>/logout.me">로그아웃</a>
 		            </div>
 		        </div>
