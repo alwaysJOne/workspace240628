@@ -59,4 +59,14 @@
     <servlet-name>myPage.me</servlet-name>
     <url-pattern>/myPage.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updatePwd.me</display-name>
+    <servlet-name>updatePwd.me</servlet-name>
+    <servlet-class>com.kh.member.controller.MemberPwdUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updatePwd.me</servlet-name>
+    <url-pattern>/updatePwd.me</url-pattern>
+  </servlet-mapping>
 </web-app>

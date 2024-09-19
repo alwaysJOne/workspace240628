@@ -93,6 +93,14 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	public int updatePwdMember(Connection conn, String userId, String userPwd, String updatePwd) {
+		//update => 처리된 행수
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePwdMember");
+	}
 }
 
 

@@ -35,7 +35,7 @@
     <div class="outer">
         <br>
         <h2 align="center">내 정보</h2>
-        <form action="" method="post" id="update-form">
+        <form action="<%=contextPath %>/update.me" method="post" id="update-form">
             <table>
                 <tr>
                     <td>* 아이디</td>
@@ -97,26 +97,80 @@
                     </td>
                 </tr>
             </table>
+            <script>
+            	const interest = "<%=interest%>"; //운동,게임,영화
+            	const inputArr = document.querySelectorAll("input[name=interest]");
+            	//[<input>,<input>,<input>,<input>,<input>,<input>,<input>]
+            	
+            	for(let input of inputArr){
+            		if(interest.includes(input.value)){ // interes에 input.value의 값이 포함되어 있다면
+            			input.checked = true;
+            		}  
+            	}
+            </script>
 
             <br><br>
 
             <div align="center">
-                <button type="submit" onclick="return checkPwd()">회원가입</button>
-                <button type="reset">초기환</button>
+                <button type="submit" class="btn btn-sm btn-secondary">정보변경</button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update-pwd-modal">
+                	비밀번호 변경
+                </button>
+                <button type="button" class="btn btn-sm btn-danger">회원탈퇴</button>
             </div>
         </form>
     </div>
-
-    <script>
-        function checkPwd(){
-            const pwd = document.querySelector("#enroll-form input[name=userPwd]").value
-            const pwdCheck = document.querySelector("#enroll-form input[name=userPwdCheck]").value
-
-            if(pwd !== pwdCheck) {
-                alert("비밀번호가 일치하지 않습니다.");
-                return false;
-            }
-        }
-    </script>
+	
+	<!-- 비밀번호 변경 Modal -->
+	<div class="modal" id="update-pwd-modal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">비밀번호 변경</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        <form action="<%=contextPath%>/updatePwd.me" method="post">
+	        	<input type="hidden" name="userId" value="<%=userId%>">
+	        	<table>
+	        		<tr>
+	        			<td>현재 비밀번호</td>
+	        			<td><input type="password" name="userPwd" required></td>
+	        		</tr>
+	        		<tr>
+	        			<td>변경할 비밀번호</td>
+	        			<td><input type="password" name="updatePwd" required></td>
+	        		</tr>
+	        		<tr>
+	        			<td>변경할 비밀번호 확인</td>
+	        			<td><input type="password" name="checkPwd" required></td>
+	        		</tr>
+	        	</table>
+	        	<br>
+	        	<button id="edit-pwd-btn" type="submit" class="btn btn-sm btn-secondary" >
+	        		비밀번호 변경
+	        	</button>
+	        </form>
+	        
+	        <script>
+		        document.getElementById("edit-pwd-btn").onclick = function(){
+		            const pwd = document.querySelector("input[name=updatePwd]").value
+		            const pwdCheck = document.querySelector("input[name=checkPwd]").value
+	
+		            if(pwd !== pwdCheck) {
+		                alert("비밀번호가 일치하지 않습니다.");
+		                return false;
+		            }
+		        }
+	        </script>
+	      </div>
+	    
+	    </div>
+	  </div>
+	</div>
 </body>
 </html>

@@ -31,4 +31,9 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public void updatePwdMember(String userId, String userPwd, String updatePwd) {
+		Connection conn = getConnection();
+		new MemberDao().updatePwdMember(conn, )
+	}
 }
