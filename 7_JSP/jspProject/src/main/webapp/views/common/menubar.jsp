@@ -84,10 +84,19 @@
 		                <tr>
 		                    <th colspan="2">
 		                        <input type="submit" value="로그인">
-		                        <input type="button" value="회원가입">
+		                        <input type="button" value="회원가입" onclick="enrollPage();">
 		                    </th>
 		                </tr>
 		            </table>
+		            <script>
+		            	function enrollPage(){
+		            		//location.href = "<%=contextPath%>/views/member/memberEnrollForm.jsp";
+		            		//웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
+		            		
+		            		location.href = "<%=contextPath%>/enrollForm.me";
+		            		//단순한 페이지 요청도 servlet을 거쳐갈 것(즉, url에는 서블릿 맵핑값만 나타나도록)
+		            	}
+		            </script>
 		        </form> 
 	        </c:when>
 	        <c:otherwise>
@@ -97,7 +106,7 @@
 		            <b><%=loginUser.getUserName() %>님</b>의 방문을 환영합니다<br><br>
 		            <div>
 		                <a href="">마이페이지</a>
-		                <a href="">로그아웃</a>
+		                <a href="<%=contextPath %>/logout.me">로그아웃</a>
 		            </div>
 		        </div>
         <%-- } --%>

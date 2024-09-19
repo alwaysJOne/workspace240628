@@ -33,7 +33,6 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("loginMember");
-		System.out.println(sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
