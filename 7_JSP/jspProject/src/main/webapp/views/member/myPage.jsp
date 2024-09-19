@@ -121,6 +121,36 @@
         </form>
     </div>
 	
+	<!-- 회원탈퇴 Modal -->
+	<div class="modal" id="delete-member-modal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">회원탈퇴</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        <form action="<%=contextPath%>/delete.me" method="post">
+	        	<b>탈퇴 후 복구가 불가능합니다.<br>
+	        	정말로 탈퇴하시겠습니까?</b>
+	        	<br><br>
+	        	<input type="hidden" name="userId" value="<%=userId%>">
+	   			비밀번호 : <input type="password" name="userPwd" required>
+	        	<br>
+	        	<button type="submit" class="btn btn-sm btn-danger" >
+	        		탈퇴하기
+	        	</button>
+	        </form>
+	      </div>
+	    
+	    </div>
+	  </div>
+	</div>
+	
 	<!-- 비밀번호 변경 Modal -->
 	<div class="modal" id="update-pwd-modal">
 	  <div class="modal-dialog modal-dialog-centered">
