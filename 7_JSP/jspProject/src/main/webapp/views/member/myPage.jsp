@@ -116,7 +116,7 @@
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update-pwd-modal">
                 	비밀번호 변경
                 </button>
-                <button type="button" class="btn btn-sm btn-danger">회원탈퇴</button>
+                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-member-modal">회원탈퇴</button>
             </div>
         </form>
     </div>
@@ -140,7 +140,7 @@
 	        	<br><br>
 	        	<input type="hidden" name="userId" value="<%=userId%>">
 	   			비밀번호 : <input type="password" name="userPwd" required>
-	        	<br>
+	        	<br><br>
 	        	<button type="submit" class="btn btn-sm btn-danger" >
 	        		탈퇴하기
 	        	</button>

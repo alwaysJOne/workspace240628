@@ -69,4 +69,14 @@
     <servlet-name>updatePwd.me</servlet-name>
     <url-pattern>/updatePwd.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>delete.me</display-name>
+    <servlet-name>delete.me</servlet-name>
+    <servlet-class>com.kh.member.controller.MemberDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>delete.me</servlet-name>
+    <url-pattern>/delete.me</url-pattern>
+  </servlet-mapping>
 </web-app>
