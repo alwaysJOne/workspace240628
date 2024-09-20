@@ -79,4 +79,24 @@
     <servlet-name>delete.me</servlet-name>
     <url-pattern>/delete.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>update.me</display-name>
+    <servlet-name>update.me</servlet-name>
+    <servlet-class>com.kh.member.controller.MemberUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>update.me</servlet-name>
+    <url-pattern>/update.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>list.bo</display-name>
+    <servlet-name>list.bo</servlet-name>
+    <servlet-class>com.kh.board.controller.BoardListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>list.bo</servlet-name>
+    <url-pattern>/list.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
