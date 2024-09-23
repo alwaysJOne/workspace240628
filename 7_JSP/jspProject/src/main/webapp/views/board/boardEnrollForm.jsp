@@ -41,7 +41,7 @@
         <h2 align="center">일반게시글 작성하기</h2>
         <br>
 
-        <form action="<%=contextPath%>/insert.bo" method="post" entype="mulipart/form-data">
+        <form action="<%=contextPath%>/insert.bo" method="post" enctype="multipart/form-data">
             <input type="hidden" name="userName" value="<%=loginUser.getUserNo()%>">
             <table border="1" align="center">
                 <tr>
