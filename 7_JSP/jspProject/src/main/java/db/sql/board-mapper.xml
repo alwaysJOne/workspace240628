@@ -24,6 +24,12 @@
 		             ORDER BY BOARD_NO DESC) A)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key = "increaseCount">
+		UPDATE BOARD
+		   SET COUNT = COUNT + 1
+		 WHERE BOARD_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
 </properties>
 
 

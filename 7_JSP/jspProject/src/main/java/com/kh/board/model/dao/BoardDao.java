@@ -101,6 +101,27 @@ public class BoardDao {
 		
 		return list;
 	}
+	
+	public int increaseCount(Connection conn, int boardNo) {
+		//update -> 처리된 행수 -> 트랜잭션처리
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
 
 

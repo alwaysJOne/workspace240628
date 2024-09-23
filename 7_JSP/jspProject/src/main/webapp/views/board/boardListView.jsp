@@ -31,6 +31,11 @@
             border: 1px solid white;
             text-align: center;
         }
+
+        .list-area > tbody > tr:hover{
+            background: gray; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +61,7 @@
             		</tr>
             	<% } else { %>
 	                <% for(Board b : list) { %>
-	                    <tr>
+	                    <tr onclick="clickDetailPage(<%=b.getBoardNo()%>)">
 	                        <td><%=b.getBoardNo()%></td>
 	                        <td><%=b.getCategory()%></td>
 	                        <td><%=b.getBoardTitle()%></td>
@@ -68,10 +73,26 @@
 	           <% } %>
             </tbody>
         </table>
+        <script>
+            //contextPath/detail.bo?bno=?
+            function clickDetailPage(boardNo){
+                location.href = "<%=contextPath%>/detail.bo?bno=" + boardNo;
+            }
+
+            // const trList = document.querySelectorAll(".list-area>tbody>tr");
+            // for(let tr of trList){
+            //     tr.onclick = function(){
+
+            //         console.log(this.children[0].innerText)
+            //     }
+            // }
+        </script>
         
         <br><br>
         <div align="center">
-            <button>&lt;</button>
+        	<%if(currentPage > 1) { %>
+            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=currentPage - 1%>'">&lt;</button>
+            <% } %>
             <% for(int p = startPage; p <= endPage; p++) { %>
                 <% if(p == currentPage) { %>
                     <button disabled><%=p%></button>
@@ -79,7 +100,9 @@
                     <button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>'"><%=p%></button>
                 <% } %>
             <% } %>
-            <button>&gt;</button>
+            <%if(currentPage < maxPage) { %>
+            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=currentPage + 1%>'">&gt;</button>
+        	<% } %>
         </div>
     </div>
 
