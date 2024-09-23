@@ -109,4 +109,14 @@
     <servlet-name>detail.bo</servlet-name>
     <url-pattern>/detail.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardEnrollController</display-name>
+    <servlet-name>BoardEnrollController</servlet-name>
+    <servlet-class>com.kh.board.controller.BoardEnrollController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardEnrollController</servlet-name>
+    <url-pattern>/enrollForm.bo</url-pattern>
+  </servlet-mapping>
 </web-app>

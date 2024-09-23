@@ -45,6 +45,13 @@
         <br>
         <h2 align="center">일반게시판</h2>
         <br>
+        
+        <% if( loginUser != null ) { %>
+	        <div align="right" style="width: 850px; margin-bottom: 4px;">
+	        	<a href="<%=contextPath%>/enrollForm.bo" class="btn btn-sm btn-secondary">글쓰기</a>
+	        </div>
+        <% } %>
+        
         <table align="center" class="list-area">
             <thead>
                 <th width="70">글번호</th>

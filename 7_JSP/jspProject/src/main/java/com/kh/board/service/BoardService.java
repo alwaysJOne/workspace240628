@@ -1,11 +1,15 @@
 package com.kh.board.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.dao.BoardDao;
+import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.common.PageInfo;
 
@@ -32,13 +36,28 @@ public class BoardService {
 	public Board increaseCount(int boardNo) {
 		Connection conn = getConnection();
 		
-		int result = new BoardDao().increaseCount(conn, boardNo);
+		BoardDao bDao = new BoardDao();
+		int result = bDao.increaseCount(conn, boardNo);
 		
+		Board b = null;
 		if(result > 0) {
 			commit(conn);
+			b = bDao.selectBoard(conn, boardNo);
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
+		
+		return b;
+	}
+	
+	public Attachment selectAttachment(int boardNo) {
+		Connection conn = getConnection();
+		Attachment at = new BoardDao().selectAttachment(conn, boardNo);
+		
+		close(conn);
+		return at;
 	}
 }
 

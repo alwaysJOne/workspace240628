@@ -30,6 +30,26 @@
 		 WHERE BOARD_NO = ?
 		   AND STATUS = 'Y'
 	</entry>
+	<entry key = "selectBoard">
+		SELECT BOARD_NO,
+			   CATEGORY_NAME,
+               BOARD_TITLE,
+               BOARD_CONTENT,
+               USER_ID,
+               TO_CHAR(CREATE_DATE, 'YYYY/MM/DD') AS "CREATE_DATE"
+          FROM BOARD
+          JOIN CATEGORY USING(CATEGORY_NO)
+          JOIN MEMBER ON(BOARD_WRITER = USER_NO)
+         WHERE BOARD_NO = ?
+	</entry>
+	<entry key = "selectAttachment">
+		SELECT FIFL_NO,
+			   ORIGIN_NAME,
+			   CHANGE_NAME,
+			   FILE_PATH
+          FROM ATTACHMENT
+         WHERE REF_BNO = ?
+	</entry>
 </properties>
 
 
