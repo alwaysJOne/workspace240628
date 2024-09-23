@@ -5,7 +5,7 @@
 <%
     Board b = (Board)request.getAttribute("board");
 
-	Attachment at = 
+	Attachment at = (Attachment)request.getAttribute("attachment");
 %>
 <!DOCTYPE html>
 <html>
