@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Category;
 import com.kh.common.PageInfo;
 import com.kh.member.model.dao.MemberDao;
 
@@ -187,6 +188,35 @@ public class BoardDao {
 		}
 		
 		return at;
+	}
+	
+	public ArrayList<Category> selectCategoryList(Connection conn){
+		//select -> resultSet(여러행) -> ArrayList<Category>
+		ArrayList<Category> list = new ArrayList<>();
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("selectCategoryList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Category(
+							rset.getInt("category_no"),
+							rset.getString("category_name")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }
 

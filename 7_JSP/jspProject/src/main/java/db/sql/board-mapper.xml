@@ -50,6 +50,11 @@
           FROM ATTACHMENT
          WHERE REF_BNO = ?
 	</entry>
+	<entry key="selectCategoryList">
+		SELECT CATEGORY_NO,
+			   CATEGORY_NAME
+		  FROM CATEGORY
+	</entry>
 </properties>
 
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Category;
 import com.kh.common.PageInfo;
 
 public class BoardService {
@@ -59,6 +60,16 @@ public class BoardService {
 		close(conn);
 		return at;
 	}
+	
+	public ArrayList<Category> selectCategoryList(){
+		Connection conn = getConnection();
+		ArrayList<Category> list = new BoardDao().selectCategoryList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 }
 
 

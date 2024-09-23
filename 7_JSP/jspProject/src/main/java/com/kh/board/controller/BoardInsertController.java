@@ -1,26 +1,22 @@
 package com.kh.board.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import com.kh.board.model.vo.Category;
-import com.kh.board.service.BoardService;
-
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
- * Servlet implementation class BoardEnrollController
+ * Servlet implementation class BoardInsertController
  */
-public class BoardEnrollController extends HttpServlet {
+public class BoardInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardEnrollController() {
+    public BoardInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +25,10 @@ public class BoardEnrollController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//카테고리목록 가져와서 boardEnrollForm.jsp 포워딩
+		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<Category> list = new BoardService().selectCategoryList();
-		
-		//응답뷰
-		request.setAttribute("categorys", list);
-		request.getRequestDispatcher("views/board/boardEnrollForm.jsp").forward(request, response);
+		String boardTitle = request.getParameter("title");
+		System.out.println(boardTitle);
 	}
 
 	/**
