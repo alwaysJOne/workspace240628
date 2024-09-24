@@ -70,6 +70,26 @@ public class BoardService {
 		return list;
 	}
 	
+	
+	public int insertBoard(Board b, Attachment at) {
+		Connection conn = getConnection();
+		BoardDao bDao = new BoardDao();
+		
+		int result1 = bDao.insertBoard(conn, b);
+		int result2 = 1;
+		
+		if(at != null) {
+			result2 = bDao.insertAttachment(conn, at);
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+	
+		return result1 * result2;
+	}
 }
 
 

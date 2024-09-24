@@ -55,7 +55,42 @@
 			   CATEGORY_NAME
 		  FROM CATEGORY
 	</entry>
-
+	<entry key="insertBoard">
+		INSERT 
+		INTO BOARD(
+					BOARD_NO,
+					BOARD_TYPE,
+					CATEGORY_NO,
+					BOARD_TITLE,
+					BOARD_CONTENT,
+					BOARD_WRITER
+					)
+			VALUES(
+					SEQ_BNO.NEXTVAL,
+					1,
+					?,
+					?,
+					?,
+					?
+			)
+	</entry>
+	<entry key="insertAttachment">
+		INSERT
+		INTO ATTACHMENT(
+						 FILE_NO,
+						 REF_BNO,
+						 ORIGIN_NAME,
+						 CHANGE_NAME,
+						 FILE_PATH
+						)
+				 VALUES(
+				 		 SEQ_FNO.NEXTVAL,
+				 		 SEQ_BNO.CURRVAL,
+				 		 ?,
+				 		 ?,
+				 		 ?
+				 		)
+	</entry>
 </properties>
 
 

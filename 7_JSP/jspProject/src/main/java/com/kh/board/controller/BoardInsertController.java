@@ -1,5 +1,6 @@
 package com.kh.board.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
+import com.kh.board.service.BoardService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -48,6 +50,9 @@ public class BoardInsertController extends HttpServlet {
 			//1. 파일용량제한(byte)
 			int fileMaxSize = 1024 * 1024 * 10; // 10mb
 			int requestMaxSize = 1024 * 1024 * 20; // 20mb
+			
+			//2. 전달된 파일을 저장시킬 폴더경로가져오기
+			String savePath = request.getServletContext().getRealPath("/resources/board_upfle/");
 			
 			//3.DiskFileItemFactory(파일을 임시로 저장) 객체 생성
 			DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
@@ -92,10 +97,28 @@ public class BoardInsertController extends HttpServlet {
 						String type = originName.substring(originName.lastIndexOf("."));
 						String changeName = tmpName + type; //서버에 저장할 파일명
 						
-						//전달된 파일을 저장시킬 폴더경로가져오기
-						String savePath = request.getServletContext().getRealPath("/resources/board_upfle/");
+						File f = new File(savePath, changeName);
+						item.write(f.toPath()); //지정한 경로에 파일 업로드
+						
+						at = new Attachment();
+						at.setOriginName(originName);
+						at.setChangeName(changeName);
+						at.setFilePath("resources/board_upfle/");
 					}
 				}
+			}
+			
+			int result = new BoardService().insertBoard(b, at);
+			if(result > 0) { //성공 -> 게시글 목록(jsp/list.bo?cage=1)
+				request.getSession().setAttribute("alertMsg", "일반게시글 작성 성공");
+				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
+				 if(at != null) {
+					 new File(savePath + at.getChangeName()).delete();
+				 }
+				 
+				 request.setAttribute("errorMsg", "일반게시글 작성 실패");
+				 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 		}
 	}

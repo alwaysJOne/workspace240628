@@ -28,6 +28,13 @@
         border-collapse: collapse;
     }
     
+    .outer > table tr, .outer > table td{
+    	border: 1px solid white;
+    }
+    
+    .outer table a{
+    	color: white;
+    }
 </style>
 
 </head>
