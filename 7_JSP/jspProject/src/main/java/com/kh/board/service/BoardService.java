@@ -90,6 +90,16 @@ public class BoardService {
 	
 		return result1 * result2;
 	}
+	
+	public Board selectBoard(int boardNo) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectBoard(conn, boardNo);
+	
+		close(conn);
+		
+		return b;
+	}
 }
 
 

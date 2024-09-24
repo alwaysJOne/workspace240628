@@ -129,4 +129,24 @@
     <servlet-name>insert.bo</servlet-name>
     <url-pattern>/insert.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateForm.bo</display-name>
+    <servlet-name>updateForm.bo</servlet-name>
+    <servlet-class>com.kh.board.controller.BoardUpdateFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateForm.bo</servlet-name>
+    <url-pattern>/updateForm.bo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>update.bo</display-name>
+    <servlet-name>update.bo</servlet-name>
+    <servlet-class>com.kh.board.controller.BoardUpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>update.bo</servlet-name>
+    <url-pattern>/update.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
