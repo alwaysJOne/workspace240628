@@ -91,6 +91,37 @@
 				 		 ?
 				 		)
 	</entry>
+	<entry key="insertNewAttachment">
+		INSERT
+		INTO ATTACHMENT(
+						 FILE_NO,
+						 REF_BNO,
+						 ORIGIN_NAME,
+						 CHANGE_NAME,
+						 FILE_PATH
+						)
+				 VALUES(
+				 		 SEQ_FNO.NEXTVAL,
+				 		 ?,
+				 		 ?,
+				 		 ?,
+				 		 ?
+				 		)
+	</entry>
+	<entry key="updateBoard">
+		UPDATE BOARD
+		   SET CATEGORY_NO = ?,
+		   	   BOARD_TITLE = ?,
+		   	   BOARD_CONTENT = ?
+		 WHERE BOARD_NO = ?
+	</entry>
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+		   SET ORIGIN_NAME = ?,
+		   	   CHANGE_NAME = ?,
+		   	   FILE_PATH = ?
+		 WHERE FILE_NO = ?
+	</entry>
 </properties>
 
 

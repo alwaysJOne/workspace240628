@@ -1,11 +1,5 @@
 package com.kh.board.controller;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -17,6 +11,12 @@ import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
 
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
+import com.kh.board.service.BoardService;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class BoardUpdateController
@@ -61,6 +61,7 @@ public class BoardUpdateController extends HttpServlet {
 			//추가할 데이터
 			Board b = new Board();
 			Attachment at = null;
+			String originFileNo = null;
 			
 			//반복문을 통해 파일과 파라미터 정보획득
 			for(FileItem item : formItems) {
@@ -79,6 +80,8 @@ public class BoardUpdateController extends HttpServlet {
 					case "content":
 						b.setBoardContent(item.getString(Charset.forName("utf-8")));
 						break;
+					case "originFileNo":
+						originFileNo = item.getString(Charset.forName("utf-8"));
 					}
 				} else {
 					String originName = item.getName(); //업로드 요청한 파일명(오리지널 파일명)
@@ -98,6 +101,33 @@ public class BoardUpdateController extends HttpServlet {
 						at.setFilePath("resources/board_upfle/");
 					}
 				}
+			}
+			
+			if(at != null) {
+				//기존첨부파일이 있을 때
+				if(originFileNo != null) {
+					at.setFileNo(Integer.parseInt(originFileNo));
+				} else {
+					at.setRefBoardNo(b.getBoardNo());
+				}
+			}
+			
+			int result = new BoardService().updateBoard(b, at);
+			// 새로운 첨부파일 x				b, null -> board update
+			// 새로운 첨부파일 o, 기존첨부파일 o   b, fileNo -> board update, attachment update
+			// 새로운 첨부파일 o, 기존첨부파일 x   b, refBoardNo -> board update, attachemnet insert
+			
+			
+			if(result > 0) { //성공 -> 게시글 상세페이지(jsp/detail.bo?bno=게시글번호)
+				request.getSession().setAttribute("alertMsg", "일반게시글 수정 성공");
+				response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + b.getBoardNo());
+			} else { //실패 -> 업로드된 파일 삭제해주고 에러페이지
+				 if(at != null) {
+					 new File(savePath + at.getChangeName()).delete();
+				 }
+				 
+				 request.setAttribute("errorMsg", "일반게시글 수정 실패");
+				 request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 		}
 	}
