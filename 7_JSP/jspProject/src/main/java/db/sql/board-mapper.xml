@@ -122,6 +122,18 @@
 		   	   FILE_PATH = ?
 		 WHERE FILE_NO = ?
 	</entry>
+	<entry key="selectThumbnailList">
+		SELECT BOARD_NO,
+			   BOARD_TITLE,
+			   COUNT,
+			   FILE_PATH || CHANGE_NAME AS "TITLE_IMG"
+		  FROM BOARD B
+		  JOIN ATTACHMENT ON(BOARD_NO = REF_BNO)
+		 WHERE BOARD_TYPE = 2
+		   AND B.STATUS = 'Y'
+		   AND FILE_LEVEL = 1
+		 ORDER BY BOARD_NO DESC
+	</entry>
 </properties>
 
 

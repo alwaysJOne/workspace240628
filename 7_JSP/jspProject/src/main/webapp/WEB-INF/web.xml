@@ -149,4 +149,24 @@
     <servlet-name>update.bo</servlet-name>
     <url-pattern>/update.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>list.th</display-name>
+    <servlet-name>list.th</servlet-name>
+    <servlet-class>com.kh.board.controller.ThumbnailListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>list.th</servlet-name>
+    <url-pattern>/list.th</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>enrollForm.th</display-name>
+    <servlet-name>enrollForm.th</servlet-name>
+    <servlet-class>com.kh.board.controller.ThumbnailEnrollFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>enrollForm.th</servlet-name>
+    <url-pattern>/enrollForm.th</url-pattern>
+  </servlet-mapping>
 </web-app>
