@@ -27,9 +27,7 @@
         border: 1px solid white;
         border-collapse: collapse;
     }
-    .outer > table tr, .outer > table td{
-        border: 1px solid white;
-    }
+    
 </style>
 
 </head>
@@ -65,7 +63,11 @@
             <tr>
             	<th>청부파일</th>
             	<td colspan="3">
-                    
+                	<%if(at == null) { %> 
+	                    첨부파일이 없습니다. 
+                    <% } else {%>
+	                    <a download="<%=at.getOriginName() %>" href="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>"><%=at.getOriginName() %></a>
+                	<%} %>
                 </td>
             </tr>
         </table>

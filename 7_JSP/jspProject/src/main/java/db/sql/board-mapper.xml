@@ -43,7 +43,7 @@
          WHERE BOARD_NO = ?
 	</entry>
 	<entry key = "selectAttachment">
-		SELECT FIFL_NO,
+		SELECT FILE_NO,
 			   ORIGIN_NAME,
 			   CHANGE_NAME,
 			   FILE_PATH
@@ -55,6 +55,7 @@
 			   CATEGORY_NAME
 		  FROM CATEGORY
 	</entry>
+
 </properties>
 
 
