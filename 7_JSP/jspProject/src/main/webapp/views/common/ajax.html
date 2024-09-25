@@ -79,6 +79,9 @@
 	이름 : <input type="text" id="input1">
 	나이 : <input type="text" id="input2">
 	<button onclick = "test();">전송</button>
+	<ul id="member-area">
+
+	</ul>
 
 	<script>
 		function test(){
@@ -91,7 +94,11 @@
 					age : document.querySelector("#input2").value
 				},
 				success : function(result){
-					console.log(result);
+					let memberList = JSON.parse(result);
+					const memberZone = document.getElementById('member-area');
+					for(let m of memberList){
+						memberZone.innerHTML += ("<li>" + m.userNo + " " + m.userName + " " + m.phone+ "</li>") 
+					}
 				},
 				error : function(){
 					console.log("요청실패");

@@ -199,4 +199,14 @@
     <servlet-name>jqAjax.do</servlet-name>
     <url-pattern>/jqAjax.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>idCheck.me</display-name>
+    <servlet-name>idCheck.me</servlet-name>
+    <servlet-class>com.kh.member.controller.AjaxCheckController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>idCheck.me</servlet-name>
+    <url-pattern>/idCheck.me</url-pattern>
+  </servlet-mapping>
 </web-app>

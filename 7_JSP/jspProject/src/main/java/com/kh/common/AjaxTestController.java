@@ -3,6 +3,7 @@ package com.kh.common;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.kh.member.model.vo.Member;
 
 import jakarta.servlet.ServletException;
@@ -62,7 +63,30 @@ public class AjaxTestController extends HttpServlet {
 		*/
 		
 		ArrayList<Member> list = new ArrayList<>();
-		list.add(new Member());
+		list.add(new Member(1, "김개똥", "01011112222"));
+		list.add(new Member(2, "최개똥", "01011322222"));
+		list.add(new Member(3, "박개똥", "01011432222"));
+		list.add(new Member(4, "이개똥", "01011115422"));
+		list.add(new Member(5, "서개똥", "01011113322"));
+		
+		/*
+		JSONArray jArr = new JSONArray();
+		for(Member m : list) {
+			JSONObject jobj = new JSONObject();
+			jobj.put("userNo", m.getUserNo());
+			jobj.put("userName", m.getUserName());
+			jobj.put("phone", m.getPhone());
+			
+			jArr.add(jobj);
+		}
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(jArr);
+		*/
+		response.setContentType("text/html; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
+		
+		
 	}
 
 	/**
