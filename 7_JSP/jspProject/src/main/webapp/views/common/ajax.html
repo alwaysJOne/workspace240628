@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<!-- jQuery -->
+    <script 
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+        integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+	<p>
+		AJAX<br>
+		서버로부터 데이터를 가져와 전체 페이지를 새로고침하지 않고 일부만 로드할 수 있게 하는 기법 <br>
+		우리가 기존에 사용하던 a태그 요청및 form submit 요청방식은 "동기화요청"이다 -> 응답페이지가 돌아와야만 화면을 볼 수 있다.(플리커현상)
+		
+		>동기식(a, form submit)
+		<ul>
+			<li>요청처리 후 해당하는 응답페이지가 돌아와야 다음작업 가능</li>
+			<li>서버에 요청한 결과까지의 시간이 지연되면 무작정 계속 기다려야한다.(횐페이지)</li>
+			<li>전체페이지를 응답해주기 때문에 기본적으로 플리커현상 발생</li>
+		</ul>
+		
+		>비동기식(ajax)
+		<ul>
+			<li>현재 페이지를 그대로 유지하면서 중간마다 추가적으로 필요한 정보를 요청할 수 있다.</li>
+			<li>요청을 보냈다고해서 다른 페이지로 넘어가지 않는다.</li>
+			<li>요청을 보내고도 그에 해당하는 응답이 돌아오기 전에 다른 작업을 진행할 수 있음</li>
+		</ul>
+		ex) 실시간검색어, 검색자동완성, 아이디 중복체크, 찜하기/해제, 추천, 댓글, 무한스크롤등등..
+		
+		<br><br>
+		
+		
+		*비동기식 단점<br>
+		-현재페이지에 지속적으로 리소스가 쌓임 -> 페이지가 느려질 수 있음<br>
+		-에러발생시 디버깅이 어렵다<br>
+		-요청처리 후에 돌아온 응답데이터를 가지고 현재페이지에 새로운 요소를 만들어서 붙여줘야한다 -> dom을 개발자가 직접 컨트롤해야함
+		
+		*AJAX구현 -> javascript방식(XmlHttpRequest) vs jQuery방식(코드가 간결하고 사용하기 쉽다.)
+		
+		<pre>
+			$.ajax({
+				속성 : 값,
+				속성 : 값,
+				속성 : 값...
+			})
+			
+			*주요속성
+			-url: 요청할 url(필수속성)
+			-type|mehod : 요청전송방식(get/post)
+			-data: 요청시 전달할 값
+			-success: ajax요청 성공시 실행할 함수정의
+			-error : ajax요청 실패시 실행할 함수정의
+			-complete : ajax요청 성공여부와 상관없이 무조건 실행할 함수
+			
+			*부가적인 속성
+			-async: 서버와의 비동기 처리 방식 설정 여부(기본값 true)
+			-contentType: request의 데이터 인코딩 방식 정의(보내는 쪽의 데이터 인코딩)
+			-dataType: 서버에서 response로 오는 데이터의 데이터 형 설정, 값이 없다면 스마트하게 판단함
+						xml, json, script, html, text
+			-accept: 파라미터의 타입을 설정(사용자 특화 된 파라미터 타입 설정가능)
+			-beforeSend: ajax요청을 하기전 실핸되는 이벤트 callback 함수(데이터 가공및 header관련 설정)
+			-cache: 요청밒 결과값을 scope에서 갖고 있지 않도록 하는 것 (기본값true)
+			-contents: jQuery에서 response의 데이터를 파싱하는 방식 정의
+			-context: ajax메소드 내 모든 영역에서 파싱방식 정의
+			-crossDomain: 타 도메인 호출 가능 여부 설정(기본값 false)
+			-dataFilter: response를 받았을 때 정상적인 값을 return할 수 있도록 데이터와 데이터타입 설정
+			-timeout: 서버요청시 응답대기시간
+		</pre>
+	</p>
+	
+	<h3>버튼 클릭시 post방식으로 서버에 여러개의 데이터 전송및 응답</h3>
+	이름 : <input type="text" id="input1">
+	나이 : <input type="text" id="input2">
+	<button onclick = "test();">전송</button>
+
+	<script>
+		function test(){
+			// http://localhost:8888/jsp/jqAjax.do
+			$.ajax({
+				type : "post",
+				url : "http://localhost:8888/jsp/jqAjax.do",
+				data : {
+					name : $("#input1").val(),
+					age : document.querySelector("#input2").value
+				},
+				success : function(result){
+					console.log(result);
+				},
+				error : function(){
+					console.log("요청실패");
+				}
+			})
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+

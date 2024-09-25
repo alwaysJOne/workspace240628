@@ -19,6 +19,13 @@ public class Member {
 		super();
 	}
 
+	public Member(int userNo, String userName, String phone) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
+		this.phone = phone;
+	}
+
 	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
 			String address, String interest, Date enrollDate, Date modifyDate, String status) {
 		super();

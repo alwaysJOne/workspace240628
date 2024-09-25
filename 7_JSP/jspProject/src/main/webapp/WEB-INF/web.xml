@@ -189,4 +189,14 @@
     <servlet-name>detail.th</servlet-name>
     <url-pattern>/detail.th</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>jqAjax.do</display-name>
+    <servlet-name>jqAjax.do</servlet-name>
+    <servlet-class>com.kh.common.AjaxTestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jqAjax.do</servlet-name>
+    <url-pattern>/jqAjax.do</url-pattern>
+  </servlet-mapping>
 </web-app>
