@@ -92,9 +92,7 @@
                         reader.readAsDataURL(_input.files[0])
 
                         //파일읽어들이기를 완료했을 때 실행해주는 함수
-                        reader.onload = function(ev){
-                            console.log(ev.target.result);
-                            console.log(num);
+                        reader.onload = function(ev){       
                             switch(num){
                                 case 1: document.getElementById("title-img").src = ev.target.result; break;
                                 case 2: document.querySelector("#content-img1").src = ev.target.result; break;

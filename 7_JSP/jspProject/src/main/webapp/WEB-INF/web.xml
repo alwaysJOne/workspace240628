@@ -169,4 +169,14 @@
     <servlet-name>enrollForm.th</servlet-name>
     <url-pattern>/enrollForm.th</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insert.th</display-name>
+    <servlet-name>insert.th</servlet-name>
+    <servlet-class>com.kh.board.controller.ThumbnailInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insert.th</servlet-name>
+    <url-pattern>/insert.th</url-pattern>
+  </servlet-mapping>
 </web-app>

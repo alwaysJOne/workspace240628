@@ -134,6 +134,42 @@
 		   AND FILE_LEVEL = 1
 		 ORDER BY BOARD_NO DESC
 	</entry>
+	<entry key="insertThBoard">
+		INSERT 
+		INTO BOARD(
+					BOARD_NO,
+					BOARD_TYPE,
+					BOARD_TITLE,
+					BOARD_CONTENT,
+					BOARD_WRITER
+					)
+			VALUES(
+					SEQ_BNO.NEXTVAL,
+					2,
+					?,
+					?,
+					?
+			)
+	</entry>
+	<entry key="insertAttachmentList">
+		INSERT
+		INTO ATTACHMENT(
+						 FILE_NO,
+						 REF_BNO,
+						 ORIGIN_NAME,
+						 CHANGE_NAME,
+						 FILE_PATH,
+						 FILE_LEVEL
+						)
+				 VALUES(
+				 		 SEQ_FNO.NEXTVAL,
+				 		 SEQ_BNO.CURRVAL,
+				 		 ?,
+				 		 ?,
+				 		 ?,
+				 		 ?
+				 		)
+	</entry>
 </properties>
 
 

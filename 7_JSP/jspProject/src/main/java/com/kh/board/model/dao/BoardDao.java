@@ -375,6 +375,57 @@ public class BoardDao {
 		
 		return list;
 	}
+	
+	public int insertThumbnailBoard(Connection conn, Board b) {
+		//insert -> 처리된 행 수 
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertThBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertAttachmentList(Connection conn, ArrayList<Attachment> list) {
+		//insert -> 처리된 행 수
+		int result = 1;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachmentList");
+		
+		try {
+			for(Attachment at : list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				pstmt.setInt(4, at.getFileLevel());
+				
+				result = result * pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
 
 
