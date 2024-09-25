@@ -179,4 +179,14 @@
     <servlet-name>insert.th</servlet-name>
     <url-pattern>/insert.th</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>detail.th</display-name>
+    <servlet-name>detail.th</servlet-name>
+    <servlet-class>com.kh.board.controller.ThumbnailDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>detail.th</servlet-name>
+    <url-pattern>/detail.th</url-pattern>
+  </servlet-mapping>
 </web-app>
