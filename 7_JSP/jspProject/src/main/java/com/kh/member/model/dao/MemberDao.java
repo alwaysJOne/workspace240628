@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kh.board.model.vo.Reply;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {

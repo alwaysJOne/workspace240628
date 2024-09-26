@@ -209,4 +209,14 @@
     <servlet-name>idCheck.me</servlet-name>
     <url-pattern>/idCheck.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>rinert.bo</display-name>
+    <servlet-name>rinert.bo</servlet-name>
+    <servlet-class>com.kh.board.controller.AjaxReplyInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rinert.bo</servlet-name>
+    <url-pattern>/rinsert.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
