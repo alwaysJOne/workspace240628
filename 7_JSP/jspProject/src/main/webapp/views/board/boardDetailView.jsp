@@ -95,15 +95,30 @@
                 <thead>
                     <tr>
                         <th>댓글작성</th>
-                        <td>
-                            <textarea id="reply-content" style="resize: none;" cols="50" rows="3"></textarea>
-                        </td>
-                        <td>
-                            <button onclick="insertReply()">댓글등록</button>
-                        </td>
+                        <%if(loginUser != null) { %>
+	                        <td>
+	                            <textarea id="reply-content" style="resize: none;" cols="50" rows="3"></textarea>
+	                        </td>
+	                        <td>
+	                            <button onclick="insertReply()">댓글등록</button>
+	                        </td>
+                        <% } else {%>
+                            <td>
+	                            <textarea id="reply-content" style="resize: none;" cols="50" rows="3" readonly></textarea>
+	                        </td>
+	                        <td>
+	                            <button disaled>댓글등록</button>
+	                        </td>
+                        <% } %>
                     </tr>
                 </thead>
                 <tbody>
+                	<tr>
+                        <td></td>
+                        <td align="center"><div class="spinner-border"></div></td>
+                        <td></td>
+                    </tr>
+                	<!--  
                     <tr>
                         <td>user05</td>
                         <td>안녕하세요.</td>
@@ -124,10 +139,27 @@
                         <td>댓글남깁니다.</td>
                         <td>2024/09/26</td>
                     </tr>
+                    -->
                 </tbody>
             </table>
 
             <script>
+            	window.onload = function(){      
+            		
+            		$.ajax({
+            			url: "rlist.bo",
+            			data: {
+            				bno: <%=b.getBoardNo()%>
+            			},
+            			success: function(res){
+            				console.log(res)
+            			},
+            			error: function(){
+            				console.log("댓글 조회용 ajax통신 실패")
+            			}
+            		})
+            	}
+            	
                 function insertReply(){
                     const boardNo = <%=b.getBoardNo()%>;
                     const content = document.querySelector("#reply-content").value;

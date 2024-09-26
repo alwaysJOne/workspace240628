@@ -219,4 +219,14 @@
     <servlet-name>rinert.bo</servlet-name>
     <url-pattern>/rinsert.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>rlist.bo</display-name>
+    <servlet-name>rlist.bo</servlet-name>
+    <servlet-class>com.kh.board.controller.AjaxReplyListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rlist.bo</servlet-name>
+    <url-pattern>/rlist.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
