@@ -145,34 +145,50 @@
 
             <script>
             	window.onload = function(){      
-            		
-            		$.ajax({
+                    selectReplyList();
+                    setInterval(selectReplyList, 2000);
+                }
+
+                function selectReplyList(){
+                    $.ajax({
             			url: "rlist.bo",
+            			contentType: "application/json",
             			data: {
             				bno: <%=b.getBoardNo()%>
             			},
             			success: function(res){
-            				console.log(res)
+                            let str = "";
+                            for(let reply of res){
+                                str += ("<tr>" +
+                                        "<td>" + reply.replyWriter + "</td>" +
+                                        "<td>" + reply.replyContent + "</td>" +
+                                        "<td>" + reply.createDate + "</td>" +
+                                        "</tr>")
+                            }
+
+                            const replyBody = document.querySelector("#reply-area tbody");
+                            replyBody.innerHTML = str;
             			},
             			error: function(){
             				console.log("댓글 조회용 ajax통신 실패")
             			}
             		})
-            	}
+                }
             	
                 function insertReply(){
                     const boardNo = <%=b.getBoardNo()%>;
-                    const content = document.querySelector("#reply-content").value;
+                    const contentArea = document.querySelector("#reply-content");
 
                     $.ajax({
                         url : "rinsert.bo",
                         type : "post",
                         data : {
                             bno : boardNo,
-                            content : content
+                            content : contentArea.value
                         },
                         success : function(res){
-
+                            contentArea.value = "";
+                            selectReplyList();
                         },
                         error : function(){
                             console.log("댓글 작성중 ajax통신 실패")

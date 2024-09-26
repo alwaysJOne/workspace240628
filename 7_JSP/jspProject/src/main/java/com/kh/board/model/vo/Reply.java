@@ -12,6 +12,14 @@ public class Reply {
 		super();
 	}
 
+	public Reply(int replyNo, String replyContent, String replyWriter, String createDate) {
+		super();
+		this.replyNo = replyNo;
+		this.replyContent = replyContent;
+		this.replyWriter = replyWriter;
+		this.createDate = createDate;
+	}
+
 	public Reply(int replyNo, String replyContent, int refBoardNo, String replyWriter, String createDate,
 			String status) {
 		super();

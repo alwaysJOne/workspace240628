@@ -179,6 +179,15 @@ public class BoardService {
 		
 		return result;
 	}
+	
+	public ArrayList<Reply> selectReplyList(int boardNo){
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
+		
+		close(conn);
+		return list;
+	}
 }
 
 
