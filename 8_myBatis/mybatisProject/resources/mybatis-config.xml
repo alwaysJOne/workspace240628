@@ -26,7 +26,7 @@
       		dataSource는 pooled와 unpooled 둘중 하나의 타입을 선택할 수 있음(connectionPool사용여부)
        -->
       <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.drvier.OracleDariver"/>
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
         <property name="username" value="MYBATIS"/>
         <property name="password" value="MYBATIS"/>

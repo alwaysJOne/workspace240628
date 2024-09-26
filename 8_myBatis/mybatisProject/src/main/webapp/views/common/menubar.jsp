@@ -87,7 +87,7 @@
 		            <table>
 		                <tr>
 		                    <td colspan="2">
-		                        <h3>xxx님 환영합니다. </h3>
+		                        <h3>${loginUser.userName}님 환영합니다. </h3>
 		                    </td>
 		                    <td></td>
 		                </tr>
