@@ -49,4 +49,14 @@
     <servlet-name>list.bo</servlet-name>
     <url-pattern>/list.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>detail.bo</display-name>
+    <servlet-name>detail.bo</servlet-name>
+    <servlet-class>com.kh.mybatis.board.controller.BoardDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>detail.bo</servlet-name>
+    <url-pattern>/detail.bo</url-pattern>
+  </servlet-mapping>
 </web-app>

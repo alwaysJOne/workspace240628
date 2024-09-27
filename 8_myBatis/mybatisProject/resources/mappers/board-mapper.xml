@@ -12,6 +12,13 @@
 		<result column="USER_ID" property="boardWriter" />
 		<result column="COUNT" property="count" />
 		<result column="CREATE_DATE" property="createDate" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+	</resultMap>
+	<resultMap id="replyResultSet" type="Reply">
+		<result column="REPLY_NO" property="replyNo" />
+		<result column="USER_ID" property="replyWriter" />
+		<result column="REPLY_CONTENT" property="replyContent" />
+		<result column="CREATE_DATE" property="createDate" />
 	</resultMap>
   	<select id="selectListCount" resultType="_int">
   		SELECT COUNT(*)
@@ -28,6 +35,35 @@
   		  JOIN MEMBER ON(BOARD_WRITER = USER_NO)
   		 WHERE B.STATUS = 'Y'
   		 ORDER BY BOARD_NO DESC
+  	</select>
+  	<update id="increaseCount" parameterType="_int">
+  		UPDATE BOARD
+  		   SET COUNT = COUNT + 1
+  		 WHERE BOARD_NO = #{boardNo}
+  		   AND STATUS = 'Y'
+  	</update>
+  	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+  		SELECT BOARD_NO,
+  			   BOARD_TITLE,
+  			   USER_ID,
+  			   COUNT,
+  			   CREATE_DATE,
+  			   BOARD_CONTENT
+  		  FROM BOARD B
+		  JOIN MEMBER ON(BOARD_WRITER = USER_NO)
+  		 WHERE B.STATUS = 'Y'
+  		   AND BOARD_NO = #{boardNo}
+  	</select>
+  	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+  		SELECT REPLY_NO,
+  			   USER_ID,
+  			   REPLY_CONTENT,
+  			   CREATE_DATE
+  		  FROM REPLY R
+  		  JOIN MEMBER ON(REPLY_WRITER = USER_NO)
+  		 WHERE REF_BNO = #{boardNo}
+  		   AND R.STATUS = 'Y'
+  		 ORDER BY REPLY_NO DESC
   	</select>
 </mapper>
 
