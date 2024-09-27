@@ -3,6 +3,7 @@ package com.kh.mybatis.member.controller;
 import java.io.IOException;
 
 import com.kh.mybatis.member.model.vo.Member;
+import com.kh.mybatis.member.service.MemberServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -39,6 +40,15 @@ public class MemberInsertController extends HttpServlet {
 								request.getParameter("phone"),
 								request.getParameter("address")
 							);
+		
+		int result = new MemberServiceImpl().insertMember(m);
+		
+		if(result > 0) {
+			response.sendRedirect(request.getContextPath());
+		} else {
+			request.setAttribute("errorMsg", "회원가입 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

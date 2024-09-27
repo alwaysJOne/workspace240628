@@ -39,4 +39,14 @@
     <servlet-name>insert.me</servlet-name>
     <url-pattern>/insert.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>list.bo</display-name>
+    <servlet-name>list.bo</servlet-name>
+    <servlet-class>com.kh.mybatis.board.controller.BoardListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>list.bo</servlet-name>
+    <url-pattern>/list.bo</url-pattern>
+  </servlet-mapping>
 </web-app>

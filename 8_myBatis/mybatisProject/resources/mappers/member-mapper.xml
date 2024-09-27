@@ -45,4 +45,39 @@
 	  AND USER_PWD = #{userPwd}
 	  AND STATUS = 'Y'
   </select>
+  
+  <!-- 
+  		*DML문일 경우
+  		<insert | update | delete id="식별자" [parameterType="전달받을 자바타입"]>
+   -->
+  <insert id="insertMember" parameterType="Member">
+  	INSERT
+  	INTO MEMBER
+  	(
+ 		USER_NO,
+ 		USER_ID,
+ 		USER_PWD,
+ 		USER_NAME,
+ 		EMAIL,
+    	BIRTHDAY,
+    	GENDER,
+    	PHONE,
+    	ADDRESS
+  	)
+  	VALUES
+  	(
+  		SEQ_UNO.NEXTVAL,
+  		#{userId},
+  		#{userPwd},
+  		#{userName},
+  		#{email},
+  		#{birthday},
+  		#{gender},
+  		#{phone},
+  		#{address}
+  	)
+  </insert>
 </mapper>
+
+
+

@@ -105,7 +105,7 @@
     <div class="nav-area" align="center">
         <div class="menu">HOME</div>
         <div class="menu">공지사항</div>
-        <div class="menu">게시판</div>
+        <div class="menu"><a onclick="location.href='list.bo?cpage=1'">게시판</a></div>
         <div class="menu">ETC</div>
     </div>
 </body>

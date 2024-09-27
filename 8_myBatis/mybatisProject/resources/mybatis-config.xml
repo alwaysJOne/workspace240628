@@ -12,6 +12,7 @@
   <!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭등록을 하는 영역 -->
   <typeAliases>
   	<typeAlias type="com.kh.mybatis.member.model.vo.Member" alias="Member" />
+  	<typeAlias type="com.kh.mybatis.board.model.vo.Board" alias="Board" />
   </typeAliases>
 
   <!-- environments : mybatis에서 연동할 db정보들을 등록하는 여역 -->
@@ -40,5 +41,6 @@
   <!-- mappers : 실행할 sql문들을 기록해둔 mapper파일들을 등록하는 영역 -->
   <mappers>
     <mapper resource="/mappers/member-mapper.xml"/>
+    <mapper resource="/mappers/board-mapper.xml"/>
   </mappers>
 </configuration>
