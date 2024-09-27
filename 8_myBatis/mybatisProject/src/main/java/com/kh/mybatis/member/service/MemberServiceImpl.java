@@ -24,6 +24,14 @@ public class MemberServiceImpl implements MemberService{
 		sqlSession.close();
 		
 		return loginUser;
+	}
+
+	@Override
+	public int insertMember(Member m) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = mDao.insertMember(sqlSession, m);
+		
+		return 0;
 	} 
 
 }

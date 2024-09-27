@@ -9,6 +9,7 @@
   	<setting name="jdbcTypeForNull" value="NULL"/>
   </settings>
   
+  <!-- typeAliases : VO/DTO클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭등록을 하는 영역 -->
   <typeAliases>
   	<typeAlias type="com.kh.mybatis.member.model.vo.Member" alias="Member" />
   </typeAliases>
@@ -24,6 +25,8 @@
       <transactionManager type="JDBC"/>
       <!-- 
       		dataSource는 pooled와 unpooled 둘중 하나의 타입을 선택할 수 있음(connectionPool사용여부)
+      		connectionPool : Connection객체를 담아둘 수 있는 영역
+      						 한번 생성된 Connection객체를 담아두면 재사용할 수 있다.
        -->
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>

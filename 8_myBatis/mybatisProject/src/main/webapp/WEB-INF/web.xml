@@ -19,4 +19,24 @@
     <servlet-name>MemberLoginController</servlet-name>
     <url-pattern>/login.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>enrollForm.me</display-name>
+    <servlet-name>enrollForm.me</servlet-name>
+    <servlet-class>com.kh.mybatis.member.controller.MemberEnrollFormController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>enrollForm.me</servlet-name>
+    <url-pattern>/enrollForm.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insert.me</display-name>
+    <servlet-name>insert.me</servlet-name>
+    <servlet-class>com.kh.mybatis.member.controller.MemberInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insert.me</servlet-name>
+    <url-pattern>/insert.me</url-pattern>
+  </servlet-mapping>
 </web-app>
