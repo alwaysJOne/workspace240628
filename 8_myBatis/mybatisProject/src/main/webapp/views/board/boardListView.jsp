@@ -37,15 +37,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>안녕하세요</td>
-                    <td>user02</td>
-                    <td>51</td>
-                    <td>2024-04-05</td>
-                </tr>
+                <c:forEach var="b" items="${list}">
+                	<tr>
+	                    <td>${b.boardNo}</td>
+	                    <td width="400">${b.boardTitle}</td>
+	                    <td>${b.boardWriter }</td>
+	                    <td>${b.count }</td>
+	                    <td>${b.createDate }</td>
+                	</tr> 
+                </c:forEach>
             </tbody>
         </table>
+        <br>
+        
+        
+        <div id="paging-area">
+            <c:if test="${pi.currentPage ne 1}">
+                <a href="list.bo?cpage=${pi.currentPage - 1}">[이전]</a>
+            </c:if>
+
+            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
+                <a href="list.bo?cpage=${i}">${i}</a>
+            </c:forEach>
+
+            <c:if test="${pi.currentPage ne pi.maxPage}">
+                <a href="list.bo?cpage=${pi.currentPage + 1}">[다음]</a>
+            </c:if>
+        </div>
         <br><br>
     </div>
 </body>

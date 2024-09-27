@@ -6,10 +6,28 @@
 <!-- namespace: 해당 mapper파일의 고유한 별칭 -->
 
 <mapper namespace="boardMapper">
+	<resultMap id="boardResultSet" type="Board">
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="USER_ID" property="boardWriter" />
+		<result column="COUNT" property="count" />
+		<result column="CREATE_DATE" property="createDate" />
+	</resultMap>
   	<select id="selectListCount" resultType="_int">
   		SELECT COUNT(*)
   		  FROM BOARD
-  		 WHERE STATUS = 'Y';
+  		 WHERE STATUS = 'Y'
+  	</select>
+  	<select id="selectList" resultMap="boardResultSet">
+  		SELECT BOARD_NO,
+  			   BOARD_TITLE,
+  			   USER_ID,
+  			   COUNT,
+  			   CREATE_DATE
+  		  FROM BOARD B
+  		  JOIN MEMBER ON(BOARD_WRITER = USER_NO)
+  		 WHERE B.STATUS = 'Y'
+  		 ORDER BY BOARD_NO DESC
   	</select>
 </mapper>
 
