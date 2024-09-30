@@ -1,6 +1,7 @@
 package com.kh.mybatis.board.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -58,6 +59,14 @@ public class BoardServiceImpl implements BoardService{
 		
 		return list;
 	}
+
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		
+		return 0;
+	}
+	
+	
 }
 
 

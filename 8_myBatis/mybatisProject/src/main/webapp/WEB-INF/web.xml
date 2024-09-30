@@ -59,4 +59,14 @@
     <servlet-name>detail.bo</servlet-name>
     <url-pattern>/detail.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>search.bo</display-name>
+    <servlet-name>search.bo</servlet-name>
+    <servlet-class>com.kh.mybatis.board.controller.BoardSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>search.bo</servlet-name>
+    <url-pattern>/search.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
