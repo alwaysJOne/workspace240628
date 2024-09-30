@@ -26,7 +26,7 @@
         <h1 align="center">게시판</h1>
         <br>
         
-        <div>
+        <div id="search-area">
             <form action="search.bo">
                 <input type="hidden" name="cpage" value="1">
                 <select name="condition">
@@ -34,10 +34,18 @@
                     <option value="title">제목</option>
                     <option value="content">내용</option>
                 </select>
-                <input type="text" name="keyword">
+                <input type="text" name="keyword" value="${keyword}">
                 <button type="submit">검색</button>
             </form>
         </div>
+        <c:if test="${not empty condition}">
+	        <script>
+	        	window.onload = function(){
+	        		const opt = document.querySelector("#search-area option[value=${condition}]");
+	        		opt.setAttribute("selected", true);
+	        	}
+	        </script>
+        </c:if>
 
         <br>
         <table id="list-area">
@@ -73,7 +81,18 @@
             </c:if>
 
             <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
-                <a href="list.bo?cpage=${i}">${i}</a>
+            	
+            	
+            	
+            	<c:choose>
+            		<c:when test="${empty condition}">
+            			<a href="list.bo?cpage=${i}">${i}</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a href="search.bo?cpage=${i}&condition=${condition}&keyword=${keyword}">${i}</a>
+            		</c:otherwise>
+            	</c:choose>
+                
             </c:forEach>
 
             <c:if test="${pi.currentPage ne pi.maxPage}">
