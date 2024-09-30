@@ -82,8 +82,6 @@
 
             <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
             	
-            	
-            	
             	<c:choose>
             		<c:when test="${empty condition}">
             			<a href="list.bo?cpage=${i}">${i}</a>
