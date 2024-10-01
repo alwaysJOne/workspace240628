@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+		root-context.xml
+		서버구동과 동시에 web.xml을 거처서 바로 로딩되는 문서
+		=> 서버구동과 동시에 바로 세팅(빈으로 등록)해야되는 내용들을 작성하면된다.
+		DB연결 설정, 트랜잭션처리, 내외부 모듈연결등등...
+	 -->
+</beans>

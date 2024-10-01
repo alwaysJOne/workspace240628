@@ -35,14 +35,13 @@ public class MemberLoginController extends HttpServlet {
 		m.setUserId(request.getParameter("userId"));
 		m.setUserPwd(request.getParameter("userPwd"));
 		
-		String path =request.getParameter("path");
 		
 		MemberService memberService = new MemberServiceImpl(); 
 		Member loginUser = memberService.loginMember(m);
 		
 		if(loginUser != null) {
 			request.getSession().setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath() + path);
+			response.sendRedirect(request.getContextPath());
 		} else {
 			request.setAttribute("errorMsg", "로그인 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
