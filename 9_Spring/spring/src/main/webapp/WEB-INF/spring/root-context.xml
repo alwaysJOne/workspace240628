@@ -9,4 +9,43 @@
 		=> 서버구동과 동시에 바로 세팅(빈으로 등록)해야되는 내용들을 작성하면된다.
 		DB연결 설정, 트랜잭션처리, 내외부 모듈연결등등...
 	 -->
+	 
+	 <!-- 커넥션풀을 쓸 수 있는 객체등록 -->
+ 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+       <property name="username" value="spring"/>
+       <property name="password" value="spring"/>
+    </bean>
+    <!-- 
+    	BasicDataSource dataSource = new BasicDataSource();
+    	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+    	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+    	...
+     -->
+     
+     <!-- 마이바티스 객체 등록 -->
+     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+     </bean>
+     <!-- 
+     	SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+     	sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml");
+     	...
+      -->
+      
+      <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+      	<constructor-arg ref="sqlSessionFactory"/>
+      </bean>
+      
+      <!-- 
+      	SqlSessionTemplate sqlSession= new SqlSessionTemplate(sqlSessionFactory);
+       -->
+       
+       <!-- 
+       		property : setter를 통해 주입
+       		constructor-arg : 생성자를 통한 주입
+        -->
+     
 </beans>

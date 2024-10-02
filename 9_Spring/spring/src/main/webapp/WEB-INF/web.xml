@@ -2,6 +2,12 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- 
+		web.xml(배포서술자)
+		: 애플리케이션에 대한 설정정보를 담고있다. 서블릿, 필터, 맵필정보등의 사용방법을 지정함
+		  -> springMVC사용시 DispatcherServlet의 설정을 해당 파일에서 진행함
+	 -->
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
@@ -16,6 +22,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- 
+		DispatcherServlet
+		클라이언트가 서버에 http요청을 보내면 가장먼저 받아서 처리를 해주는 객체
+		-> 요청을 받아서 맵핑된 객체를 찾아 실행을 해준다. 이후 결과를 받아 응답뷰를 선택해서 렌더링을 함
+	 -->
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

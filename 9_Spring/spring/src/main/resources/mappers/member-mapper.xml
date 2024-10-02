@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+
+<mapper namespace="memberMapper">
+  
+  <resultMap type="Member" id="memberResultSet">
+  	<result column="USER_ID" property="userId"/>
+  	<result column="USER_PWD" property="userPwd"/>
+  	<result column="USER_NAME" property="userName"/>
+  	<result column="EMAIL" property="email"/>
+	<result column="AGE" property="age"/>
+  	<result column="GENDER" property="gender"/>
+  	<result column="PHONE" property="phone"/>
+  	<result column="ADDRESS" property="address"/>
+  	<result column="ENROLL_DATE" property="enrollDate"/>
+  	<result column="MODIFY_DATE" property="modifyDate"/>
+  	<result column="STATUS" property="status"/>
+  </resultMap>
+
+  <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+    SELECT USER_ID,
+		   USER_PWD,
+		   USER_NAME,
+		   EMAIL,
+		   GENDER,
+		   AGE,
+		   PHONE,
+		   ADDRESS,
+		   ENROLL_DATE,
+		   MODIFY_DATE,
+		   STATUS
+	 FROM MEMBER
+	WHERE USER_ID = #{userId}
+	  AND USER_PWD = #{userPwd}
+	  AND STATUS = 'Y'
+  </select>
+</mapper>
+
+
+
