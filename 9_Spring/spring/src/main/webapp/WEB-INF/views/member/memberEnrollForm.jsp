@@ -76,7 +76,20 @@
                                                 url: "idCheck.me",
                                                 data: {checkId: str},
                                                 success : function(result){
-                                                    console.log(result)
+                                                    const checkResult = document.querySelector("#checkResult");
+                                                    checkResult.style.display = "block";
+
+                                                    if(result === "NNNNN"){
+                                                        checkResult.style.color = "red";
+                                                        checkResult.innerText = "이미 사용중인 아이디입니다.";
+
+                                                        document.querySelector("#enrollForm button[type='submit']").disabled = true;
+                                                    } else {
+                                                        checkResult.style.color = "green";
+                                                        checkResult.innerText = "사용가능한 아이디입니다.";
+
+                                                        document.querySelector("#enrollForm button[type='submit']").disabled = false;
+                                                    }
                                                 }, error : function(){
                                                     console.log("아이디 중복체크 ajax 실패")
                                                 }
@@ -84,6 +97,7 @@
                                         }, 1000)
                     } else {
                         document.querySelector("#enrollForm button[type='submit']").disabled = true;
+                        document.querySelector("#checkResult").style.display = "none";
                     }
                 }
             })
