@@ -4,13 +4,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.service.MemberService;
 
 //Bean에 Class를 등록하는 방법으로 @Component을 클래스에 부여해주면 된다.
 // @Controller -> @Component + Controller객체가 가질 수 있는 예외처리등이 추가된 어노테이션
+//@RestController
+@CrossOrigin
 @Controller
 public class MemberController {
 	
@@ -83,21 +89,91 @@ public class MemberController {
 //	}
 	
 	// 요청처리 후에 응답데이터를 담고 응답페이지로 포워딩 또는 url재요청 처리하는 방법
-	// 1. 스프링에서 제공하는 Model객체를 이용해서 retrun해주기
+	/*
+	 * 1. 스프링에서 제공하는 Model객체를 이용하는 방법
+	 * 포워딩할 응답뷰로 전달하고자하는 데이터를 맵형식(k-v)으로 담을 수 있는 영역
+	 * Model객체는 requestScope
+	 * request.setAttribute() -> model.addAttribute()
+	 */
 	
+//	@RequestMapping("login.me")
+//	public String loginMember(Member m, HttpSession session, Model model) {
+//
+//		Member loginMember = memberService.loginMember(m);
+//		
+//		if (loginMember == null) {
+//			System.out.println("로그인 실패");
+//			model.addAttribute("errorMsg", "로그인실패"); // requestScope에 에러문구를 담는다.
+//			
+//			///WEB-INF/views/common/errorPage.jsp
+//			return "/common/errorPage";
+//		} else {
+//			session.setAttribute("loginUser", loginMember);
+//			System.out.println("로그인 성공");
+//			
+//			return "redirect:/";
+//		}
+//		
+//		//return "main";
+//		// /WEB-INF/views/main.jsp
+//	}
+	
+	// 2. 스프링에서 제공하는 ModelAndView객체를 이용하면 데이터를 담고 리턴형식까지 지정할 수 있음
 	@RequestMapping("login.me")
-	public String loginMember(Member m, HttpSession session) {
+	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
 
 		Member loginMember = memberService.loginMember(m);
 		
 		if (loginMember == null) {
 			System.out.println("로그인 실패");
+			//model.addAttribute("errorMsg", "로그인실패"); // requestScope에 에러문구를 담는다.
+			mv.addObject("errorMsg", "로그인실패");
+			
+			///WEB-INF/views/common/errorPage.jsp
+			//return "/common/errorPage";
+			mv.setViewName("common/errorPage");
 		} else {
 			session.setAttribute("loginUser", loginMember);
 			System.out.println("로그인 성공");
+			
+			//return "redirect:/";
+			mv.setViewName("redirect:/");
 		}
 		
-		return "main";
+		//return "main";
 		// /WEB-INF/views/main.jsp
+		
+		return mv;
+	}
+	
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+//		session.invalidate();
+		session.removeAttribute("loginUser");
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("enrollForm.me")
+	public String enrollForm() {
+		return "member/memberEnrollForm";
+	}
+	/*
+	 * ajax요청에 대한 응답을 위한 controller에는 @ResponseBody어노테이션을 작성해줘야한다.
+	 * 기본적인 세팅이 jsp응답으로 되어있기 때문에 @ResponseBody를 작성해주면
+	 * 반환값을 http응답 객체에 직접 작성하겠다라는 의미를 가지고 있다.
+	 */
+	
+	@ResponseBody
+	@RequestMapping("idCheck.me")
+	public String idCheck(String checkId) {
+		int result = memberService.idCheck(checkId);
+		
+		if(result > 0) { // id이미 존재
+			return "NNNNN";
+		} else {
+			return "NNNNY";
+		}
+		
 	}
 }

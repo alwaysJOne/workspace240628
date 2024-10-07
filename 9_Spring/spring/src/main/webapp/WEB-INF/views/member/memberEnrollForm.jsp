@@ -53,13 +53,41 @@
                 </div> 
                 <br>
                 <div class="btns" align="center">
-                    <button type="submit" class="btn btn-primary" >회원가입</button>
+                    <button type="submit" class="btn btn-primary" disabled>회원가입</button>
                     <button type="reset" class="btn btn-danger">초기화</button>
                 </div>
             </form>
         </div>
         <br><br>   
-     
+        <script>
+            $(function(){
+                const idInput = document.querySelector("#enrollForm input[name=userId]");
+
+                let eventFlag;
+
+                idInput.onkeyup = function(ev){ //키가 입력될때마다 호출
+                    clearTimeout(eventFlag); // 아직 실행되지 않은 ajax요청을 취소
+                    
+                    const str = ev.target.value;
+                    if(str.trim().length >= 5){ 
+                            eventFlag = setTimeout(function(){ // 1초뒤에 값을 확인해서 ajax요청
+                                            // ajax요청
+                                            $.ajax({
+                                                url: "idCheck.me",
+                                                data: {checkId: str},
+                                                success : function(result){
+                                                    console.log(result)
+                                                }, error : function(){
+                                                    console.log("아이디 중복체크 ajax 실패")
+                                                }
+                                            })
+                                        }, 1000)
+                    } else {
+                        document.querySelector("#enrollForm button[type='submit']").disabled = true;
+                    }
+                }
+            })
+        </script>
 
     </div>
 

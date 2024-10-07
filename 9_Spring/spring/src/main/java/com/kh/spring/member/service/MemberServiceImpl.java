@@ -14,14 +14,19 @@ public class MemberServiceImpl implements MemberService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Autowired
-	private MemberDao membeDao;
+	private MemberDao memberDao;
 
 	@Override
 	public Member loginMember(Member m) {
 		//SqlSessionTemplate Bean등록 후 @Autowired해서 사용한다
 		//스프링이 사용 후 자동으로 반납시켜주기 때문에 close메소드를 작성하지 않아도 된다.
 		
-		return membeDao.loginMember(sqlSession, m);
+		return memberDao.loginMember(sqlSession, m);
+	}
+
+	@Override
+	public int idCheck(String checkId) {
+		return memberDao.idCheck(sqlSession, checkId);
 	}
 
 }

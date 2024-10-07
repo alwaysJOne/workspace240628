@@ -21,6 +21,7 @@
   	<result column="STATUS" property="status"/>
   </resultMap>
 
+  <!-- 로그인 쿼리 -->
   <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
     SELECT USER_ID,
 		   USER_PWD,
@@ -37,6 +38,12 @@
 	WHERE USER_ID = #{userId}
 	  AND USER_PWD = #{userPwd}
 	  AND STATUS = 'Y'
+  </select>
+  <!-- 아이디 중복체크 -->
+  <select id="idCheck" resultType="_int">
+  	SELECT COUNT(*)
+  	  FROM MEMBER
+  	 WHERE USER_ID = #{checkId}
   </select>
 </mapper>
 
