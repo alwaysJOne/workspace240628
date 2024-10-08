@@ -3,15 +3,18 @@ package com.kh.spring.member.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.service.MemberService;
+
+
 
 //Bean에 Class를 등록하는 방법으로 @Component을 클래스에 부여해주면 된다.
 // @Controller -> @Component + Controller객체가 가질 수 있는 예외처리등이 추가된 어노테이션
@@ -20,14 +23,44 @@ import com.kh.spring.member.service.MemberService;
 @Controller
 public class MemberController {
 	
+	
 	/*
 	 * @Autowired
 	 * 의존성주입을 사용할 때 사용하는 어노테이션
 	 * 클래스내에서 필요한 객체를 직접생성하지 않고  spring컨테이너가 관리하는 객체(Been)를 주입받아 사용할 수 있게 해줌 
 	 * + 필드주입방식/생성자주입방식
 	 */
+	
+	/*
+	 * private MemberService memberService = new MeberServiceImpl();
+	 * 기존 객체 생성 방식 
+	 * 객체간의 결합도가 높아짐(소스코드 수정이 일어날 경우 하나하나 전부 다 바꿔줘야한다.)
+	 * 서비스가 동시에 매우 많은 획수요청이 될 경우 그만큼 객체가 생성된다.
+	 * 
+	 * DI(Dependency Injection) - 의존성 주입
+	 * 코드 결합도가 낮아지고 코드를 분리할 수 있음
+	 * 
+	 * 필드주입방식
+	 * 스프링컨테이너가 객체를 생성한 후, @Autowired 어노테이션이 붙은 필드에 의존성을 주입한다.
+	 * 
+	 * 생성자주입방식
+	 * 스프링컨테이너가 객체를 생성할 때 @Autowired 어노테이션이 붙은 생성자를 통해서 필요한 의존성을 주입한다.
+	 * 
+	 * 필드주입방식 -> 생성자주입방식 : 주입시점의 차이로인해 객체가 완전히 초기화된 상태로 사용할 수 있음을 보장하고
+	 * 테스트 기능성과 유지보수성이 좋아진다.
+	 */
+	
+//	@Autowired
+//	private MemberService memberService;
+	
+	private final MemberService memberService;
+	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@Autowired
-	private MemberService memberService;
+	public MemberController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
+		this.memberService = memberService;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
+	}
 	
 	/*
 	 * Spring에서클라이언트가 보낸 정보를 받는 방법
@@ -122,26 +155,50 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
 
-		Member loginMember = memberService.loginMember(m);
-		
-		if (loginMember == null) {
-			System.out.println("로그인 실패");
-			//model.addAttribute("errorMsg", "로그인실패"); // requestScope에 에러문구를 담는다.
-			mv.addObject("errorMsg", "로그인실패");
-			
-			///WEB-INF/views/common/errorPage.jsp
-			//return "/common/errorPage";
-			mv.setViewName("common/errorPage");
-		} else {
-			session.setAttribute("loginUser", loginMember);
-			System.out.println("로그인 성공");
-			
-			//return "redirect:/";
-			mv.setViewName("redirect:/");
-		}
+//		Member loginMember = memberService.loginMember(m);
+//		
+//		if (loginMember == null) {
+//			System.out.println("로그인 실패");
+//			//model.addAttribute("errorMsg", "로그인실패"); // requestScope에 에러문구를 담는다.
+//			mv.addObject("errorMsg", "로그인실패");
+//			
+//			///WEB-INF/views/common/errorPage.jsp
+//			//return "/common/errorPage";
+//			mv.setViewName("common/errorPage");
+//		} else {
+//			session.setAttribute("loginUser", loginMember);
+//			System.out.println("로그인 성공");
+//			
+//			//return "redirect:/";
+//			mv.setViewName("redirect:/");
+//		}
 		
 		//return "main";
 		// /WEB-INF/views/main.jsp
+		
+		//암호화 후
+		//Member m의 id -> 사용자가 입력한 아이디
+		//Member m의 pwd -> 사용자가 입력한 pwd(평문)
+		
+		Member loginMember = memberService.loginMember(m);
+		
+		//loginMember pwd -> 암호화된 비밀번호 
+		//bcryptPasswordEncoder -> matches(평문, 암호문)메소드를 이용하여 내부적으로 복호화작업 후 비교가 이루어짐
+		//두 구문이 일치하면 true를 반환 일치하지 않으면 false반환
+		//bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd());
+		
+		if(loginMember == null) { // 아이디없는 경우
+			mv.addObject("errorMsg", "일치하는 아이디를 찾을 수 없습니다.");
+			mv.setViewName("common/errorPage");
+		} else if(!bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) { //비밀번호가 다른경우
+			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다.");
+			mv.setViewName("common/errorPage");
+		} else {
+			session.setAttribute("loginUser", loginMember);
+
+			mv.setViewName("redirect:/");
+		}
+		
 		
 		return mv;
 	}
@@ -175,5 +232,33 @@ public class MemberController {
 			return "NNNNY";
 		}
 		
+	}
+	
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, HttpSession session, Model model) {
+		System.out.println(m);
+		
+		/* 인코딩 필터를 적용해 줬기 때문에 한글을 잘 받을 수 있음
+		 * 
+		 * age같은 경우 int로 필드를 구성할 경우 빈문자열이 전달되면 형변환과정에서 400에러가 발생한다
+		 * 400에러는 보통 요청하는 데이터와 이를 받아주는 데이터가 일치하지 않아서 많이 발생한다.
+		 * 
+		 * 비밀번호가 사용자의 입력 그대로 전달된다.(평문)
+		 * Bcrypt방식을 이용해서 암호화 작업 후 저장을 하겠다.
+		 * => 스프링시큐리티에서 제공하는 모듈을 이용 (pom.xml에 라이브러리 추가 후 빈에 객체등록)
+		 */
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
+		
+		int result = memberService.insertMember(m);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "성공적으로 회원가입이 완료되었습니다.");
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg", "회원가입 실패");
+			return "common/errorPage";
+		}
 	}
 }

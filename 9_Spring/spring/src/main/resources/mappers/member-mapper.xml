@@ -36,15 +36,39 @@
 		   STATUS
 	 FROM MEMBER
 	WHERE USER_ID = #{userId}
-	  AND USER_PWD = #{userPwd}
+	  <!-- AND USER_PWD = #{userPwd} -->
 	  AND STATUS = 'Y'
   </select>
+  
   <!-- 아이디 중복체크 -->
   <select id="idCheck" resultType="_int">
   	SELECT COUNT(*)
   	  FROM MEMBER
   	 WHERE USER_ID = #{checkId}
   </select>
+  
+  <!-- 회원가입 -->
+  <insert id="insertMember">
+  	INSERT INTO MEMBER(
+  	   USER_ID,
+	   USER_PWD,
+	   USER_NAME,
+	   EMAIL,
+	   GENDER,
+	   AGE,
+	   PHONE,
+	   ADDRESS
+  	) VALUES(
+  		#{userId},
+  		#{userPwd},
+  		#{userName},
+  		#{email},
+  		#{gender},
+  		#{age},
+  		#{phone},
+  		#{address}
+  	)
+  </insert>
 </mapper>
 
 
