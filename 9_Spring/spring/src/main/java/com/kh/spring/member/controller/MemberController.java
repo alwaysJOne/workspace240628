@@ -261,4 +261,32 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	
+	@RequestMapping("myPage.me")
+	public String myPage() {
+		return "member/myPage";
+	}
+	
+	@RequestMapping("update.me")
+	public String updateMember(Member m, HttpSession session, Model model) {
+		int result = memberService.updateMember(m);
+		
+		if(result > 0) {
+			session.setAttribute("loginUser", memberService.loginMember(m));
+			session.setAttribute("alertMsg", "회원정보 수정 성공");
+			return "redirect:/myPage.me";
+		} else {
+			model.addAttribute("errorMsg", "회원정보 수정 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("delete.me")
+	public String deleteMember(Member m) {
+		//비밀번호를 암호화된 비밀번호와 비교
+		
+		//일치하면 탈퇴처리 -> session에서 로그인정보 제거 -> 메인페이지
+		
+		//일치하지 않으면 -> alertMsg : 비밀번호를 다시 입력 -> 마이페이지
+	}
 }
