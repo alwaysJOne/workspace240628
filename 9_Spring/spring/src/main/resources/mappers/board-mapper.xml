@@ -6,8 +6,24 @@
 <!-- namespace: 해당 mapper파일의 고유한 별칭 -->
 
 <mapper namespace="boardMapper">
-  
- 
+  <!-- 게시글 총 갯수 조회 -->
+  <select id="selectListCount" resultType="_int">
+   	SELECT COUNT(*)
+   	  FROM BOARD
+   	 WHERE STATUS = 'Y'
+  </select>
+  <!-- 게시글 조회 -->
+  <select id="selectList" resultType="Board">
+  	SELECT BOARD_NO boardNo,
+			BOARD_TITLE boardTitle,
+			BOARD_WRITER boardWriter,
+			ORIGIN_NAME originName,
+			COUNT count,
+			TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "createDate"
+  	  FROM BOARD
+  	 WHERE STATUS = 'Y'
+  	 ORDER BY BOARD_NO DESC
+  </select>
 </mapper>
 
 

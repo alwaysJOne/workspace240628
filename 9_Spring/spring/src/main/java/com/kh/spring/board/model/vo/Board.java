@@ -1,4 +1,4 @@
-package com.kh.spinrg.board.model.vo;
+package com.kh.spring.board.model.vo;
 
 import java.sql.Date;
 
