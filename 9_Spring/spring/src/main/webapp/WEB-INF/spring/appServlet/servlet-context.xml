@@ -38,4 +38,11 @@
 		 	</bean:property>
 		</beans:bean>	
 	 -->
+	 
+	 <interceptors>
+	 	<interceptor>
+	 		<mapping path="/myPage.me"/>
+	 		<beans:bean class="com.kh.spring.common.intercepter.LoginIntercepter" id="loginIntercepter" />
+	 	</interceptor>
+	 </interceptors>
 </beans:beans>

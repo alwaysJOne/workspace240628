@@ -82,6 +82,11 @@
   	       MODIFY_DATE = SYSDATE
   	WHERE USER_ID = #{userId}
   </update>
+  <update id="deleteMember">
+  	UPDATE MEMBER
+  	   SET STATUS = 'N'
+ 	 WHERE USER_ID = #{userId}
+  </update>
 </mapper>
 
 

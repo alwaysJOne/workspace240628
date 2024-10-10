@@ -281,12 +281,30 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("delete.me")
-	public String deleteMember(Member m) {
+	@RequestMapping("delete.me") 
+	public String deleteMember(Member m, HttpSession session) {
 		//비밀번호를 암호화된 비밀번호와 비교
+		String encPwd = ((Member)session.getAttribute("loginUser")).getUserPwd();
 		
 		//일치하면 탈퇴처리 -> session에서 로그인정보 제거 -> 메인페이지
 		
 		//일치하지 않으면 -> alertMsg : 비밀번호를 다시 입력 -> 마이페이지
+		
+		if(bcryptPasswordEncoder.matches(m.getUserPwd(), encPwd)) {
+			int result = memberService.deleteMember(m.getUserId());
+			
+			if(result > 0) {
+				session.removeAttribute("loginUser");
+				session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
+				return "redirect:/";
+			} else {
+				session.setAttribute("alertMsg", "회원탈퇴처리 실패");
+				return "redirect:/myPage.me";
+			}
+		} else { //비밀번호 틀림
+			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요.");
+			return "redirect:/myPage.me";
+		}
+		
 	}
 }
