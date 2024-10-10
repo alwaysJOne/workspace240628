@@ -11,4 +11,10 @@ public interface BoardService {
 	
 	//게시글 목록 가져오기
 	ArrayList<Board> selectList(PageInfo pi);
+	
+	//게시글 조회수 증가
+	int increaseCount(int bno);
+	
+	//boardNo로 게시글 조회
+	Board selectBoard(int bno);
 }

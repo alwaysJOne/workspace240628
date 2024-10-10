@@ -22,4 +22,12 @@ public class BoardDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
 	}
+	
+	public int increaseCount(SqlSessionTemplate sqlSession, int bno) {
+		return sqlSession.update("boardMapper.increaseCount", bno);
+	}
+	
+	public Board selectBoard(SqlSessionTemplate sqlSession, int bno) {
+		return sqlSession.selectOne("boardMapper.selectBoard", bno);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,4 +35,27 @@ public class BoardController {
 		model.addAttribute("pi", pi);
 		return "board/boardListView";
 	}
+	
+	@GetMapping("detail.bo")
+	public String selectBoard(int bno, Model model) {
+		int result = boardService.increaseCount(bno);
+		
+		if(result > 0) {
+			Board b = boardService.selectBoard(bno);
+			model.addAttribute("b", b);
+			
+			return "board/boardDetailView";
+			
+		} else {
+			model.addAttribute("errorMsg", "게시글 조회 실패");
+			return "common/errorPage";
+		}
+	}
 }
+
+
+
+
+
+
+
