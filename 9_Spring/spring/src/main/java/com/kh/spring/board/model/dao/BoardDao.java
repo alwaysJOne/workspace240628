@@ -36,6 +36,6 @@ public class BoardDao {
 	}
 	
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
-		return sqlSession.insert("boardMapper.updateBoard", b);
+		return sqlSession.update("boardMapper.updateBoard", b);
 	}
 }
