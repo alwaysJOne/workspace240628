@@ -17,4 +17,7 @@ public interface BoardService {
 	
 	//boardNo로 게시글 조회
 	Board selectBoard(int bno);
+	
+	//게시글 추가(insert)
+	int insertBoard(Board b);
 }

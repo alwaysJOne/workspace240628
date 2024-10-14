@@ -102,7 +102,7 @@
 
         <br clear="both"><br>
 
-        <form id="searchForm" action="" method="get" align="center">
+        <form id="searchForm" action="searchList.bo" method="get" align="center">
             <div class="select">
                 <select class="custom-select" name="condition">
                     <option value="writer">작성자</option>
