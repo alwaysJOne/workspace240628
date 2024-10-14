@@ -20,4 +20,7 @@ public interface BoardService {
 	
 	//게시글 추가(insert)
 	int insertBoard(Board b);
+	
+	//게시글 수정
+	int updateBoard(Board b);
 }

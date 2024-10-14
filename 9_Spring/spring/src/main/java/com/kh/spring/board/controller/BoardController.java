@@ -97,6 +97,36 @@ public class BoardController {
 		return "board/boardUpdateForm";
 		
 	}
+	
+	@PostMapping("update.bo")
+	public String updateBoard(Board b, MultipartFile reupfile, HttpSession session, Model m) {
+		//새로운 첨부파일 있다면 저장 후 b객체에 파일명 수정
+		//b객체 전달받은 값으로 수정
+		
+		//수정 할 첨부파일이 있을 경우
+		if(!reupfile.getOriginalFilename().equals("")) {
+			//기존 첨부파일이 있다 -> 기존파일을 삭제
+			if(b.getOriginName() != null) {
+				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
+			}
+			
+			//새로운 첨부파일을 서버에 업로드하기
+			String changeName = Template.saveFile(reupfile, session, "/resources/uploadFile/");
+			
+			b.setOriginName(reupfile.getOriginalFilename());
+			b.setChangeName( "/resources/uploadFile/" + changeName);
+		}
+		
+		//b정보로 업데이터
+		int result = boardService.updateBoard(b);
+		if(result > 0) { //성공
+			session.setAttribute("alertMsg", "게시글 수정 성공");
+			return "redirect:detail.bo?bno=" + b.getBoardNo();
+ 		} else { //실패
+ 			m.addAttribute("errorMsg", "게시글 수정 실패");
+			return "common/errorPage";
+		}
+	}
 }
 
 
