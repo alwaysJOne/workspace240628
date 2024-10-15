@@ -97,6 +97,22 @@
 		  AND REF_BNO = #{bno}
 		ORDER BY REPLY_NO DESC
   </select>
+  <!-- 댓글 추가 -->
+  <insert id="insertReply">
+  		INSERT
+  		INTO REPLY(
+  			REPLY_NO,
+  			REPLY_CONTENT,
+  			REPLY_WRITER,
+  			REF_BNO
+  		)
+  		VALUES(
+  			SEQ_RNO.NEXTVAL,
+  			#{replyContent},
+  			#{replyWriter},
+  			#{refBno}
+  		)
+  </insert>
 </mapper>
 
 

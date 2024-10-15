@@ -27,4 +27,7 @@ public interface BoardService {
 	
 	//댓글목록 가져오기
 	ArrayList<Reply> selectReply(int bno);
+	
+	//댓글 추가
+	int insertReply(Reply r);
 }

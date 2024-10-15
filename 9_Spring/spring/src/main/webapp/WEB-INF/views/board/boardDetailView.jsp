@@ -142,11 +142,51 @@
 
             getReplyList(sendData, function(replyList){
                 console.log(replyList)
+
+                //댓글 갯수 나타내주는 함수 호출
+                setReplyCount(replyList.length)
+
+                const replyBody = document.querySelector("#replyArea tbody")
+                //댓글목록 그려주는 함수 호출
+                drawReplyList(replyBody, replyList);
             });
 
 
 
         })
+
+        function drawReplyList(tBody, replyList){
+            //단순하게 보여주기위한 view를 만들때
+            // let str = "";
+            // for(reply of replyList){
+            //     str += `<tr>` + 
+            //                 `<td>` + reply.replyWriter + `</td>` +
+            //                 `<td>` + reply.replyContent + `</td>` +
+            //                 `<td>` + reply.createDate + `</td>` +
+            //             `</tr>`
+            // }
+            // tBody.innerHTML = str;
+
+            $(tBody).empty();
+            //tBody.innerHTML = ""
+            //이벤트를 넣는 뷰를 작성하고 싶을 때
+            for(const reply of replyList){
+                const replyRow = document.createElement('tr'); // <tr></tr>
+                replyRow.innerHTML = `<td>` + reply.replyWriter + `</td>` +
+                                     `<td>` + reply.replyContent + `</td>` +
+                                     `<td>` + reply.createDate + `</td>`;
+                tBody.appendChild(replyRow);
+
+                replyRow.onclick = function(){
+                    console.log(reply.replyNo + "클릭됨")
+                }
+            }
+
+        }
+
+        function setReplyCount(count){
+            document.querySelector("#rcount").innerHTML = count;
+        }
 
         //ajax호출후 결과 가져오기(댓글목록)
         function getReplyList(data, callback){
@@ -158,6 +198,45 @@
                 },
                 error: function(){
 
+                }
+            })
+        }
+
+        //댓글 등록
+        function addReply(){
+            //boardNo
+            //userId
+            //댓글내용
+
+            const boardNo = ${b.boardNo};
+            const userId = "${loginUser.userId}"
+            const content = document.querySelector("#content").value;
+
+            addReplyAjax({
+                refBno: boardNo,
+                replyWriter: userId,
+                replyContent: content
+            }, function(res){
+                // res -> 성공, 실패
+                if(res === "success") {
+                    document.querySelector("#content").value = "";
+                    
+                    getReplyList({bno: boardNo}, function(replyList){
+                        setReplyCount(replyList.length);
+                        drawReplyList(document.querySelector("#replyArea tbody"), replyList);
+                    });
+                }
+            })
+        }
+
+        function addReplyAjax(data, callback){
+            $.ajax({
+                url: "rinsert.bo",
+                data: data,
+                success : function(res){
+                    callback(res)
+                }, error: function(){
+                    console.log("댓글 생성 ajax 실패")
                 }
             })
         }

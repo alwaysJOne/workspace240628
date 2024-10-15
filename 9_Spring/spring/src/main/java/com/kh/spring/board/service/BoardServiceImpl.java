@@ -61,4 +61,9 @@ public class BoardServiceImpl implements BoardService{
 		return boardDao.selectReply(sqlSession, bno);
 	}
 
+	@Override
+	public int insertReply(Reply r) {
+		return boardDao.insertReply(sqlSession, r);
+	}
+
 }

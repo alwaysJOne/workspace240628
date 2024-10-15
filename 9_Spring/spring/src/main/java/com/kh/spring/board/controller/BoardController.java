@@ -136,6 +136,13 @@ public class BoardController {
 		return new Gson().toJson(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping("rinsert.bo")
+	public String ajaxInsertReply(Reply r) {
+		//성공했을 때 success, 실패했을 때 fail
+		return boardService.insertReply(r) > 0 ? "success" : "fail";
+	}
+	
 }
 
 
