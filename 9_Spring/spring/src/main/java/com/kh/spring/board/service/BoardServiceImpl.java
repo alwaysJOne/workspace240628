@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.board.model.dao.BoardDao;
 import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.Reply;
 import com.kh.spring.common.vo.PageInfo;
 
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<Board> selectList(PageInfo pi) {
 		
 		return boardDao.selectList(sqlSession, pi);
-	}
+	} 
 
 	@Override
 	public int increaseCount(int bno) {
@@ -53,6 +54,11 @@ public class BoardServiceImpl implements BoardService{
 	public int updateBoard(Board b) {
 		
 		return boardDao.updateBoard(sqlSession, b);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReply(int bno) {
+		return boardDao.selectReply(sqlSession, bno);
 	}
 
 }

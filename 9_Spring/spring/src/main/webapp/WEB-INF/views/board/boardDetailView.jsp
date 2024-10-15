@@ -133,6 +133,35 @@
         </div>
         <br><br>
     </div>
+
+    <script>
+        $(function(){
+            const sendData = {
+                bno: ${b.boardNo}
+            }
+
+            getReplyList(sendData, function(replyList){
+                console.log(replyList)
+            });
+
+
+
+        })
+
+        //ajax호출후 결과 가져오기(댓글목록)
+        function getReplyList(data, callback){
+            $.ajax({
+                url: "rlist.bo",
+                data: data,
+                success: function(res){
+                    callback(res)
+                },
+                error: function(){
+
+                }
+            })
+        }
+    </script>
     
     <jsp:include page="../common/footer.jsp" />
 </body>

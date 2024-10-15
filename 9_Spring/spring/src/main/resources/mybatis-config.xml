@@ -13,6 +13,7 @@
   <typeAliases>
   	<typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member" />
   	<typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board" />
+  	<typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply" />
   </typeAliases>
 
   <!-- 

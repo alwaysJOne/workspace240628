@@ -77,6 +77,7 @@
   		   		#{changeName}
   		   )
   </insert>
+  <!-- 게시글 수정 -->
   <update id="updateBoard">
   		UPDATE BOARD
   		   SET BOARD_TITLE = #{boardTitle},
@@ -85,6 +86,17 @@
 				CHANGE_NAME = #{changeName}
 		WHERE BOARD_NO = #{boardNo}
   </update>
+  <!-- 댓글목록 가져오기 -->
+  <select id="selectReply" resultType="Reply">
+  		SELECT REPLY_NO replyNo,
+				REPLY_CONTENT replyContent,
+				REPLY_WRITER replyWriter,
+				TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS createDate
+		 FROM REPLY
+		WHERE STATUS = 'Y'
+		  AND REF_BNO = #{bno}
+		ORDER BY REPLY_NO DESC
+  </select>
 </mapper>
 
 
