@@ -57,10 +57,9 @@
      	<property name="maxInMemorySize" value="100000000"/>
      </bean>
      
-     <aop:aspectj-autoproxy />
-     
-     <context:component-scan base-package="com.kh" use-default-filters="false">
-     	<context:include-filter type="annotation"
-     		expression="org.aspectj.lang.annotaion.Aspect" />
-     </context:component-scan>
+ 
+	<!-- @Aspect 어노테이션도 scan 하기 위함 -->
+	<context:component-scan base-package="com.kh.aop" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+	</context:component-scan>
 </beans>
