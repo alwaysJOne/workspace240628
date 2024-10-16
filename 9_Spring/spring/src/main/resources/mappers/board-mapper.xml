@@ -113,6 +113,19 @@
   			#{refBno}
   		)
   </insert>
+  <select id="selectTopBoardList" resultMap="boardResult">
+  	SELECT *
+  	  FROM (SELECT BOARD_NO,
+					BOARD_TITLE,
+					BOARD_WRITER,
+					ORIGIN_NAME,
+					COUNT,
+					TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+		  	  FROM BOARD
+		  	 WHERE STATUS = 'Y'
+		  	 ORDER BY COUNT DESC)
+	 WHERE ROWNUM BETWEEN 1 AND 5
+  </select>
 </mapper>
 
 

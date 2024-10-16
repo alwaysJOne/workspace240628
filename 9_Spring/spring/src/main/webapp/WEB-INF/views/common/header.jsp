@@ -134,7 +134,7 @@
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <label for="userId" class="mr-sm-2">ID :</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name="userId"> 
+                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name="userId" value="${cookie.saveId.value}"> 
                     <input type="checkbox" name="saveId" id="saveId" checked>
                     <label for="saveId" class="mr-sm-2">아이디저장</label>
                     <br>

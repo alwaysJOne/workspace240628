@@ -30,4 +30,13 @@ public interface BoardService {
 	
 	//댓글 추가
 	int insertReply(Reply r);
+	
+	//조회수 상위 5개
+	public ArrayList<Board> selectTopBoardList();
 }
+
+
+
+
+
+
