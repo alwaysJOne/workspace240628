@@ -10,6 +10,7 @@ import LandingPage from './components/04_hook/useState/LandingPage';
 import UseEffectTest from './components/04_hook/useEffect/UseEffectTest';
 import { useState } from 'react';
 import UseRefTmp from './components/04_hook/useRef/UseRefTmp';
+import UseRefScroll from './components/04_hook/useRef/UseRefScroll';
 
 function App() {
   const [isComponent, setIsComponent] = useState(true)
@@ -31,7 +32,8 @@ function App() {
         }, 3000)
       } */}
 
-      <UseRefTmp />
+      {/* <UseRefTmp /> */}
+      <UseRefScroll />
     </div>
   );
 }
