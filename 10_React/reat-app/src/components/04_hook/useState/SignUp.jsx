@@ -14,7 +14,6 @@ const SignUp = () => {
         setGender(ev.target.value);
     }
 
-
     const handleSubmit = (ev) => {
         alert(`이름 : ${name}, 성별 : ${gender}`);
 
