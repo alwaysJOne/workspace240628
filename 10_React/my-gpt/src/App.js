@@ -4,6 +4,7 @@ import './App.css';
 import { Title, DescriptText } from './components/CommonsStyles';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
+import { CallGpt, CallGptAxios } from './service/gptAPI';
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -12,8 +13,24 @@ function App() {
     setSearchText(ev.target.value)
   }
 
-  const clickSearchIcon = () => {
-    console.log(searchText)
+  const clickSearchIcon = async () => {
+    if(searchText.trim() === "")
+      return;
+
+    const chatData = {
+      date: new Date(),
+      question: searchText
+    }
+
+    const message = await CallGptAxios({
+      prompt: searchText
+    })
+
+    chatData.message = message;
+
+    console.log(chatData);
+
+
   }
 
   return (
