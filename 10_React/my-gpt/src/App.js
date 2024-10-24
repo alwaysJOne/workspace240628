@@ -5,9 +5,16 @@ import { Title, DescriptText } from './components/CommonsStyles';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
 import { CallGpt, CallGptAxios } from './service/gptAPI';
+import ChatDisplay from './components/ChatDisplay';
 
 function App() {
   const [searchText, setSearchText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatDataList, setChatDataList] = useState([{
+    date: new Date().getTime(),
+    question: "임시로 사용자의 질문을 작성함",
+    message: "답변은 이런식으로 보일 예정입니다.",
+  }]);
 
   const changeSearchText = (ev) => {
     setSearchText(ev.target.value)
@@ -18,18 +25,28 @@ function App() {
       return;
 
     const chatData = {
-      date: new Date(),
+      date: new Date().getTime(),
       question: searchText
     }
 
-    const message = await CallGptAxios({
-      prompt: searchText
-    })
+    try{
+      setIsLoading(true);
+      setSearchText("");
+      const message = await CallGptAxios({
+        prompt: chatData.question
+      })
 
-    chatData.message = message;
+      chatData.message = message;
 
-    console.log(chatData);
-
+      setChatDataList([
+        ...chatDataList,
+        chatData
+      ])
+    } catch(error){
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
 
   }
 
@@ -39,7 +56,10 @@ function App() {
         <Title>나만의 GPT</Title>
       </Header>
       <Contents>
-
+        <ChatDisplay 
+          chatDataList = {chatDataList}
+          isLoading = {isLoading}
+        />
       </Contents>
       <Footer>
         <SearchBar 
@@ -76,6 +96,9 @@ const Contents = styled.div`
     padding: 60px 0 0 0;
     flex: 1;
     overflow-y: scroll;
+    &::-webkit-scrollbar{
+      display: none;
+    }
 `
 
 const Footer = styled.div`

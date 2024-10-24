@@ -112,7 +112,7 @@ export const CallGptAxios = async ({prompt}) => {
             }
         }
     )
-    console.log(response)
+  
     const message = response.data.choices[0].message.content;
     return message;
 
