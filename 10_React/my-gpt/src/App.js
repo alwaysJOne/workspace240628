@@ -3,18 +3,15 @@ import styled from 'styled-components';
 import './App.css';
 import { Title, DescriptText } from './components/CommonsStyles';
 import SearchBar from './components/SearchBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CallGpt, CallGptAxios } from './service/gptAPI';
 import ChatDisplay from './components/ChatDisplay';
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [chatDataList, setChatDataList] = useState([{
-    date: new Date().getTime(),
-    question: "임시로 사용자의 질문을 작성함",
-    message: "답변은 이런식으로 보일 예정입니다.",
-  }]);
+  const [chatDataList, setChatDataList] = useState(localStorage.getItem("chatList") ? 
+                                                    JSON.parse(localStorage.getItem("chatList")) : []);
 
   const changeSearchText = (ev) => {
     setSearchText(ev.target.value)
@@ -49,6 +46,11 @@ function App() {
     }
 
   }
+
+  //chatDataList의 값이 변경되면 localStorage에 저장해줘
+  useEffect(() => {
+    localStorage.setItem("chatList", JSON.stringify(chatDataList))
+  }, [chatDataList])
 
   return (
     <AppContainer className="App">
