@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
 import Products from './components/05_styledComponents/Products';
+import Counter from './components/06_redux/counter';
 
 /*
   react-router-dom
@@ -26,23 +27,24 @@ import Products from './components/05_styledComponents/Products';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/p1">page1로 이동</Link></li>
-            <li><Link to="/p2">page2으로 이동</Link></li>
-          </ul>
-        </nav>
+    // <BrowserRouter>
+    //   <div className="App">
+    //     <nav>
+    //       <ul>
+    //         <li><Link to="/">Home</Link></li>
+    //         <li><Link to="/p1">page1로 이동</Link></li>
+    //         <li><Link to="/p2">page2으로 이동</Link></li>
+    //       </ul>
+    //     </nav>
     
-        <Routes>
-          <Route path="/" element={<Products />}/>
-          <Route path="/p1" element={<Page1 />}/>
-          <Route path="/p2" element={<Page2 />}/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    //     <Routes>
+    //       <Route path="/" element={<Products />}/>
+    //       <Route path="/p1" element={<Page1 />}/>
+    //       <Route path="/p2" element={<Page2 />}/>
+    //     </Routes>
+    //   </div>
+    // </BrowserRouter>
+    <Counter />
   );
 }
 
