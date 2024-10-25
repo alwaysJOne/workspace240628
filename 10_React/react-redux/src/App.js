@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from './actions/user';
+import { logIn, logOut } from './actions/user';
 
 function App() {
   //useSelector()를 통해서 전역state에 접근할 수 있음
@@ -11,7 +11,10 @@ function App() {
   const dispatch = useDispatch();
 
   const onClick = () => {
-  
+    dispatch(logIn({
+      id: "user01",
+      password: "pass01",
+    }))
   }
 
   const onLogout = () => {
@@ -28,7 +31,7 @@ function App() {
         )}
       {user.data
         ? <button onClick={onLogout}>로그아웃</button>
-        : <button>로그인</button>
+        : <button onClick={onClick}>로그인</button>
       }
     </div>
   );
