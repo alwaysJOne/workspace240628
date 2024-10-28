@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", //자바스크립트 버전설정 -> ESNext(최신문법)
+    "module": "CommonJS", // 변환되는 자바스크립트 모듈 시스템 문법 설정
+    "outDir": "dist",//컴파일 결과 생성할 자바스크립트의 코드 위치를 결정하는 옵션
+    "strict": true, //타입검사시 엄격함의 수준을 정하는 옵션
+    "moduleDetection": "force", //기본적으로 파일에 만드는 변수를 로컬데이터로 사용한다.
+  },
+  "include": ["src"] // 컴파일 할 범위를 지정한다. ex) src -> src폴더의 모든 ts파일
+}
