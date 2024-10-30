@@ -1,0 +1,45 @@
+.member_tbl {
+
+    border-spacing: 0;
+
+}
+
+.member_tbl th {
+
+    background-color: #000;
+
+    color: #fff;
+
+    padding: 20px;
+
+}
+
+.member_tbl td {
+
+    border: 1px solid #ccc;
+
+    text-align: center;
+
+    padding: 20px;
+
+}
+
+.input_wrap {
+
+    padding: 10px 0px;
+
+}
+
+.input_wrap>label {
+
+    display: inline-block;
+
+    width: 80px;
+
+}
+
+.input_wrap>input {
+
+    width: 150px;
+
+}

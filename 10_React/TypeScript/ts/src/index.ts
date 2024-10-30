@@ -1,7 +1,13 @@
-const test = (text : string) => {
+const test = (text : string) : string => {
     console.log(text)
+    return "안녕";
 }
 
-test("안녕 타입스크립트.")
+let str = test("안녕 타입스크립트.")
+type Human = {
+    name : string
+}
 
-const tmp = 4;
+let human : Human = {
+    name: "jiwon"
+}
