@@ -1,13 +1,14 @@
 import React from 'react'
 import { Todo } from '../types'
+import { useTodoDispatch } from '../hooks/useTodoDispatch'
 
-interface Props extends Todo {
-    onClickRemove: (id: number) => void
-}
+interface Props extends Todo {}
 
 const TodoItem = (props: Props) => {
+    const dispatch = useTodoDispatch();
+
     const onClickButton = () => {
-        props.onClickRemove(props.id)
+        dispatch.onClickRemove(props.id)
     }
 
     return (

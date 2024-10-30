@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TodoItem from './components/TodoItem';
 import { Todo } from './types';
-import { TodoStateContext } from './TodoState';
+import { TodoDispatchContext, TodoStateContext } from './TodoState';
 import SearchBar from './components/SearchBar';
 
 type Action = {
@@ -37,7 +37,7 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, []);
   const idRef = useRef(0);
 
-  const onClickAdd = () => {
+  const onClickAdd = (text: string) => {
     // setTodos([
     //   ...todos,
     //   {
@@ -69,12 +69,17 @@ function App() {
   return (
     <div className="App">
       <TodoStateContext.Provider value={todos}>
-        <SearchBar />
-        <div>
-          {todos.map(todo => (
-            <TodoItem key={todo.id} {...todo} onClickRemove={onClickRemove} />
-          ))}
-        </div>
+        <TodoDispatchContext.Provider value={{
+          onClickAdd,
+          onClickRemove,
+        }}>
+          <SearchBar/>
+          <div>
+            {todos.map(todo => (
+              <TodoItem key={todo.id} {...todo} />
+            ))}
+          </div>
+        </TodoDispatchContext.Provider>
       </TodoStateContext.Provider>
     </div>
   );

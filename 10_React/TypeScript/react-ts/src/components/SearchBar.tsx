@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { TodoDispatchContext } from '../TodoState';
+import { useTodoDispatch } from '../hooks/useTodoDispatch';
 
-const SearchBar = () => {
+interface Props{}
+
+const SearchBar = (props: Props) => {
+    const dispath = useTodoDispatch();
     const [text, setText] = useState("");
 
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value)
+    }
+
+    const onClickButton = () => {
+        dispath.onClickAdd(text)
     }
 
     return (
@@ -14,7 +23,7 @@ const SearchBar = () => {
                 value={text}
                 onChange={onChangeInput}
             />
-            <button onClick={onClickAdd}>추가</button>
+            <button onClick={onClickButton}>추가</button>
         </div>
     )
 }
