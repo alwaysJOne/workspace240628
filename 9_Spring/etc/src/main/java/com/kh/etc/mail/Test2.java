@@ -1,5 +1,7 @@
 package com.kh.etc.mail;
 
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -70,6 +72,30 @@ public class Test2 {
 		
 		sender.send(message);
 		
+		return "redirect:/";
+	}
+	
+	@GetMapping("snedfile")
+	public String sendFile() throws MessagingException {
+		//메세지 생성
+		MimeMessage message = sender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+				
+		String[] to = {"wldnjsv1003@gmail.com"};
+		helper.setTo(to);
+		
+		String[] cc = {"wldnjsv1003@gmail.com"};
+		helper.setCc(cc);
+				
+		helper.setSubject("파일전송 테스트");
+		helper.setText("파일전송 테스트입니다.");
+		
+		//첨부파일 추가
+		DataSource source = new FileDataSource("C:\\Users\\user1\\Desktop\\sample.jfif");
+		helper.addAttachment(source.getName(), source);
+		
+		sender.send(message);
 		return "redirect:/";
 	}
 	
