@@ -30,6 +30,25 @@
         socket.onerror = function(){
             console.log('연결실패....')
         }
+
+        //socket연결로부터 데이터가 도착했을 때 실행하는 이벤트
+        socket.onmessage = function(ev){
+            console.log(ev)
+            const reveice = JSON.parse(ev.data);
+
+            const msgContainer = document.querySelector("#msg-container");
+            msgContainer.innerHTML += (reveice.nick + "(" + reveice.time + ") <br>" + reveice.msg + "<br>");
+        }
+
+        function sendMsg(){
+            const msgData = {
+                message: document.querySelector("input[name=msg]").value,
+                target: document.querySelector("input[name=target]").value,
+            }
+
+            console.log(msgData)
+            socket.send(JSON.stringify(msgData));
+        }
     </script>
 </body>
 </html>
