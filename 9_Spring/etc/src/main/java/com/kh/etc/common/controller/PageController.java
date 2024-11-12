@@ -13,6 +13,8 @@ public class PageController {
 			return "apiSample";
 		case "summernote":
 			return "summernote";
+		case "chat":
+			return "chat";
 		}
 		
 		return "redirect:/";

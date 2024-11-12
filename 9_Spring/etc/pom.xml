@@ -243,6 +243,12 @@
 			<version>1.6.2</version>
 		</dependency>
 		
+		<!-- 웹소캣 라이브러리 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 		
 	</dependencies>
 	
