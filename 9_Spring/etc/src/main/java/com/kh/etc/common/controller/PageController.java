@@ -15,6 +15,8 @@ public class PageController {
 			return "apiSample";
 		case "summernote":
 			return "summernote";
+		case "naver":
+			return "naverLogin";
 		case "chat":
 			session.setAttribute("nick", nick);
 			return "chat";

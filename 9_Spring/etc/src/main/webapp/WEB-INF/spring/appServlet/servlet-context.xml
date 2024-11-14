@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<context:property-placeholder location="classpath:application.properties" file-encoding="UTF-8"/>
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
