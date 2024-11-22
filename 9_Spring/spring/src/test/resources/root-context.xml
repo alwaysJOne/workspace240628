@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
-	<context:property-placeholder location="classpath:application.properties" file-encoding="UTF-8"/>
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- 
 		root-context.xml
@@ -18,12 +14,12 @@
 	 
 	 <!-- 커넥션풀을 쓸 수 있는 객체등록 -->
  	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-       <property name="driverClassName" value="${jdbc.driverClassName}"/>
-       <property name="url" value="${jdbc.url}"/>
-       <property name="username" value="${jdbc.username}"/>
-       <property name="password" value="${jdbc.password}"/>
-    </bean> 
-    <!--  
+       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+       <property name="username" value="spring"/>
+       <property name="password" value="spring"/>
+    </bean>
+    <!-- 
     	BasicDataSource dataSource = new BasicDataSource();
     	dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
     	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
@@ -59,27 +55,8 @@
      	<property name="maxInMemorySize" value="100000000"/>
      </bean>
      
- 
-	<!-- @Aspect 어노테이션도 scan 하기 위함 -->
+     <!-- @Aspect 어노테이션도 scan 하기 위함 -->
 	<context:component-scan base-package="com.kh.aop" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
-	</context:component-scan>
-	
-	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="sender">
-		<property name="host" value="${mail.smtp.host}"/>
-		<property name="port" value="${mail.smtp.port}"/>
-		<property name="username" value="${mail.smtp.username}"/>
-		<property name="password" value="${mail.smtp.password}"/>
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-			</props>
-		</property>
-	</bean>
+	</context:component-scan> 
 </beans>
-
-
-
-
-

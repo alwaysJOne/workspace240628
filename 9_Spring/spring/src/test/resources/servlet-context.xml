@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.kh.spring" />
+	
+	<aop:aspectj-autoproxy /> 
+
+	<!-- 
+		*사용자가 어떤 url로 요청시 해당문서가 읽혀진다고 생각하면 된다.
+		
+		handlerMapping을 통해서 url로 요청시 어떤 Controller를 구동시킬건지 찾아내야 한다. -> 요청값에 적합한 Controller 실행
+		
+		1. 요청될때마다 실행될 Controller클래스들을 been으로 등록
+		<beans:bean class="com.kh.spring.member.controller.MemberController" id="loginController" />
+		
+		2.어떤 url로 요청시 어떤 Controller를 구동시킬것인지 맵핑(handlerMapping)을 시켜줘야한다.
+		<beans:bean class="org.springFramework.web.servlet.habdler.SimpleHandlerMapping">
+		 	<bean:property name="mapping">
+		 		<beans:prop key="login.me">loginController</beans:prop>
+		 	</bean:property>
+		</beans:bean>	
+	 -->
+	 
+	 <interceptors>
+	 	<interceptor>
+	 		<mapping path="/enrollForm.bo"/>
+	 		<mapping path="/myPage.me"/>
+	 		<beans:bean class="com.kh.spring.common.intercepter.LoginIntercepter" id="loginIntercepter" />
+	 	</interceptor>
+	 </interceptors>
+</beans:beans>
