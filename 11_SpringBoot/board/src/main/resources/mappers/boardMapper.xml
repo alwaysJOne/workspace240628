@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="study.board.mapper.BoardMapper">
+    <!--   id는 BoardMapper객체의 메서드와 연결된다. -->
+    <insert id="save">
+        INSERT
+        INTO BOARD(
+            TITLE,
+            CONTENTS,
+            MEMBER_EMAIL,
+            FILE_NAME,
+            CREATE_AT,
+            UPDATE_AT
+        )
+        VALUES(
+                  #{board.title},
+                  #{board.contents},
+                  #{board.memberEmail},
+                  #{board.fileName},
+                  CURRENT_TIMESTAMP,
+                  CURRENT_TIMESTAMP
+              )
+    </insert>
     <select id="findAll" resultType="Board">
         SELECT BOARD_ID boardId,
-                TITLE title,
-                MEMBER_EMAIL memberEmail,
-                FILE_NAME fileName,
-                CREATE_AT createdAt
-           FROM BOARD
+               TITLE title,
+               MEMBER_EMAIL memberEmail,
+               FILE_NAME fileName,
+               CREATE_AT createAt,
+               UPDATE_AT updateAt
+        FROM BOARD
     </select>
+    <select id="findOne" resultType="Board">
+        SELECT BOARD_ID boardId,
+               TITLE title,
+               CONTENTS contents,
+               MEMBER_EMAIL memberEmail,
+               FILE_NAME fileName,
+               CREATE_AT createAt,
+               UPDATE_AT updateAt
+        FROM BOARD
+        WHERE BOARD_ID = #{boardId}
+    </select>
+    <delete id="delete">
+        DELETE
+        FROM BOARD
+        WHERE BOARD_ID = #{boardId}
+    </delete>
+    <update id="update">
+        UPDATE BOARD
+        SET TITLE = #{board.title},
+            CONTENTS = #{board.contents},
+            FILE_NAME = #{board.fileName},
+            UPDATE_AT = CURRENT_TIMESTAMP
+        WHERE BOARD_ID = #{board.boardId}
+    </update>
 </mapper>

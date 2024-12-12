@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import study.board.domain.dto.BoardRequest;
 import study.board.domain.dto.BoardResponse;
 import study.board.domain.entity.Board;
 import study.board.service.BoardService;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,22 +50,65 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public void getBoard(@PathVariable Long boardId) {
-
+    public ResponseEntity<BoardResponse.DetailDTO> getBoard(@PathVariable Long boardId){
+        Board board = boardService.findOne(boardId);
+        BoardResponse.DetailDTO resultBoard = BoardResponse.DetailDTO.fromEntity(board);
+        return new ResponseEntity<>(resultBoard, HttpStatus.OK);
     }
 
+    //테스트할 때 member의 email은 실제로 존재하는 값을 넣어주어야합니다.
+    //ex) user1@example.com
     @PostMapping
-    public void createBoard() {
+    public ResponseEntity<String> createBoard(BoardRequest.CreateDTO request, MultipartFile upfile) throws Exception{
+         /*
+            @Builder를 객체에 추가하면 빌더 클래스가 자동으로 생성되어 객체 생성을 보다 편리하게 할 수 있다.
+            객체가 가질 필드들을 설정하는 메서드들을 체이닝방식으로 연결하여 객체를 생성하는 패턴이다.
+         */
 
+        if(request == null || request.getUserId() == null) {
+            throw new RuntimeException("check value");
+        }
+
+        Board board = request.toEntity();
+
+        if (!upfile.isEmpty()) {
+            // 파일 저장 경로 생성
+            //static안에 폴더 생성 후 해당 폴더의 절대경로를 넣어주세요.
+            File realObj = new File("C:\\workspace240628\\11_SpringBoot\\board\\src\\main\\resources\\uploads", upfile.getOriginalFilename());
+            upfile.transferTo(realObj);
+
+            board.changeFileName("/uploads/" + upfile.getOriginalFilename());
+        }
+
+        int result = boardService.save(board);
+
+        if (result > 0) {
+            return new ResponseEntity<>("게시글 등록 성공", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("게시글 등록 실패", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping
-    public void updateBoard() {
+    public ResponseEntity<Long> updateBoard(BoardRequest.UpdateDTO request, MultipartFile upfile) throws Exception{
 
+        Board board = request.toEntity();
+
+        if (upfile != null && !upfile.isEmpty()) {
+            // 파일 저장 경로 생성
+            File realObj = new File("C:\\workspace240628\\11_SpringBoot\\board\\src\\main\\resources\\uploads\"", upfile.getOriginalFilename());
+            upfile.transferTo(realObj);
+
+            board.changeFileName("/uploads/" + upfile.getOriginalFilename());
+        }
+
+        Long boardId = boardService.update(board);
+        return new ResponseEntity<>(boardId, HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public void deleteBoard() {
-
+    @DeleteMapping("/{boardId}")
+    public ResponseEntity<String> deleteBoard(@PathVariable Long boardId){
+        int result = boardService.delete(boardId);
+        return new ResponseEntity<>(result + "개 게시글 삭제완료", HttpStatus.OK);
     }
 }

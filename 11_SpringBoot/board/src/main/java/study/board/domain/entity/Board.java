@@ -21,8 +21,13 @@ public class Board {
 
     private String memberEmail;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createAt;
     private LocalDateTime updatedAt;
+
+    //변경이 필요한 부분만 setter를 작성해준다.
+    public void changeFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
 //    public static Bulder bulider(){
 //        return new Bulder();

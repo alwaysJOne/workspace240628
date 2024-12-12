@@ -17,7 +17,7 @@ public class BoardResponse {
         private String memberEmail;
         private String title;
         private String fileName;
-        private LocalDateTime createdAt;
+        private LocalDateTime createAt;
 
         public static SimpleDTO fromEntity(Board board){
             return SimpleDTO.builder()
@@ -25,7 +25,30 @@ public class BoardResponse {
                     .memberEmail(board.getMemberEmail())
                     .title(board.getTitle())
                     .fileName(board.getFileName())
-                    .createdAt(board.getCreatedAt())
+                    .createAt(board.getCreateAt())
+                    .build();
+        }
+    }
+
+    @Getter
+    @Setter
+    @Builder
+    public static class DetailDTO{
+        private Long boardId;
+        private String memberEmail;
+        private String title;
+        private String contents;
+        private String fileName;
+        private LocalDateTime createAt;
+
+        public static DetailDTO fromEntity(Board board) {
+            return DetailDTO.builder()
+                    .boardId(board.getBoardId())
+                    .memberEmail(board.getMemberEmail())
+                    .title(board.getTitle())
+                    .contents(board.getContents())
+                    .fileName(board.getFileName())
+                    .createAt(board.getCreateAt())
                     .build();
         }
     }

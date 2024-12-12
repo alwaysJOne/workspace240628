@@ -13,4 +13,14 @@ public class HomeController {
         log.info("dummy 요청 성공");
         return "ok";
     }
+
+    @GetMapping("/write")
+    public String boardWrite() {
+        return "/boardEnrollForm.html";
+    }
+
+    @GetMapping("/boardDetail/{boardId}")
+    public String boardDetail() {
+        return "/boardDetail.html";
+    }
 }
